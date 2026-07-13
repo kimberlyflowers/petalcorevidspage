@@ -21,7 +21,7 @@ import { useEffect, useRef, useState } from "react";
 
 const whopPlanId = process.env.NEXT_PUBLIC_WHOP_PLAN_ID;
 const whopCheckoutUrl = process.env.NEXT_PUBLIC_WHOP_CHECKOUT_URL;
-const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "/api/shopify/checkout";
+const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "https://petalcorebeauty.com/cart/44387093381165:1";
 
 const clips = [
   {
@@ -429,19 +429,17 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
               Buy now
             </button>
           ) : (
-            <form action="/api/shopify/checkout" method="post">
-              <button className="fallbackLink" type="submit">
-                Buy now · Free 3-day delivery
-              </button>
-            </form>
+            <a className="fallbackLink" href={shopLink}>
+              Buy now · Free 3-day delivery
+            </a>
           )}
           <div className="buttonRow">
-            <form action="/api/shopify/checkout" method="post">
-              <button className="cartButton" type="submit">Add to cart</button>
-            </form>
-            <form action={shopLink} method="post">
-              <button className="buyNow" type="submit">Buy now</button>
-            </form>
+            <a className="cartButton" href={shopLink}>
+              Add to cart
+            </a>
+            <a className="buyNow" href={shopLink}>
+              Buy now
+            </a>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ For Shopify checkout that registers orders in your store, set these in Vercel:
 - `SHOPIFY_STOREFRONT_ACCESS_TOKEN`
 - `SHOPIFY_VARIANT_ID`
 
-The buy buttons call `/api/shopify/checkout`, create a Shopify cart with the configured variant, and redirect to Shopify's hosted checkout URL.
+The buy buttons default to Shopify's cart permalink for the configured product, so tapping Buy Now sends the buyer into Shopify checkout for the Riche Creme variant without needing a custom Storefront API token.
 
 Current product target: Petalcore Riche Creme, variant `gid://shopify/ProductVariant/44387093381165`.
 
