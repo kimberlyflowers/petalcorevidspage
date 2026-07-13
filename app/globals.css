@@ -632,7 +632,35 @@ video {
   width: 100%;
   margin-top: 14px;
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
+}
+
+.productDetail {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.productDetail .productHero {
+  margin-top: 0;
+}
+
+.productDetail h3,
+.productDetail p {
+  margin: 0;
+}
+
+.productDetail h3 {
+  font-size: 18px;
+  line-height: 1.14;
+}
+
+.productDetail p {
+  color: #55555f;
+  font-size: 14px;
+  line-height: 1.36;
+  font-weight: 650;
 }
 
 .checkoutBox {

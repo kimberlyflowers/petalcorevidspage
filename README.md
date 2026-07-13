@@ -21,6 +21,8 @@ For Shopify checkout that registers orders in your store, set these in Vercel:
 
 The buy buttons call `/api/shopify/checkout`, create a Shopify cart with the configured variant, and redirect to Shopify's hosted checkout URL.
 
+Current product target: Petalcore Riche Creme, variant `gid://shopify/ProductVariant/44387093381165`.
+
 Optional fallbacks:
 
 - `NEXT_PUBLIC_WHOP_PLAN_ID` for the Whop checkout loader button.

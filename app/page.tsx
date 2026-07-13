@@ -272,9 +272,9 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
       </header>
       <div className="sheetBody">
         <div className="shopTop">
-          <img src="/images/product-hero.png" alt="Petalcore Bloom Shield product" />
-          <div>
-            <p className="shopTitle">[Petalcore] Bloom Shield — fuller-looking, soft-glow beauty balm</p>
+            <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
+            <div>
+            <p className="shopTitle">[Petalcore] Riche Creme — Pro-Aging Nourishing Face Cream</p>
             <div className="rating">
               <strong>3.5 ★</strong>
               <span>(9.7K)</span>
@@ -284,12 +284,16 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
           </div>
         </div>
         <div className="priceLine">
-          <strong className="price">$29</strong>
-          <span className="compare">$42</span>
+          <strong className="price">$59</strong>
+          <span className="compare">$74</span>
           <span>Free 3-day delivery</span>
         </div>
         <div className="promoBox">Free & easy returns · Low stock · 6.1K+ repurchased</div>
-        <img className="productHero" src="/images/shop-reference.jpeg" alt="Petalcore shopping detail screen" />
+        <div className="productDetail">
+          <img className="productHero" src="/images/riche-creme.jpg" alt="Petalcore Riche Creme bottle on a white background" />
+          <h3>Riche Creme</h3>
+          <p>Pro-aging nourishing face cream in a 1.7 oz / 50 ml bottle. Built for a soft, hydrated finish that fits the routine shown in the videos.</p>
+        </div>
         <div className="checkoutBox" id="checkout">
           {whopCheckoutUrl ? (
             <iframe className="checkoutFrame" src={whopCheckoutUrl} title="Petalcore checkout" />
