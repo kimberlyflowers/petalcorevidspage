@@ -1,19 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import type { FormEvent } from "react";
 import {
   Bookmark,
   ChevronDown,
   Heart,
   Home,
+  Menu,
   MessageCircle,
   Music2,
   Plus,
   Search,
   Send,
   ShoppingCart,
+  Sparkles,
   UserRound,
   UsersRound,
+  Wand2,
   X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -153,7 +157,7 @@ const comments = [
 export default function HomePage() {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [sheet, setSheet] = useState<"comments" | "shop" | "live" | null>(null);
+  const [sheet, setSheet] = useState<"comments" | "shop" | "live" | "assistant" | "tiktokLogin" | null>(null);
   const [shareNote, setShareNote] = useState("");
   const [activeClipIndex, setActiveClipIndex] = useState(0);
   const [showLiveInvite, setShowLiveInvite] = useState(false);
@@ -267,6 +271,10 @@ export default function HomePage() {
     });
   }
 
+  function openTikTokLogin() {
+    setSheet("tiktokLogin");
+  }
+
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
@@ -315,16 +323,19 @@ export default function HomePage() {
                 <div className="scrimBottom" />
                 <header className="tabBar">
                   <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open live shopping">
-                    LIVE
+                    <span className="liveTvIcon" aria-hidden="true" />
+                    <span>LIVE</span>
                   </button>
                   <nav className="tabs" aria-label="Feed tabs">
-                    <span>Community</span>
-                    <span>Local</span>
-                    <span>Following</span>
-                    <span>Shop</span>
-                    <span className="tabActive">For You</span>
+                    <button type="button" onClick={openTikTokLogin}>Community</button>
+                    <button type="button" onClick={openTikTokLogin}>Local</button>
+                    <button type="button" onClick={openTikTokLogin}>Following</button>
+                    <button type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>Shop</button>
+                    <button className="tabActive" type="button">For You</button>
                   </nav>
-                  <Search size={32} strokeWidth={3} />
+                  <button className="searchButton" type="button" onClick={openTikTokLogin} aria-label="Search TikTok">
+                    <Search size={32} strokeWidth={3} />
+                  </button>
                 </header>
                 <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>
                   <span className="shopIcon">
@@ -348,6 +359,9 @@ export default function HomePage() {
                 </div>
                 <aside className="actionRail" aria-label="Video actions">
                   <div className="profileStack">
+                    <button className="assistantCue" type="button" onClick={() => setSheet("assistant")} aria-label="Ask Petalcore assistant">
+                      <span className="assistantFace" aria-hidden="true" />
+                    </button>
                     <button className="profileLiveCue" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open Petalcore live">
                       LIVE
                     </button>
@@ -381,9 +395,9 @@ export default function HomePage() {
           })}
         </div>
         <nav className="bottomNav" aria-label="App navigation">
-          <span className="navItem navItemActive"><Home size={28} fill="currentColor" />Home</span>
-          <span className="navItem"><UsersRound size={28} />Friends</span>
-          <span className="navItem"><span className="postButton"><Plus size={25} strokeWidth={3.5} /></span></span>
+          <button className="navItem navItemActive" type="button"><Home size={28} fill="currentColor" />Home</button>
+          <button className="navItem" type="button" onClick={openTikTokLogin}><UsersRound size={28} />Friends</button>
+          <button className="navItem" type="button" onClick={openTikTokLogin} aria-label="Create post"><span className="postButton"><Plus size={25} strokeWidth={3.5} /></span></button>
           <button className="navItem" type="button" onClick={() => setSheet("comments")}><MessageCircle size={28} />Inbox</button>
           <Link className="navItem" href="/about"><UserRound size={28} />Profile</Link>
         </nav>
@@ -404,10 +418,89 @@ export default function HomePage() {
         )}
         {sheet && sheet !== "live" && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
         {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
-        {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
+        {sheet === "shop" && <ShopSheet clip={activeClip} onClose={() => setSheet(null)} />}
+        {sheet === "assistant" && <AssistantPanel onClose={() => setSheet(null)} onLoginRequest={openTikTokLogin} />}
+        {sheet === "tiktokLogin" && <TikTokLoginPrompt onClose={() => setSheet(null)} />}
         {sheet === "live" && <LiveShopPage soundOn={soundOn} onEnableSound={() => setSoundOn(true)} onClose={() => setSheet(null)} />}
       </section>
     </main>
+  );
+}
+
+function AssistantPanel({ onClose, onLoginRequest }: { onClose: () => void; onLoginRequest: () => void }) {
+  const [draft, setDraft] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      from: "assistant",
+      text: "Ask me anything about Riche Creme, checkout, shipping, or how it fits into the routine from the video.",
+    },
+  ]);
+
+  function submitQuestion(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const question = draft.trim();
+    if (!question) return;
+
+    setMessages((current) => [
+      ...current,
+      { from: "you", text: question },
+      {
+        from: "assistant",
+        text: "Riche Creme is the 50 ml nourishing face cream shown here. It is $59, ships free, and you can tap Shop or Buy Now to check out through Petalcore.",
+      },
+    ]);
+    setDraft("");
+  }
+
+  return (
+    <section className="assistantPanel" aria-label="Petalcore product assistant">
+      <header className="assistantHeader">
+        <button type="button" onClick={onClose} aria-label="Back to feed"><ChevronDown size={32} /></button>
+        <span className="assistantLogo"><span className="assistantFace" /></span>
+        <strong>Petalcore Assistant</strong>
+        <button type="button" onClick={onLoginRequest} aria-label="Assistant tools"><Wand2 size={25} /></button>
+        <button type="button" onClick={onLoginRequest} aria-label="Assistant menu"><Menu size={28} /></button>
+      </header>
+      <div className="assistantContent">
+        <h2>Ask about the product you watched</h2>
+        <p>I can help with Riche Creme, ingredients, shipping, returns, and checkout.</p>
+        <button className="assistantCard" type="button" onClick={() => setDraft("Is Riche Creme good under makeup?")}>
+          <img src="/images/riche-creme.jpg" alt="" />
+          <span>Ask about Riche Creme</span>
+          <Send size={22} />
+        </button>
+        <button className="assistantCard" type="button" onClick={() => setDraft("How fast is shipping?")}>
+          <img src="/images/product-hero.png" alt="" />
+          <span>Ask about shipping and returns</span>
+          <Send size={22} />
+        </button>
+        <div className="assistantMessages" aria-live="polite">
+          {messages.map((message, index) => (
+            <p className={message.from === "you" ? "assistantUserMessage" : "assistantBotMessage"} key={`${message.from}-${index}`}>
+              {message.text}
+            </p>
+          ))}
+        </div>
+      </div>
+      <form className="assistantInputDock" onSubmit={submitQuestion}>
+        <button type="button" onClick={onLoginRequest} aria-label="Add"><Plus size={30} /></button>
+        <input value={draft} placeholder="Ask anything" aria-label="Ask anything" onChange={(event) => setDraft(event.target.value)} />
+        <button type="submit" aria-label="Ask"><Sparkles size={26} /></button>
+      </form>
+    </section>
+  );
+}
+
+function TikTokLoginPrompt({ onClose }: { onClose: () => void }) {
+  return (
+    <section className="tiktokLoginPrompt" aria-label="Log in to TikTok">
+      <button className="loginClose" type="button" onClick={onClose} aria-label="Close login prompt"><X size={22} /></button>
+      <div className="tiktokMark" aria-hidden="true">♪</div>
+      <h2>Log in to TikTok</h2>
+      <p>Open TikTok to use this feature.</p>
+      <a href="https://www.tiktok.com/login" rel="noreferrer" target="_blank">Continue with TikTok</a>
+      <button type="button" onClick={onClose}>Not now</button>
+    </section>
   );
 }
 
@@ -470,9 +563,48 @@ function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClos
   );
 }
 
-function ShopSheet({ onClose }: { onClose: () => void }) {
+function ShopPreview({ clip }: { clip: (typeof clips)[number] }) {
+  if ("videos" in clip && clip.videos) {
+    const collageVideos = clip.videos;
+    return (
+      <div className="shopPreviewCollage">
+        {collageVideos.map((video, index) => (
+          <video
+            autoPlay
+            className={`shopPreviewVideo shopPreviewVideo${index + 1}`}
+            key={video.src}
+            loop
+            muted
+            playsInline
+            poster={video.poster}
+            preload="metadata"
+            src={video.src}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <video
+      autoPlay
+      className="shopPreviewVideo"
+      loop
+      muted
+      playsInline
+      poster={clip.poster}
+      preload="metadata"
+      src={clip.src ?? ""}
+    />
+  );
+}
+
+function ShopSheet({ clip, onClose }: { clip: (typeof clips)[number]; onClose: () => void }) {
   return (
     <section className="sheet shopSheet" aria-label="Shop Petalcore">
+      <div className="shopVideoPreview" aria-hidden="true">
+        <ShopPreview clip={clip} />
+      </div>
       <span className="sheetHandle" />
       <header className="sheetHeader">
         <h2>Petalcore Beauty</h2>
@@ -509,7 +641,7 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
             Add to cart
           </a>
           <a className="payNow" href={checkoutLink}>
-            Pay now
+            Buy now
             <span>Free 3-day delivery</span>
           </a>
         </div>
