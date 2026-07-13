@@ -25,110 +25,122 @@ const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "/api/shopify/checkout";
 
 const clips = [
   {
+    id: "gatekeeping-callout",
     src: "/videos/winner-01.mp4",
     poster: "/posters/winner-01.jpg",
     creator: "lili",
     caption: "Wait I was actually shocked",
     audio: "original sound - Petalcore Beauty",
+    metrics: { likes: "674K", comments: "8,931", saves: "74.8K", shares: "22.4K", repurchased: "6.1K+" },
   },
   {
+    id: "boyfriend-26",
     src: "/videos/winner-02.mp4",
     poster: "/posters/winner-02.jpg",
     creator: "lili",
     caption: "My boyfriend thought I was 26 until I changed this routine",
     audio: "Petalcore glow check",
+    metrics: { likes: "1.2M", comments: "14.2K", saves: "103K", shares: "48.6K", repurchased: "9.8K+" },
   },
   {
-    src: "/videos/winner-03.mp4",
-    poster: "/posters/winner-03.jpg",
+    id: "secret-friends-collage",
+    videos: [
+      { src: "/videos/winner-03.mp4", poster: "/posters/winner-03.jpg" },
+      { src: "/videos/winner-04.mp4", poster: "/posters/winner-04.jpg" },
+      { src: "/videos/winner-06.mp4", poster: "/posters/winner-06.jpg" },
+    ],
     creator: "maya",
     caption: "The secret my friends kept asking for",
     audio: "soft glam routine - Petalcore",
+    metrics: { likes: "842K", comments: "6,742", saves: "58.1K", shares: "31.7K", repurchased: "7.4K+" },
   },
   {
-    src: "/videos/winner-04.mp4",
-    poster: "/posters/winner-04.jpg",
-    creator: "maya",
-    caption: "Part two because everyone wanted the exact order",
-    audio: "get ready with me",
-  },
-  {
+    id: "cream-warning",
     src: "/videos/winner-05.mp4",
     poster: "/posters/winner-05.jpg",
     creator: "lili",
     caption: "Do not just slap any cream on your face",
     audio: "skin prep talk - Petalcore",
+    metrics: { likes: "986K", comments: "11.6K", saves: "91.3K", shares: "39.1K", repurchased: "8.9K+" },
   },
 ];
 
 const comments = [
   {
+    id: "creator-pinned",
     name: "lili",
     handle: "lili",
     text: "Wait because I used way less than I thought and my skin still looked moisturized at night",
     time: "2h",
     likes: "12.4K",
-    avatar: "creator",
+    avatar: "07",
     badge: "Creator",
     pinned: true,
   },
   {
+    id: "riche-question",
     name: "Maddie",
     handle: "mads_skin",
     text: "is this the riche creme?? the pink bottle on the product page?",
     time: "1h",
     likes: "8,942",
-    avatar: "rose",
+    avatar: "18",
   },
   {
+    id: "seller-reply",
     name: "Petalcore Beauty",
     handle: "petalcorebeauty",
     text: "Yes, this is Riche Creme. Tap Shop and it takes you to the 50 ml face cream.",
     time: "1h",
     likes: "6,102",
-    avatar: "brand",
+    avatar: "32",
     badge: "Seller",
     replyTo: "mads_skin",
   },
   {
+    id: "texture",
     name: "Talia",
     handle: "taliaglow",
     text: "mine came yesterday. it feels thick in the jar but melts down so fast",
     time: "48m",
     likes: "4,220",
-    avatar: "gold",
+    avatar: "41",
   },
   {
+    id: "makeup",
     name: "Renee",
     handle: "reneegrwm",
     text: "I have dry patches around my mouth and this is the first thing that did not pill under makeup",
     time: "33m",
     likes: "2,904",
-    avatar: "blue",
+    avatar: "56",
   },
   {
+    id: "routine",
     name: "Kayla",
     handle: "kaylatok",
     text: "can you use it morning and night or is it more of a night cream?",
     time: "21m",
     likes: "1,778",
-    avatar: "lavender",
+    avatar: "64",
   },
   {
+    id: "returns",
     name: "Jules",
     handle: "juleswithskin",
     text: "the free returns made me try it tbh but I kept it lol",
     time: "12m",
     likes: "942",
-    avatar: "mint",
+    avatar: "72",
   },
   {
+    id: "reading",
     name: "Nia",
     handle: "niaarchives",
     text: "not me pausing to read every comment before buying",
     time: "6m",
     likes: "318",
-    avatar: "coral",
+    avatar: "89",
   },
 ];
 
@@ -138,7 +150,9 @@ export default function HomePage() {
   const [sheet, setSheet] = useState<"comments" | "shop" | null>(null);
   const [shareNote, setShareNote] = useState("");
   const [needsTap, setNeedsTap] = useState(false);
+  const [activeClipIndex, setActiveClipIndex] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const activeClip = clips[activeClipIndex];
 
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
@@ -147,6 +161,8 @@ export default function HomePage() {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
           if (entry.isIntersecting) {
+            const nextIndex = Number(video.dataset.clipIndex ?? 0);
+            setActiveClipIndex(nextIndex);
             video.play().then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
           } else {
             video.pause();
@@ -191,18 +207,42 @@ export default function HomePage() {
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
         <div className="feedScroller" ref={scrollerRef}>
           {clips.map((clip, index) => (
-            <article className="feedItem" key={clip.src}>
-              <button className="videoTapLayer" type="button" aria-label="Play or pause video" onClick={playVisibleVideo}>
-                <video
-                  className="feedVideo"
-                  src={clip.src}
-                  poster={clip.poster}
-                  autoPlay={index === 0}
-                  muted
-                  playsInline
-                  loop
-                  preload="metadata"
-                />
+            <article className="feedItem" key={clip.id}>
+              <button
+                className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
+                type="button"
+                aria-label="Play or pause video"
+                onClick={playVisibleVideo}
+              >
+                {clip.videos ? (
+                  <div className="videoCollage">
+                    {clip.videos.map((video, videoIndex) => (
+                      <video
+                        className={`feedVideo collageVideo collageVideo${videoIndex + 1}`}
+                        key={video.src}
+                        src={video.src}
+                        poster={video.poster}
+                        data-clip-index={index}
+                        muted
+                        playsInline
+                        loop
+                        preload="metadata"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <video
+                    className="feedVideo"
+                    src={clip.src}
+                    poster={clip.poster}
+                    data-clip-index={index}
+                    autoPlay={index === 0}
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
+                  />
+                )}
                 {needsTap && index === 0 && <span className="tapToPlay">Tap to play</span>}
               </button>
               <div className="scrimTop" />
@@ -226,13 +266,13 @@ export default function HomePage() {
                 </nav>
                 <Search size={32} strokeWidth={3} />
               </header>
-              <button className="shopPill" type="button" onClick={() => setSheet("shop")}>
+              <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(index); setSheet("shop"); }}>
                 <span className="shopIcon">
                   <ShoppingCart size={22} />
                 </span>
                 <span>
                   Shop · low stock
-                  <span className="shopSubcopy">6.1K+ repurchased</span>
+                  <span className="shopSubcopy">{clip.metrics.repurchased} repurchased</span>
                 </span>
               </button>
               <div className="videoMeta">
@@ -254,19 +294,19 @@ export default function HomePage() {
                 </Link>
                 <button className={`railButton ${liked ? "isActive" : ""}`} type="button" onClick={() => setLiked((value) => !value)} aria-label="Like video">
                   <Heart size={39} strokeWidth={2.8} />
-                  <span>71.2K</span>
+                  <span>{clip.metrics.likes}</span>
                 </button>
-                <button className="railButton" type="button" onClick={() => setSheet("comments")} aria-label="Open comments">
+                <button className="railButton" type="button" onClick={() => { setActiveClipIndex(index); setSheet("comments"); }} aria-label="Open comments">
                   <MessageCircle size={39} strokeWidth={2.8} />
-                  <span>1,569</span>
+                  <span>{clip.metrics.comments}</span>
                 </button>
                 <button className={`railButton ${saved ? "isActive" : ""}`} type="button" onClick={() => setSaved((value) => !value)} aria-label="Save video">
                   <Bookmark size={38} strokeWidth={2.8} />
-                  <span>23.2K</span>
+                  <span>{clip.metrics.saves}</span>
                 </button>
                 <button className="railButton" type="button" onClick={shareVideo} aria-label="Share video">
                   <Send size={38} strokeWidth={2.8} />
-                  <span>{shareNote || "3,640"}</span>
+                  <span>{shareNote || clip.metrics.shares}</span>
                 </button>
                 <span className="disc">
                   <img src="/images/petalcore-logo.png" alt="" />
@@ -283,26 +323,42 @@ export default function HomePage() {
           <Link className="navItem" href="/about"><UserRound size={28} />Profile</Link>
         </nav>
         {sheet && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
-        {sheet === "comments" && <CommentsSheet onClose={() => setSheet(null)} />}
+        {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
         {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
       </section>
     </main>
   );
 }
 
-function CommentsSheet({ onClose }: { onClose: () => void }) {
+function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClose: () => void }) {
+  const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
+
+  function toggleCommentLike(id: string) {
+    setLikedComments((current) => {
+      const next = new Set(current);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
   return (
     <section className="sheet" aria-label="Comments">
       <span className="sheetHandle" />
       <header className="sheetHeader">
-        <h2>1,569 comments</h2>
+        <h2>{commentCount} comments</h2>
         <button type="button" onClick={onClose} aria-label="Close comments"><X size={24} /></button>
       </header>
       <div className="sheetBody">
         <div className="commentList">
           {comments.map((comment) => (
-            <article className={`commentRow ${comment.pinned ? "commentPinned" : ""}`} key={`${comment.handle}-${comment.text}`}>
-              <span className={`avatar avatar-${comment.avatar}`}>{comment.avatar === "creator" ? "li" : comment.name.slice(0, 1)}</span>
+            <article className={`commentRow ${comment.pinned ? "commentPinned" : ""}`} key={comment.id}>
+              <span className="avatar">
+                <img src={`/avatars/face-${comment.avatar}.svg`} alt="" />
+              </span>
               <div>
                 <p className="commentName">
                   @{comment.handle}
@@ -315,7 +371,13 @@ function CommentsSheet({ onClose }: { onClose: () => void }) {
                   <span>Reply</span>
                 </div>
               </div>
-              <button className="commentLike" type="button" aria-label={`Like ${comment.name}'s comment`}>
+              <button
+                className={`commentLike ${likedComments.has(comment.id) ? "commentLikeActive" : ""}`}
+                type="button"
+                aria-label={`Like ${comment.name}'s comment`}
+                aria-pressed={likedComments.has(comment.id)}
+                onClick={() => toggleCommentLike(comment.id)}
+              >
                 <Heart size={18} />
                 <span>{comment.likes}</span>
               </button>
