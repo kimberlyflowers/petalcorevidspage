@@ -14,8 +14,6 @@ import {
   ShoppingCart,
   UserRound,
   UsersRound,
-  Volume2,
-  VolumeX,
   X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -229,6 +227,13 @@ export default function HomePage() {
     };
   }, [sheet]);
 
+  useEffect(() => {
+    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
+    videos.forEach((video) => {
+      video.muted = !soundOn;
+    });
+  }, [soundOn]);
+
   async function shareVideo() {
     const url = window.location.href;
     const text = "Watch this Petalcore Beauty video sales page";
@@ -246,7 +251,7 @@ export default function HomePage() {
     window.setTimeout(() => setShareNote(""), 1800);
   }
 
-  function playVisibleVideo() {
+  function enableFeedSound() {
     setSoundOn(true);
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
     const visibleVideo = videos.find((video) => {
@@ -257,7 +262,7 @@ export default function HomePage() {
     const visibleItem = visibleVideo.closest(".feedItem");
     const videosInItem = Array.from(visibleItem?.querySelectorAll<HTMLVideoElement>(".feedVideo") ?? [visibleVideo]);
     videosInItem.forEach((video) => {
-      video.currentTime = 0;
+      video.muted = false;
       video.play().catch(() => undefined);
     });
   }
@@ -275,7 +280,7 @@ export default function HomePage() {
                   className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
                   type="button"
                   aria-label="Play or pause video"
-                  onClick={playVisibleVideo}
+                  onClick={enableFeedSound}
                 >
                   {clip.videos ? (
                     <div className="videoCollage">
@@ -366,10 +371,6 @@ export default function HomePage() {
                   <button className="railButton" type="button" onClick={shareVideo} aria-label="Share video">
                     <Send size={38} strokeWidth={2.8} />
                     <span>{shareNote || clip.metrics.shares}</span>
-                  </button>
-                  <button className={`railButton ${soundOn ? "isActive" : ""}`} type="button" onClick={() => setSoundOn((value) => !value)} aria-label={soundOn ? "Mute video" : "Turn on sound"}>
-                    {soundOn ? <Volume2 size={36} strokeWidth={2.8} /> : <VolumeX size={36} strokeWidth={2.8} />}
-                    <span>{soundOn ? "Sound" : "Muted"}</span>
                   </button>
                   <span className="disc">
                     <img src="/images/petalcore-logo.png" alt="" />
@@ -662,7 +663,6 @@ function LiveShopPage({
           />
           <button type="submit" aria-label="Send live comment">☺</button>
           <span>🎁</span>
-          <button type="button" onClick={onEnableSound} aria-label="Turn on live sound">{soundOn ? "♪" : "🔇"}</button>
           <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">↗</button>
         </form>
       </footer>
