@@ -130,24 +130,6 @@ video {
   grid-column: 1 / -1;
 }
 
-.tapToPlay {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 3;
-  min-width: 104px;
-  min-height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.52);
-  backdrop-filter: blur(12px);
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-  font-weight: 860;
-}
-
 .scrimTop,
 .scrimBottom {
   position: absolute;
@@ -467,6 +449,8 @@ video {
   color: #fff;
   backdrop-filter: blur(18px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  animation: liveInviteDrop 0.42s cubic-bezier(0.2, 0.88, 0.2, 1) both;
+  transform-origin: top center;
 }
 
 .liveInviteToast img {
@@ -518,6 +502,24 @@ video {
   place-items: center;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.14);
+}
+
+@keyframes liveInviteDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveInviteToast {
+    animation: none;
+  }
 }
 
 .sheet {
@@ -1399,10 +1401,23 @@ video {
   backdrop-filter: blur(12px);
   font-size: 12px;
   line-height: 1.2;
+  animation: liveCommentRise 0.32s ease-out both;
 }
 
 .liveChat strong {
   margin-right: 6px;
+}
+
+@keyframes liveCommentRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .liveProductCard {

@@ -63,6 +63,13 @@ const clips = [
 ];
 
 const feedClips = [...clips, ...clips];
+const liveInviteDelayMs = 1800;
+const liveInviteVisibleMs = 5200;
+const liveInviteRepeatMs = 30000;
+
+function formatViewerCount(count: number) {
+  return `${(count / 1000).toFixed(1)}K`;
+}
 
 const comments = [
   {
@@ -148,7 +155,6 @@ export default function HomePage() {
   const [saved, setSaved] = useState(false);
   const [sheet, setSheet] = useState<"comments" | "shop" | "live" | null>(null);
   const [shareNote, setShareNote] = useState("");
-  const [needsTap, setNeedsTap] = useState(false);
   const [activeClipIndex, setActiveClipIndex] = useState(0);
   const [showLiveInvite, setShowLiveInvite] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -163,7 +169,7 @@ export default function HomePage() {
           if (entry.isIntersecting) {
             const nextIndex = Number(video.dataset.clipIndex ?? 0);
             setActiveClipIndex(nextIndex);
-            video.play().then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
+            video.play().catch(() => undefined);
           } else {
             video.pause();
           }
@@ -193,9 +199,30 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShowLiveInvite(true), 1800);
-    return () => window.clearTimeout(timer);
-  }, []);
+    if (sheet) {
+      setShowLiveInvite(false);
+      return;
+    }
+
+    let hideTimer: number | undefined;
+    let repeatTimer: number | undefined;
+
+    function showInvite() {
+      setShowLiveInvite(true);
+      hideTimer = window.setTimeout(() => {
+        setShowLiveInvite(false);
+      }, liveInviteVisibleMs);
+      repeatTimer = window.setTimeout(showInvite, liveInviteRepeatMs);
+    }
+
+    const firstTimer = window.setTimeout(showInvite, liveInviteDelayMs);
+
+    return () => {
+      window.clearTimeout(firstTimer);
+      window.clearTimeout(hideTimer);
+      window.clearTimeout(repeatTimer);
+    };
+  }, [sheet]);
 
   async function shareVideo() {
     const url = window.location.href;
@@ -220,7 +247,7 @@ export default function HomePage() {
       const rect = video.getBoundingClientRect();
       return rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.6;
     });
-    visibleVideo?.play().then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
+    visibleVideo?.play().catch(() => undefined);
   }
 
   return (
@@ -247,6 +274,7 @@ export default function HomePage() {
                           src={video.src}
                           poster={video.poster}
                           data-clip-index={logicalIndex}
+                          autoPlay
                           muted
                           playsInline
                           loop
@@ -260,14 +288,13 @@ export default function HomePage() {
                       src={clip.src}
                       poster={clip.poster}
                       data-clip-index={logicalIndex}
-                      autoPlay={index === 0}
+                      autoPlay
                       muted
                       playsInline
                       loop
                       preload="metadata"
                     />
                   )}
-                  {needsTap && logicalIndex === 0 && <span className="tapToPlay">Tap to play</span>}
                 </button>
                 <div className="scrimTop" />
                 <div className="scrimBottom" />
@@ -477,13 +504,55 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
 }
 
 function LiveShopPage({ onClose }: { onClose: () => void }) {
-  const liveComments = [
-    ["L.A", "Love how glowy this looks"],
-    ["Nemisis", "joined"],
-    ["skinbyren", "wait show the texture again pls"],
-    ["petalcorebeauty", "Riche Creme is pinned below"],
-    ["mollymakeup", "does it sit well under concealer?"],
+  const [viewerCount, setViewerCount] = useState(6024);
+  const liveCommentPool = [
+    { name: "L.A", text: "Love how glowy this looks", gems: "21" },
+    { name: "Nemisis", text: "joined", gems: "10" },
+    { name: "skinbyren", text: "wait show the texture again pls" },
+    { name: "petalcorebeauty", text: "Riche Creme is pinned below" },
+    { name: "mollymakeup", text: "does it sit well under concealer?" },
+    { name: "taliaglow", text: "I need this for night routine" },
+    { name: "bri.skin", text: "cart is open omg" },
+    { name: "nycbeauty", text: "how much do you use?" },
+    { name: "lena", text: "it looks so smooth on camera" },
+    { name: "arielle", text: "free shipping sold me" },
+    { name: "kaylatok", text: "show the jar again" },
+    { name: "petalcorebeauty", text: "Tap Buy for the Riche Creme checkout" },
+    { name: "softglam", text: "mine just arrived today" },
+    { name: "mads_skin", text: "does this work before makeup?" },
+    { name: "jules", text: "the glow is actually insane" },
+    { name: "reneegrwm", text: "ok this texture looks expensive" },
   ];
+  const [liveComments, setLiveComments] = useState(() =>
+    liveCommentPool.slice(0, 5).map((comment, index) => ({ ...comment, id: `initial-${index}` })),
+  );
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setViewerCount((current) => {
+        const direction = Math.random() > 0.5 ? 1 : -1;
+        const movement = direction * (90 + Math.floor(Math.random() * 171));
+        const nextCount = current + movement;
+        return Math.min(6520, Math.max(5580, nextCount));
+      });
+    }, 2200);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    let commentIndex = 5;
+    const timer = window.setInterval(() => {
+      const comment = liveCommentPool[commentIndex % liveCommentPool.length];
+      setLiveComments((current) => [
+        ...current.slice(-5),
+        { ...comment, id: `${comment.name}-${commentIndex}-${Date.now()}` },
+      ]);
+      commentIndex += 1;
+    }, 1450);
+
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <section className="livePage" aria-label="Petalcore live shopping">
@@ -507,7 +576,7 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
           </div>
         </div>
         <button className="liveFollowButton" type="button">+ Follow</button>
-        <span className="liveViewerPill">295</span>
+        <span className="liveViewerPill">{formatViewerCount(viewerCount)}</span>
         <button className="liveRoundButton" type="button" aria-label="Minimize live">⌄</button>
         <button className="liveCloseX" type="button" onClick={onClose} aria-label="Close live"><X size={34} /></button>
       </header>
@@ -523,11 +592,11 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
       <div className="liveCommercePanel">
         <div className="liveViewingToast">1 user is viewing products</div>
         <div className="liveChat">
-          {liveComments.map(([name, text], index) => (
-            <p key={`${name}-${text}`}>
-              {index < 2 && <span className="gemCount">{index === 0 ? "21" : "10"}</span>}
-              <strong>@{name}</strong>
-              <span>{text}</span>
+          {liveComments.map((comment) => (
+            <p key={comment.id}>
+              {comment.gems && <span className="gemCount">{comment.gems}</span>}
+              <strong>@{comment.name}</strong>
+              <span>{comment.text}</span>
             </p>
           ))}
         </div>
