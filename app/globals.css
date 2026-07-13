@@ -336,15 +336,6 @@ video {
   font-weight: 840;
 }
 
-.sponsored {
-  width: fit-content;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 12px;
-  font-weight: 800;
-}
-
 .caption {
   margin: 0;
   font-size: 16px;
@@ -379,6 +370,30 @@ video {
   display: grid;
   gap: 15px;
   justify-items: center;
+}
+
+.profileStack {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding-top: 16px;
+}
+
+.profileLiveCue {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  min-height: 18px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #ff184f;
+  color: #fff;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(255, 24, 79, 0.52);
 }
 
 .profileButton {
@@ -789,6 +804,202 @@ video {
   border-top: 1px solid #ececf0;
   background: #fff;
   box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.1);
+}
+
+.livePage {
+  position: absolute;
+  z-index: 35;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.livePageVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.livePageHeader {
+  position: absolute;
+  z-index: 5;
+  top: calc(max(46px, env(safe-area-inset-top) + 38px));
+  left: 12px;
+  right: 12px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.liveCloseButton {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(12px);
+}
+
+.liveHost {
+  min-width: 0;
+  display: inline-grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 5px 9px 5px 5px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(14px);
+}
+
+.liveHost img {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.liveHost div {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.liveHost strong,
+.liveHost span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.liveHost strong {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.liveHost span {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.liveNowPill {
+  min-height: 28px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 10px;
+  border-radius: 7px;
+  background: #ff184f;
+  font-size: 12px;
+  font-weight: 950;
+  box-shadow: 0 4px 18px rgba(255, 24, 79, 0.48);
+}
+
+.liveActionRail {
+  position: absolute;
+  z-index: 5;
+  right: 10px;
+  bottom: calc(136px + env(safe-area-inset-bottom));
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.liveCommercePanel {
+  position: absolute;
+  z-index: 5;
+  left: 12px;
+  right: 78px;
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  display: grid;
+  gap: 10px;
+}
+
+.livePinnedProduct {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+  max-width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.livePinnedProduct img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #fff;
+}
+
+.livePinnedProduct div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.livePinnedProduct strong,
+.livePinnedProduct span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.livePinnedProduct strong {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.livePinnedProduct span {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.liveProductEyebrow {
+  color: #ffd7e2 !important;
+  font-weight: 850 !important;
+}
+
+.liveProductCta {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #ff184f;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 920 !important;
+}
+
+.liveBuyBar {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.86) 24%, #000);
+}
+
+.liveBuyBar .cartButton {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.liveCommercePanel .liveChat {
+  position: static;
+  display: grid;
+  gap: 6px;
+  max-height: 168px;
+  overflow: hidden;
 }
 
 .liveSheet {

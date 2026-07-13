@@ -281,17 +281,21 @@ export default function HomePage() {
                   <span>💫</span>
                 </div>
                 <p className="caption">{clip.caption}</p>
-                <span className="sponsored">Ad</span>
               </div>
               <div className="musicLine">
                 <Music2 size={15} />
                 <span className="marquee">{clip.audio}</span>
               </div>
               <aside className="actionRail" aria-label="Video actions">
-                <Link className="profileButton" href="/about" aria-label="Open Petalcore profile">
-                  <img src="/images/product-hero.png" alt="" />
-                  <span className="followDot">+</span>
-                </Link>
+                <div className="profileStack">
+                  <button className="profileLiveCue" type="button" onClick={() => { setActiveClipIndex(index); setSheet("live"); }} aria-label="Open Petalcore live">
+                    LIVE
+                  </button>
+                  <Link className="profileButton" href="/about" aria-label="Open Petalcore profile">
+                    <img src="/images/product-hero.png" alt="" />
+                    <span className="followDot">+</span>
+                  </Link>
+                </div>
                 <button className={`railButton ${liked ? "isActive" : ""}`} type="button" onClick={() => setLiked((value) => !value)} aria-label="Like video">
                   <Heart size={39} strokeWidth={2.8} />
                   <span>{clip.metrics.likes}</span>
@@ -322,10 +326,10 @@ export default function HomePage() {
           <button className="navItem" type="button" onClick={() => setSheet("comments")}><MessageCircle size={28} />Inbox</button>
           <Link className="navItem" href="/about"><UserRound size={28} />Profile</Link>
         </nav>
-        {sheet && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
+        {sheet && sheet !== "live" && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
         {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
         {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
-        {sheet === "live" && <LiveShopSheet onClose={() => setSheet(null)} />}
+        {sheet === "live" && <LiveShopPage onClose={() => setSheet(null)} />}
       </section>
     </main>
   );
@@ -438,51 +442,78 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
   );
 }
 
-function LiveShopSheet({ onClose }: { onClose: () => void }) {
+function LiveShopPage({ onClose }: { onClose: () => void }) {
   const liveComments = [
-    ["@camilleglow", "show the texture again pls"],
-    ["@skinbyren", "just got mine, checkout was fast"],
-    ["@petalcorebeauty", "Riche Creme is pinned below"],
-    ["@mollymakeup", "does it sit well under concealer?"],
+    ["camilleglow", "show the texture again pls"],
+    ["skinbyren", "just got mine, checkout was fast"],
+    ["petalcorebeauty", "Riche Creme is pinned below"],
+    ["mollymakeup", "does it sit well under concealer?"],
+    ["ashleyskincare", "wait the glow on camera is actually wild"],
+    ["petalcorebeauty", "tap the product card for the 50 ml Riche Creme"],
   ];
 
   return (
-    <section className="sheet liveSheet" aria-label="Petalcore live shopping">
-      <span className="sheetHandle" />
-      <header className="sheetHeader">
-        <h2><span className="liveDot" /> Petalcore LIVE</h2>
-        <button type="button" onClick={onClose} aria-label="Close live"><X size={24} /></button>
-      </header>
-      <div className="liveBody">
-        <div className="liveVideoWrap">
-          <video
-            className="liveVideo"
-            src="/videos/winner-01.mp4"
-            poster="/posters/winner-01.jpg"
-            autoPlay
-            muted
-            playsInline
-            loop
-          />
-          <div className="liveBadge">LIVE · 2.8K watching</div>
-          <div className="liveChat">
-            {liveComments.map(([name, text]) => (
-              <p key={name}>
-                <strong>{name}</strong>
-                <span>{text}</span>
-              </p>
-            ))}
+    <section className="livePage" aria-label="Petalcore live shopping">
+      <video
+        className="livePageVideo"
+        src="/videos/winner-02.mp4"
+        poster="/posters/winner-02.jpg"
+        autoPlay
+        muted
+        playsInline
+        loop
+      />
+      <div className="scrimTop" />
+      <div className="scrimBottom" />
+      <div className="statusBar">
+        <span>10:25</span>
+      </div>
+      <div className="systemIcons">
+        <span className="signal">SOS</span>
+        <Wifi size={18} strokeWidth={3} />
+        <span className="battery" />
+      </div>
+      <header className="livePageHeader">
+        <button className="liveCloseButton" type="button" onClick={onClose} aria-label="Close live"><X size={26} /></button>
+        <div className="liveHost">
+          <img src="/images/product-hero.png" alt="" />
+          <div>
+            <strong>Petalcore Beauty</strong>
+            <span>2.8K watching</span>
           </div>
         </div>
-        <div className="liveProductCard">
+        <span className="liveNowPill">LIVE</span>
+      </header>
+      <aside className="liveActionRail" aria-label="Live actions">
+        <button className="railButton" type="button" aria-label="Like live">
+          <Heart size={38} strokeWidth={2.8} />
+          <span>98.4K</span>
+        </button>
+        <button className="railButton" type="button" aria-label="Share live" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })}>
+          <Send size={36} strokeWidth={2.8} />
+          <span>Share</span>
+        </button>
+      </aside>
+      <div className="liveCommercePanel">
+        <a className="livePinnedProduct" href={shopLink}>
           <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
           <div>
+            <span className="liveProductEyebrow">Pinned product</span>
             <strong>Riche Creme</strong>
             <span>$59 · Free 3-day delivery</span>
           </div>
+          <span className="liveProductCta">Shop</span>
+        </a>
+        <div className="liveChat">
+          {liveComments.map(([name, text]) => (
+            <p key={`${name}-${text}`}>
+              <strong>@{name}</strong>
+              <span>{text}</span>
+            </p>
+          ))}
         </div>
       </div>
-      <footer className="shopStickyBar">
+      <footer className="liveBuyBar">
         <div className="buttonRow">
           <a className="cartButton" href={shopLink}>
             Add to cart
