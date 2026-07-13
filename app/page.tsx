@@ -62,13 +62,74 @@ const clips = [
 ];
 
 const comments = [
-  ["Ari", "I ordered after seeing this exact video and the texture is actually so pretty", "2h", "12.4K"],
-  ["Mel", "The low stock tag got me moving faster than I want to admit", "1h", "8,942"],
-  ["Jules", "Can confirm it gives that glassy finish without feeling sticky", "45m", "6,331"],
-  ["Nia", "The before and after in part two sold me", "38m", "4,220"],
-  ["Liv", "I need the shade name because this looks expensive", "31m", "2,904"],
-  ["Kay", "Mine came in 3 days and the packaging is so cute", "18m", "1,778"],
-  ["Bri", "Finally a beauty ad that shows the product up close", "12m", "942"],
+  {
+    name: "lili",
+    handle: "lili",
+    text: "Wait because I used way less than I thought and my skin still looked moisturized at night",
+    time: "2h",
+    likes: "12.4K",
+    avatar: "creator",
+    badge: "Creator",
+    pinned: true,
+  },
+  {
+    name: "Maddie",
+    handle: "mads_skin",
+    text: "is this the riche creme?? the pink bottle on the product page?",
+    time: "1h",
+    likes: "8,942",
+    avatar: "rose",
+  },
+  {
+    name: "Petalcore Beauty",
+    handle: "petalcorebeauty",
+    text: "Yes, this is Riche Creme. Tap Shop and it takes you to the 50 ml face cream.",
+    time: "1h",
+    likes: "6,102",
+    avatar: "brand",
+    badge: "Seller",
+    replyTo: "mads_skin",
+  },
+  {
+    name: "Talia",
+    handle: "taliaglow",
+    text: "mine came yesterday. it feels thick in the jar but melts down so fast",
+    time: "48m",
+    likes: "4,220",
+    avatar: "gold",
+  },
+  {
+    name: "Renee",
+    handle: "reneegrwm",
+    text: "I have dry patches around my mouth and this is the first thing that did not pill under makeup",
+    time: "33m",
+    likes: "2,904",
+    avatar: "blue",
+  },
+  {
+    name: "Kayla",
+    handle: "kaylatok",
+    text: "can you use it morning and night or is it more of a night cream?",
+    time: "21m",
+    likes: "1,778",
+    avatar: "lavender",
+  },
+  {
+    name: "Jules",
+    handle: "juleswithskin",
+    text: "the free returns made me try it tbh but I kept it lol",
+    time: "12m",
+    likes: "942",
+    avatar: "mint",
+  },
+  {
+    name: "Nia",
+    handle: "niaarchives",
+    text: "not me pausing to read every comment before buying",
+    time: "6m",
+    likes: "318",
+    avatar: "coral",
+  },
 ];
 
 export default function HomePage() {
@@ -239,20 +300,24 @@ function CommentsSheet({ onClose }: { onClose: () => void }) {
       </header>
       <div className="sheetBody">
         <div className="commentList">
-          {comments.map(([name, text, time, likes]) => (
-            <article className="commentRow" key={`${name}-${text}`}>
-              <span className="avatar">{name.slice(0, 1)}</span>
+          {comments.map((comment) => (
+            <article className={`commentRow ${comment.pinned ? "commentPinned" : ""}`} key={`${comment.handle}-${comment.text}`}>
+              <span className={`avatar avatar-${comment.avatar}`}>{comment.avatar === "creator" ? "li" : comment.name.slice(0, 1)}</span>
               <div>
-                <p className="commentName">@{name.toLowerCase()}.beauty</p>
-                <p className="commentText">{text}</p>
+                <p className="commentName">
+                  @{comment.handle}
+                  {comment.badge && <span>{comment.badge}</span>}
+                </p>
+                {comment.replyTo && <p className="replyContext">Replying to @{comment.replyTo}</p>}
+                <p className="commentText">{comment.text}</p>
                 <div className="commentMeta">
-                  <span>{time}</span>
+                  <span>{comment.pinned ? "Pinned" : comment.time}</span>
                   <span>Reply</span>
                 </div>
               </div>
-              <button className="commentLike" type="button" aria-label={`Like ${name}'s comment`}>
+              <button className="commentLike" type="button" aria-label={`Like ${comment.name}'s comment`}>
                 <Heart size={18} />
-                <span>{likes}</span>
+                <span>{comment.likes}</span>
               </button>
             </article>
           ))}
@@ -272,8 +337,8 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
       </header>
       <div className="sheetBody">
         <div className="shopTop">
-            <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
-            <div>
+          <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
+          <div>
             <p className="shopTitle">[Petalcore] Riche Creme — Pro-Aging Nourishing Face Cream</p>
             <div className="rating">
               <strong>3.5 ★</strong>

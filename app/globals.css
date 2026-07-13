@@ -507,7 +507,7 @@ video {
 
 .commentList {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   padding-top: 4px;
 }
 
@@ -516,6 +516,13 @@ video {
   grid-template-columns: 38px 1fr auto;
   gap: 10px;
   align-items: start;
+}
+
+.commentPinned {
+  margin: -2px -6px 0;
+  padding: 8px 6px;
+  border-radius: 10px;
+  background: #f8f0f4;
 }
 
 .avatar {
@@ -528,13 +535,68 @@ video {
   background: linear-gradient(135deg, #2f2f39, #ff7aa4);
   font-size: 13px;
   font-weight: 900;
+  text-transform: uppercase;
+}
+
+.avatar-creator {
+  background: url("/posters/winner-01.jpg") center / cover;
+  box-shadow: inset 0 0 0 2px rgba(255, 45, 103, 0.68);
+  color: transparent;
+}
+
+.avatar-brand {
+  background: linear-gradient(135deg, #ffd4e3, #ff2d67);
+}
+
+.avatar-rose {
+  background: linear-gradient(135deg, #7a1639, #f17b9d);
+}
+
+.avatar-gold {
+  background: linear-gradient(135deg, #805d24, #f5c76a);
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #18456c, #69c4ff);
+}
+
+.avatar-lavender {
+  background: linear-gradient(135deg, #5c448d, #c8a7ff);
+}
+
+.avatar-mint {
+  background: linear-gradient(135deg, #1c705d, #8be0c6);
+}
+
+.avatar-coral {
+  background: linear-gradient(135deg, #8a2d21, #ff8c72);
 }
 
 .commentName {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
   margin: 0 0 2px;
   color: #54545d;
   font-size: 13px;
   font-weight: 780;
+}
+
+.commentName span {
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: #fff;
+  background: #ff2d67;
+  font-size: 10px;
+  font-weight: 860;
+}
+
+.replyContext {
+  margin: 0 0 3px;
+  color: #8b8b94;
+  font-size: 12px;
+  font-weight: 740;
 }
 
 .commentText {
