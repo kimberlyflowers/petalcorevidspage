@@ -13,7 +13,15 @@ Open `http://localhost:3000`.
 
 ## Checkout
 
-Set one of these in Vercel:
+For Shopify checkout that registers orders in your store, set these in Vercel:
+
+- `SHOPIFY_STORE_DOMAIN`
+- `SHOPIFY_STOREFRONT_ACCESS_TOKEN`
+- `SHOPIFY_VARIANT_ID`
+
+The buy buttons call `/api/shopify/checkout`, create a Shopify cart with the configured variant, and redirect to Shopify's hosted checkout URL.
+
+Optional fallbacks:
 
 - `NEXT_PUBLIC_WHOP_PLAN_ID` for the Whop checkout loader button.
 - `NEXT_PUBLIC_WHOP_CHECKOUT_URL` for a hosted/embed checkout iframe.

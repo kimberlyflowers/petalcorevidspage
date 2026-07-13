@@ -21,35 +21,40 @@ import { useEffect, useRef, useState } from "react";
 
 const whopPlanId = process.env.NEXT_PUBLIC_WHOP_PLAN_ID;
 const whopCheckoutUrl = process.env.NEXT_PUBLIC_WHOP_CHECKOUT_URL;
-const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "#checkout";
+const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "/api/shopify/checkout";
 
 const clips = [
   {
     src: "/videos/winner-01.mp4",
+    poster: "/posters/winner-01.jpg",
     creator: "lili",
     caption: "Wait I was actually shocked",
     audio: "original sound - Petalcore Beauty",
   },
   {
     src: "/videos/winner-02.mp4",
+    poster: "/posters/winner-02.jpg",
     creator: "lili",
     caption: "My boyfriend thought I was 26 until I changed this routine",
     audio: "Petalcore glow check",
   },
   {
     src: "/videos/winner-03.mp4",
+    poster: "/posters/winner-03.jpg",
     creator: "maya",
     caption: "The secret my friends kept asking for",
     audio: "soft glam routine - Petalcore",
   },
   {
     src: "/videos/winner-04.mp4",
+    poster: "/posters/winner-04.jpg",
     creator: "maya",
     caption: "Part two because everyone wanted the exact order",
     audio: "get ready with me",
   },
   {
     src: "/videos/winner-05.mp4",
+    poster: "/posters/winner-05.jpg",
     creator: "lili",
     caption: "Do not just slap any cream on your face",
     audio: "skin prep talk - Petalcore",
@@ -71,6 +76,7 @@ export default function HomePage() {
   const [saved, setSaved] = useState(false);
   const [sheet, setSheet] = useState<"comments" | "shop" | null>(null);
   const [shareNote, setShareNote] = useState("");
+  const [needsTap, setNeedsTap] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -80,7 +86,7 @@ export default function HomePage() {
         entries.forEach((entry) => {
           const video = entry.target as HTMLVideoElement;
           if (entry.isIntersecting) {
-            video.play().catch(() => undefined);
+            video.play().then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
           } else {
             video.pause();
           }
@@ -110,13 +116,34 @@ export default function HomePage() {
     window.setTimeout(() => setShareNote(""), 1800);
   }
 
+  function playVisibleVideo() {
+    const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
+    const visibleVideo = videos.find((video) => {
+      const rect = video.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.6;
+    });
+    visibleVideo?.play().then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
+  }
+
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
         <div className="feedScroller" ref={scrollerRef}>
           {clips.map((clip, index) => (
             <article className="feedItem" key={clip.src}>
-              <video className="feedVideo" src={clip.src} autoPlay={index === 0} muted playsInline loop preload="auto" />
+              <button className="videoTapLayer" type="button" aria-label="Play or pause video" onClick={playVisibleVideo}>
+                <video
+                  className="feedVideo"
+                  src={clip.src}
+                  poster={clip.poster}
+                  autoPlay={index === 0}
+                  muted
+                  playsInline
+                  loop
+                  preload="metadata"
+                />
+                {needsTap && index === 0 && <span className="tapToPlay">Tap to play</span>}
+              </button>
               <div className="scrimTop" />
               <div className="scrimBottom" />
               <div className="statusBar">
@@ -271,17 +298,19 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
               Buy now
             </button>
           ) : (
-            <a className="fallbackLink" href={shopLink}>
-              Buy now · Free 3-day delivery
-            </a>
+            <form action="/api/shopify/checkout" method="post">
+              <button className="fallbackLink" type="submit">
+                Buy now · Free 3-day delivery
+              </button>
+            </form>
           )}
           <div className="buttonRow">
-            <button className="cartButton" type="button">
-              Add to cart
-            </button>
-            <a className="buyNow" href={shopLink}>
-              Buy now
-            </a>
+            <form action="/api/shopify/checkout" method="post">
+              <button className="cartButton" type="submit">Add to cart</button>
+            </form>
+            <form action={shopLink} method="post">
+              <button className="buyNow" type="submit">Buy now</button>
+            </form>
           </div>
         </div>
       </div>
