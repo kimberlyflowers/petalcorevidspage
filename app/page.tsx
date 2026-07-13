@@ -358,7 +358,7 @@ function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClos
           {comments.map((comment) => (
             <article className={`commentRow ${comment.pinned ? "commentPinned" : ""}`} key={comment.id}>
               <span className="avatar">
-                <img src={`/avatars/face-${comment.avatar}.svg`} alt="" />
+                <img src={`/avatars/face-${comment.avatar}.jpg`} alt="" />
               </span>
               <div>
                 <p className="commentName">
