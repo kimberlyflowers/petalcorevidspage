@@ -726,8 +726,8 @@ function LiveShopPage({
     <section className="livePage" aria-label="Petalcore live shopping">
       <video
         className="livePageVideo"
-        src="/videos/winner-02.mp4"
-        poster="/posters/winner-02.jpg"
+        src="/videos/live-shopping.mp4"
+        poster="/posters/live-shopping.jpg"
         autoPlay
         muted={!soundOn}
         playsInline
