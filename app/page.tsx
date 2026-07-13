@@ -14,6 +14,8 @@ import {
   ShoppingCart,
   UserRound,
   UsersRound,
+  Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -157,6 +159,7 @@ export default function HomePage() {
   const [shareNote, setShareNote] = useState("");
   const [activeClipIndex, setActiveClipIndex] = useState(0);
   const [showLiveInvite, setShowLiveInvite] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeClip = clips[activeClipIndex];
 
@@ -244,6 +247,7 @@ export default function HomePage() {
   }
 
   function playVisibleVideo() {
+    setSoundOn(true);
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
     const visibleVideo = videos.find((video) => {
       const rect = video.getBoundingClientRect();
@@ -282,11 +286,10 @@ export default function HomePage() {
                           src={video.src}
                           poster={video.poster}
                           data-clip-index={logicalIndex}
-                          autoPlay
-                          muted
+                          muted={!soundOn}
                           playsInline
                           loop
-                          preload="metadata"
+                          preload={index === 0 ? "metadata" : "none"}
                         />
                       ))}
                     </div>
@@ -296,11 +299,10 @@ export default function HomePage() {
                       src={clip.src}
                       poster={clip.poster}
                       data-clip-index={logicalIndex}
-                      autoPlay
-                      muted
+                      muted={!soundOn}
                       playsInline
                       loop
-                      preload="metadata"
+                      preload={index === 0 ? "metadata" : "none"}
                     />
                   )}
                 </button>
@@ -365,6 +367,10 @@ export default function HomePage() {
                     <Send size={38} strokeWidth={2.8} />
                     <span>{shareNote || clip.metrics.shares}</span>
                   </button>
+                  <button className={`railButton ${soundOn ? "isActive" : ""}`} type="button" onClick={() => setSoundOn((value) => !value)} aria-label={soundOn ? "Mute video" : "Turn on sound"}>
+                    {soundOn ? <Volume2 size={36} strokeWidth={2.8} /> : <VolumeX size={36} strokeWidth={2.8} />}
+                    <span>{soundOn ? "Sound" : "Muted"}</span>
+                  </button>
                   <span className="disc">
                     <img src="/images/petalcore-logo.png" alt="" />
                   </span>
@@ -398,7 +404,7 @@ export default function HomePage() {
         {sheet && sheet !== "live" && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
         {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
         {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
-        {sheet === "live" && <LiveShopPage onClose={() => setSheet(null)} />}
+        {sheet === "live" && <LiveShopPage soundOn={soundOn} onEnableSound={() => setSoundOn(true)} onClose={() => setSheet(null)} />}
       </section>
     </main>
   );
@@ -511,7 +517,15 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
   );
 }
 
-function LiveShopPage({ onClose }: { onClose: () => void }) {
+function LiveShopPage({
+  soundOn,
+  onEnableSound,
+  onClose,
+}: {
+  soundOn: boolean;
+  onEnableSound: () => void;
+  onClose: () => void;
+}) {
   const [viewerCount, setViewerCount] = useState(6024);
   const [liveDraft, setLiveDraft] = useState("");
   const liveCommentPool = [
@@ -582,9 +596,10 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
         src="/videos/winner-02.mp4"
         poster="/posters/winner-02.jpg"
         autoPlay
-        muted
+        muted={!soundOn}
         playsInline
         loop
+        onClick={onEnableSound}
       />
       <div className="scrimTop" />
       <div className="scrimBottom" />
@@ -647,6 +662,7 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
           />
           <button type="submit" aria-label="Send live comment">☺</button>
           <span>🎁</span>
+          <button type="button" onClick={onEnableSound} aria-label="Turn on live sound">{soundOn ? "♪" : "🔇"}</button>
           <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">↗</button>
         </form>
       </footer>

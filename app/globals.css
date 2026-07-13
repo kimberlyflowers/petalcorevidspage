@@ -1289,8 +1289,8 @@ video {
 
 .liveInputDock {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 42px 42px 42px;
-  gap: 8px;
+  grid-template-columns: 48px minmax(0, 1fr) 40px 40px 40px 40px;
+  gap: 7px;
   align-items: center;
   margin-top: 8px;
 }
