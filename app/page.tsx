@@ -169,9 +169,11 @@ export default function HomePage() {
           if (entry.isIntersecting) {
             const nextIndex = Number(video.dataset.clipIndex ?? 0);
             setActiveClipIndex(nextIndex);
+            video.currentTime = 0;
             video.play().catch(() => undefined);
           } else {
             video.pause();
+            video.currentTime = 0;
           }
         });
       },
@@ -247,7 +249,13 @@ export default function HomePage() {
       const rect = video.getBoundingClientRect();
       return rect.top < window.innerHeight * 0.4 && rect.bottom > window.innerHeight * 0.6;
     });
-    visibleVideo?.play().catch(() => undefined);
+    if (!visibleVideo) return;
+    const visibleItem = visibleVideo.closest(".feedItem");
+    const videosInItem = Array.from(visibleItem?.querySelectorAll<HTMLVideoElement>(".feedVideo") ?? [visibleVideo]);
+    videosInItem.forEach((video) => {
+      video.currentTime = 0;
+      video.play().catch(() => undefined);
+    });
   }
 
   return (
