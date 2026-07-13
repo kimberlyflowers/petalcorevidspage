@@ -161,10 +161,10 @@ video {
 
 .tabBar {
   top: calc(max(16px, env(safe-area-inset-top) + 12px));
-  left: 14px;
+  left: 13px;
   right: 14px;
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) 34px;
+  grid-template-columns: 45px minmax(0, 1fr) 34px;
   align-items: center;
   gap: 8px;
 }
@@ -180,37 +180,30 @@ video {
   filter: drop-shadow(0 1px 7px rgba(0, 0, 0, 0.72));
 }
 
-.feedLiveMark {
-  width: 45px;
-  height: 45px;
-  display: grid;
-  grid-template-rows: 32px 13px;
-  justify-items: center;
-  align-items: end;
-  color: #fff;
-}
-
 .feedLiveSvg {
-  width: 36px;
-  height: 36px;
+  width: 43px;
+  height: 40px;
   overflow: visible;
 }
 
 .feedLiveStroke {
   fill: none;
   stroke: currentColor;
-  stroke-width: 4.1;
+  stroke-width: 3.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.feedLiveMark > span {
-  margin-top: -2px;
-  color: #fff;
-  font-size: 13px;
+.feedLiveText {
+  fill: currentColor;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
   font-weight: 950;
-  line-height: 0.86;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+  letter-spacing: 0;
+}
+
+.feedLiveText {
+  color: #fff;
 }
 
 .tabs {
@@ -348,7 +341,7 @@ video {
   position: relative;
   display: grid;
   justify-items: center;
-  padding-top: 56px;
+  padding-top: 66px;
 }
 
 .assistantCue {
@@ -356,14 +349,14 @@ video {
   z-index: 3;
   top: 0;
   left: 50%;
-  width: 50px;
-  height: 50px;
+  width: 47px;
+  height: 47px;
   display: grid;
   place-items: center;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.42);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28), inset 0 0 0 2px rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.44), 0 2px 9px rgba(0, 0, 0, 0.28);
   transform: translateX(-50%);
 }
 
@@ -397,13 +390,37 @@ video {
 }
 
 .assistantCue .assistantFace {
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.18));
+  width: 32px;
+  height: 32px;
+  background: none;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+}
+
+.assistantCue .assistantFace::before {
+  left: 5px;
+  top: 5px;
+  width: 22px;
+  height: 19px;
+  border: 4px solid #fff;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.assistantCue .assistantFace::after {
+  left: 17px;
+  top: 20px;
+  width: 9px;
+  height: 8px;
+  border-radius: 0 0 999px 0;
+  background: #fff;
+  transform: rotate(25deg);
 }
 
 .profileLiveCue {
   position: absolute;
   z-index: 2;
-  top: 44px;
+  top: 54px;
   left: 50%;
   min-height: 18px;
   padding: 2px 7px;

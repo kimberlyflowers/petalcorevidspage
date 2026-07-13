@@ -73,15 +73,14 @@ const liveInviteRepeatMs = 30000;
 
 function FeedLiveIcon() {
   return (
-    <span className="feedLiveMark" aria-hidden="true">
-      <svg className="feedLiveSvg" viewBox="0 0 42 42" focusable="false">
-        <path className="feedLiveStroke" d="M15.1 5.6 21 10.9l5.9-5.3" />
-        <path className="feedLiveStroke" d="M21 10.9v4.2" />
-        <path className="feedLiveStroke" d="M9.3 14.2h23.4c2 0 3.5 1.6 3.5 3.5v14.2c0 2-1.6 3.5-3.5 3.5H9.3c-2 0-3.5-1.6-3.5-3.5V17.7c0-2 1.6-3.5 3.5-3.5Z" />
-        <path className="feedLiveStroke" d="M11.4 20.1h19.2" />
-      </svg>
-      <span>LIVE</span>
-    </span>
+    <svg className="feedLiveSvg" viewBox="0 0 52 48" aria-hidden="true" focusable="false">
+      <path className="feedLiveStroke" d="M17.8 5.9 25.9 13.9 34.1 5.9" />
+      <path className="feedLiveStroke" d="M11.9 16.9H40" />
+      <path className="feedLiveStroke" d="M8.7 24.1v10.2" />
+      <path className="feedLiveStroke" d="M43.2 24.1v10.2" />
+      <path className="feedLiveStroke" d="M10.8 41.1h30.3" />
+      <text className="feedLiveText" x="26" y="35.7" textAnchor="middle">LIVE</text>
+    </svg>
   );
 }
 
@@ -191,6 +190,13 @@ export default function HomePage() {
   const activeClip = clips[activeClipIndex];
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("live") === "1") {
+      setSheet("live");
+    }
+  }, []);
+
+  useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -200,7 +206,9 @@ export default function HomePage() {
             const nextIndex = Number(video.dataset.clipIndex ?? 0);
             setActiveClipIndex(nextIndex);
             video.currentTime = 0;
-            video.play().catch(() => undefined);
+            if (!sheet) {
+              video.play().catch(() => undefined);
+            }
           } else {
             video.pause();
             video.currentTime = 0;
@@ -212,7 +220,7 @@ export default function HomePage() {
 
     videos.forEach((video) => observer.observe(video));
     return () => observer.disconnect();
-  }, []);
+  }, [sheet]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -259,9 +267,12 @@ export default function HomePage() {
   useEffect(() => {
     const videos = Array.from(document.querySelectorAll<HTMLVideoElement>(".feedVideo"));
     videos.forEach((video) => {
-      video.muted = !soundOn;
+      video.muted = sheet === "live" || !soundOn;
+      if (sheet === "live") {
+        video.pause();
+      }
     });
-  }, [soundOn]);
+  }, [soundOn, sheet]);
 
   async function shareVideo() {
     const url = window.location.href;
@@ -324,7 +335,7 @@ export default function HomePage() {
                           src={video.src}
                           poster={video.poster}
                           data-clip-index={logicalIndex}
-                          muted={!soundOn}
+                          muted={sheet === "live" || !soundOn}
                           playsInline
                           loop
                           preload={index === 0 ? "metadata" : "none"}
@@ -337,7 +348,7 @@ export default function HomePage() {
                       src={clip.src}
                       poster={clip.poster}
                       data-clip-index={logicalIndex}
-                      muted={!soundOn}
+                      muted={sheet === "live" || !soundOn}
                       playsInline
                       loop
                       preload={index === 0 ? "metadata" : "none"}
