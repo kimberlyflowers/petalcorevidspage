@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+output
+.playwright-cli
+.vercel
+.env*.local
+*.log
+.DS_Store
