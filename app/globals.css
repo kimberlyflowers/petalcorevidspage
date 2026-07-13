@@ -1749,7 +1749,7 @@ video {
   font-weight: 850;
 }
 
-.liveCheckoutCard > a {
+.liveCheckoutCard > button {
   min-height: 56px;
   display: grid;
   place-items: center;
@@ -1758,6 +1758,202 @@ video {
   color: #fff;
   font-size: 20px;
   font-weight: 900;
+}
+
+.liveCheckoutOverlay {
+  position: absolute;
+  z-index: 18;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  pointer-events: none;
+}
+
+.liveCheckoutBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+}
+
+.liveCheckoutSheet {
+  position: relative;
+  z-index: 1;
+  max-height: min(76svh, 720px);
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  color: #111;
+  overflow: hidden;
+  pointer-events: auto;
+  box-shadow: 0 -24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.liveCheckoutHeader {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  padding: 0 14px 12px;
+}
+
+.liveCheckoutHeader h2 {
+  margin: 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 930;
+}
+
+.livePrivacyBand {
+  display: grid;
+  gap: 5px;
+  padding: 14px 18px;
+  background: #edf7ff;
+  color: #13639b;
+}
+
+.livePrivacyBand strong {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.livePrivacyBand span {
+  color: #47515c;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.liveCheckoutBody {
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 120px;
+}
+
+.liveCheckoutSection {
+  padding: 18px;
+  border-bottom: 8px solid #f2f2f4;
+}
+
+.liveCheckoutSection h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.liveCheckoutSection button {
+  width: 100%;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #25252c;
+  font-size: 16px;
+  font-weight: 720;
+}
+
+.liveCheckoutSection button + button {
+  margin-top: 8px;
+}
+
+.liveCheckoutProduct {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 12px;
+  padding: 18px;
+  border-bottom: 8px solid #f2f2f4;
+}
+
+.liveCheckoutProduct img {
+  width: 82px;
+  height: 82px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.liveCheckoutProduct div {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.liveCheckoutProduct strong {
+  min-width: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+  line-height: 1.18;
+}
+
+.liveCheckoutProduct span {
+  color: #676771;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.liveCheckoutProduct em {
+  color: #bf123f;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.liveCheckoutProduct p {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+}
+
+.liveCheckoutProduct p span,
+.liveCheckoutProduct p strong {
+  color: #bf123f;
+}
+
+.liveCheckoutProduct p strong {
+  font-size: 20px;
+}
+
+.liveCheckoutProduct p s {
+  color: #888891;
+  font-weight: 720;
+}
+
+.liveCheckoutFooter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 13px 18px calc(14px + env(safe-area-inset-bottom));
+  border-top: 1px solid #ececf0;
+  background: #fff;
+  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.11);
+}
+
+.liveCheckoutFooter div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 780;
+}
+
+.liveCheckoutFooter div strong {
+  font-size: 22px;
+}
+
+.liveCheckoutFooter a {
+  min-height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #c80f3c;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 920;
 }
 
 .liveInputDock {
@@ -2495,7 +2691,7 @@ video {
     width: 78px;
   }
 
-  .liveCheckoutCard > a {
+  .liveCheckoutCard > button {
     font-size: 17px;
   }
 }

@@ -696,6 +696,7 @@ function LiveShopPage({
 }) {
   const [viewerCount, setViewerCount] = useState(6024);
   const [liveDraft, setLiveDraft] = useState("");
+  const [liveCheckoutOpen, setLiveCheckoutOpen] = useState(false);
   const liveCommentPool = [
     { name: "L.A", text: "Love how glowy this looks", gems: "21" },
     { name: "Nemisis", text: "joined", gems: "10" },
@@ -787,7 +788,7 @@ function LiveShopPage({
       <div className="liveTopBadges">
         <span className="dailyRanking">Daily Ranking</span>
         <span className="viewerLabel">Viewers</span>
-        <button className="liveMiniProduct" type="button" aria-label="Live product preview">
+        <button className="liveMiniProduct" type="button" aria-label="Live product preview" onClick={() => setLiveCheckoutOpen(true)}>
           <img src="/images/riche-creme.jpg" alt="" />
           <span>11:04</span>
         </button>
@@ -815,7 +816,7 @@ function LiveShopPage({
             <span className="liveShipText">Free shipping | Free returns</span>
             <p><span>From </span><strong>$59</strong> <s>$74</s> <em>(-20%)</em></p>
           </div>
-          <a href={checkoutLink}>Buy</a>
+          <button type="button" onClick={() => setLiveCheckoutOpen(true)}>Buy</button>
         </article>
         <form className="liveInputDock" onSubmit={submitLiveComment}>
           <span className="liveBag">1</span>
@@ -836,6 +837,52 @@ function LiveShopPage({
           </button>
         </form>
       </footer>
+      {liveCheckoutOpen && <LiveCheckoutOverlay onClose={() => setLiveCheckoutOpen(false)} />}
+    </section>
+  );
+}
+
+function LiveCheckoutOverlay({ onClose }: { onClose: () => void }) {
+  return (
+    <section className="liveCheckoutOverlay" aria-label="Live checkout">
+      <button className="liveCheckoutBackdrop" type="button" aria-label="Close checkout" onClick={onClose} />
+      <div className="liveCheckoutSheet">
+        <span className="sheetHandle" />
+        <header className="liveCheckoutHeader">
+          <button type="button" onClick={onClose} aria-label="Back to live"><ChevronDown size={30} /></button>
+          <h2>Checkout</h2>
+          <span />
+        </header>
+        <div className="livePrivacyBand">
+          <strong>Data privacy</strong>
+          <span>Your info and data is not shared or sold without your consent.</span>
+        </div>
+        <div className="liveCheckoutBody">
+          <section className="liveCheckoutSection">
+            <h3>Shipping address</h3>
+            <button type="button">Add an address <span>›</span></button>
+          </section>
+          <section className="liveCheckoutSection">
+            <h3>Payment method</h3>
+            <button type="button">Apple Pay <span>○</span></button>
+            <button type="button">Credit or debit card <span>○</span></button>
+            <button type="button">PayPal <span>○</span></button>
+          </section>
+          <section className="liveCheckoutProduct">
+            <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme" />
+            <div>
+              <strong>Petalcore Riche Creme — Pro-Aging Nourishing Face Cream</strong>
+              <span>Default · Free shipping</span>
+              <em>Limited time deal</em>
+              <p><span>-20%</span> <strong>$59.00</strong> <s>$74.00</s></p>
+            </div>
+          </section>
+        </div>
+        <footer className="liveCheckoutFooter">
+          <div><span>Total (1 item)</span><strong>$59.00</strong></div>
+          <a href={checkoutLink}>Pay now</a>
+        </footer>
+      </div>
     </section>
   );
 }
