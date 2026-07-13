@@ -795,7 +795,10 @@ function LiveShopPage({
           />
           <button type="submit" aria-label="Send live comment">☺</button>
           <span>🎁</span>
-          <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">↗</button>
+          <button className="liveShareButton" type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">
+            <span className="liveShareArrow" aria-hidden="true" />
+            <span className="liveShareCount">62</span>
+          </button>
         </form>
       </footer>
     </section>
