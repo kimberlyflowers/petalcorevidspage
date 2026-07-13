@@ -19,8 +19,6 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const whopPlanId = process.env.NEXT_PUBLIC_WHOP_PLAN_ID;
-const whopCheckoutUrl = process.env.NEXT_PUBLIC_WHOP_CHECKOUT_URL;
 const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "https://petalcorebeauty.com/cart/44387093381165:1";
 
 const clips = [
@@ -147,7 +145,7 @@ const comments = [
 export default function HomePage() {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [sheet, setSheet] = useState<"comments" | "shop" | null>(null);
+  const [sheet, setSheet] = useState<"comments" | "shop" | "live" | null>(null);
   const [shareNote, setShareNote] = useState("");
   const [needsTap, setNeedsTap] = useState(false);
   const [activeClipIndex, setActiveClipIndex] = useState(0);
@@ -256,7 +254,9 @@ export default function HomePage() {
                 <span className="battery" />
               </div>
               <header className="tabBar">
-                <span aria-hidden>LIVE</span>
+                <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(index); setSheet("live"); }} aria-label="Open live shopping">
+                  LIVE
+                </button>
                 <nav className="tabs" aria-label="Feed tabs">
                   <span>Community</span>
                   <span>Local</span>
@@ -325,6 +325,7 @@ export default function HomePage() {
         {sheet && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
         {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
         {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
+        {sheet === "live" && <LiveShopSheet onClose={() => setSheet(null)} />}
       </section>
     </main>
   );
@@ -421,28 +422,77 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
           <h3>Riche Creme</h3>
           <p>Pro-aging nourishing face cream in a 1.7 oz / 50 ml bottle. Built for a soft, hydrated finish that fits the routine shown in the videos.</p>
         </div>
-        <div className="checkoutBox" id="checkout">
-          {whopCheckoutUrl ? (
-            <iframe className="checkoutFrame" src={whopCheckoutUrl} title="Petalcore checkout" />
-          ) : whopPlanId ? (
-            <button className="buyNow" data-whop-checkout-plan-id={whopPlanId} type="button">
-              Buy now
-            </button>
-          ) : (
-            <a className="fallbackLink" href={shopLink}>
-              Buy now · Free 3-day delivery
-            </a>
-          )}
-          <div className="buttonRow">
-            <a className="cartButton" href={shopLink}>
-              Add to cart
-            </a>
-            <a className="buyNow" href={shopLink}>
-              Buy now
-            </a>
+      </div>
+      <footer className="shopStickyBar" id="checkout">
+        <div className="buttonRow">
+          <a className="cartButton" href={shopLink}>
+            Add to cart
+          </a>
+          <a className="payNow" href={shopLink}>
+            Pay now
+            <span>Free 3-day delivery</span>
+          </a>
+        </div>
+      </footer>
+    </section>
+  );
+}
+
+function LiveShopSheet({ onClose }: { onClose: () => void }) {
+  const liveComments = [
+    ["@camilleglow", "show the texture again pls"],
+    ["@skinbyren", "just got mine, checkout was fast"],
+    ["@petalcorebeauty", "Riche Creme is pinned below"],
+    ["@mollymakeup", "does it sit well under concealer?"],
+  ];
+
+  return (
+    <section className="sheet liveSheet" aria-label="Petalcore live shopping">
+      <span className="sheetHandle" />
+      <header className="sheetHeader">
+        <h2><span className="liveDot" /> Petalcore LIVE</h2>
+        <button type="button" onClick={onClose} aria-label="Close live"><X size={24} /></button>
+      </header>
+      <div className="liveBody">
+        <div className="liveVideoWrap">
+          <video
+            className="liveVideo"
+            src="/videos/winner-01.mp4"
+            poster="/posters/winner-01.jpg"
+            autoPlay
+            muted
+            playsInline
+            loop
+          />
+          <div className="liveBadge">LIVE · 2.8K watching</div>
+          <div className="liveChat">
+            {liveComments.map(([name, text]) => (
+              <p key={name}>
+                <strong>{name}</strong>
+                <span>{text}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+        <div className="liveProductCard">
+          <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
+          <div>
+            <strong>Riche Creme</strong>
+            <span>$59 · Free 3-day delivery</span>
           </div>
         </div>
       </div>
+      <footer className="shopStickyBar">
+        <div className="buttonRow">
+          <a className="cartButton" href={shopLink}>
+            Add to cart
+          </a>
+          <a className="payNow" href={shopLink}>
+            Pay now
+            <span>Free 3-day delivery</span>
+          </a>
+        </div>
+      </footer>
     </section>
   );
 }
