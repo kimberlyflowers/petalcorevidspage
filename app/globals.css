@@ -319,6 +319,19 @@ video {
   font-weight: 950;
   line-height: 1;
   box-shadow: 0 2px 10px rgba(255, 24, 79, 0.52);
+  animation: liveBadgePulse 1.55s ease-in-out infinite;
+}
+
+.profileLiveCue::after,
+.liveTab::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(255, 24, 79, 0.86);
+  border-radius: inherit;
+  opacity: 0;
+  animation: liveBadgeRing 1.55s ease-out infinite;
+  pointer-events: none;
 }
 
 .profileButton {
@@ -352,6 +365,31 @@ video {
   font-size: 19px;
   font-weight: 900;
   line-height: 1;
+}
+
+@keyframes liveBadgePulse {
+  0%,
+  100% {
+    box-shadow: 0 2px 10px rgba(255, 24, 79, 0.48);
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    box-shadow: 0 2px 18px rgba(255, 24, 79, 0.84);
+    transform: translateX(-50%) scale(1.04);
+  }
+}
+
+@keyframes liveBadgeRing {
+  0% {
+    opacity: 0.74;
+    transform: scale(0.92);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
 }
 
 .railButton {
@@ -449,7 +487,7 @@ video {
   color: #fff;
   backdrop-filter: blur(18px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
-  animation: liveInviteDrop 0.42s cubic-bezier(0.2, 0.88, 0.2, 1) both;
+  animation: liveInviteDrop 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: top center;
 }
 
@@ -505,19 +543,27 @@ video {
 }
 
 @keyframes liveInviteDrop {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-18px) scale(0.98);
+    transform: translateY(calc(-100% - 110px)) scale(0.96);
   }
 
-  to {
+  72% {
+    opacity: 1;
+    transform: translateY(5px) scale(1);
+  }
+
+  100% {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .liveInviteToast {
+  .liveInviteToast,
+  .profileLiveCue,
+  .profileLiveCue::after,
+  .liveTab::after {
     animation: none;
   }
 }
