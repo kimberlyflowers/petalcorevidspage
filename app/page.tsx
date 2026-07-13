@@ -62,6 +62,8 @@ const clips = [
   },
 ];
 
+const feedClips = [...clips, ...clips];
+
 const comments = [
   {
     id: "creator-pinned",
@@ -175,6 +177,22 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    function loopFeed() {
+      if (!scroller) return;
+      const loopPoint = scroller.clientHeight * clips.length;
+      if (loopPoint > 0 && scroller.scrollTop >= loopPoint) {
+        scroller.scrollTop -= loopPoint;
+      }
+    }
+
+    scroller.addEventListener("scroll", loopFeed, { passive: true });
+    return () => scroller.removeEventListener("scroll", loopFeed);
+  }, []);
+
+  useEffect(() => {
     const timer = window.setTimeout(() => setShowLiveInvite(true), 1800);
     return () => window.clearTimeout(timer);
   }, []);
@@ -209,112 +227,116 @@ export default function HomePage() {
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
         <div className="feedScroller" ref={scrollerRef}>
-          {clips.map((clip, index) => (
-            <article className="feedItem" key={clip.id}>
-              <button
-                className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
-                type="button"
-                aria-label="Play or pause video"
-                onClick={playVisibleVideo}
-              >
-                {clip.videos ? (
-                  <div className="videoCollage">
-                    {clip.videos.map((video, videoIndex) => (
-                      <video
-                        className={`feedVideo collageVideo collageVideo${videoIndex + 1}`}
-                        key={video.src}
-                        src={video.src}
-                        poster={video.poster}
-                        data-clip-index={index}
-                        muted
-                        playsInline
-                        loop
-                        preload="metadata"
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <video
-                    className="feedVideo"
-                    src={clip.src}
-                    poster={clip.poster}
-                    data-clip-index={index}
-                    autoPlay={index === 0}
-                    muted
-                    playsInline
-                    loop
-                    preload="metadata"
-                  />
-                )}
-                {needsTap && index === 0 && <span className="tapToPlay">Tap to play</span>}
-              </button>
-              <div className="scrimTop" />
-              <div className="scrimBottom" />
-              <header className="tabBar">
-                <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(index); setSheet("live"); }} aria-label="Open live shopping">
-                  LIVE
+          {feedClips.map((clip, index) => {
+            const logicalIndex = index % clips.length;
+
+            return (
+              <article className="feedItem" key={`${clip.id}-${index}`}>
+                <button
+                  className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
+                  type="button"
+                  aria-label="Play or pause video"
+                  onClick={playVisibleVideo}
+                >
+                  {clip.videos ? (
+                    <div className="videoCollage">
+                      {clip.videos.map((video, videoIndex) => (
+                        <video
+                          className={`feedVideo collageVideo collageVideo${videoIndex + 1}`}
+                          key={video.src}
+                          src={video.src}
+                          poster={video.poster}
+                          data-clip-index={logicalIndex}
+                          muted
+                          playsInline
+                          loop
+                          preload="metadata"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <video
+                      className="feedVideo"
+                      src={clip.src}
+                      poster={clip.poster}
+                      data-clip-index={logicalIndex}
+                      autoPlay={index === 0}
+                      muted
+                      playsInline
+                      loop
+                      preload="metadata"
+                    />
+                  )}
+                  {needsTap && logicalIndex === 0 && <span className="tapToPlay">Tap to play</span>}
                 </button>
-                <nav className="tabs" aria-label="Feed tabs">
-                  <span>Community</span>
-                  <span>Local</span>
-                  <span>Following</span>
-                  <span>Shop</span>
-                  <span className="tabActive">For You</span>
-                </nav>
-                <Search size={32} strokeWidth={3} />
-              </header>
-              <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(index); setSheet("shop"); }}>
-                <span className="shopIcon">
-                  <ShoppingCart size={22} />
-                </span>
-                <span>
-                  Shop · low stock
-                  <span className="shopSubcopy">{clip.metrics.repurchased} repurchased</span>
-                </span>
-              </button>
-              <div className="videoMeta">
-                <div className="creatorLine">
-                  <strong>{clip.creator}</strong>
-                  <span>💫</span>
-                </div>
-                <p className="caption">{clip.caption}</p>
-              </div>
-              <div className="musicLine">
-                <Music2 size={15} />
-                <span className="marquee">{clip.audio}</span>
-              </div>
-              <aside className="actionRail" aria-label="Video actions">
-                <div className="profileStack">
-                  <button className="profileLiveCue" type="button" onClick={() => { setActiveClipIndex(index); setSheet("live"); }} aria-label="Open Petalcore live">
+                <div className="scrimTop" />
+                <div className="scrimBottom" />
+                <header className="tabBar">
+                  <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open live shopping">
                     LIVE
                   </button>
-                  <Link className="profileButton" href="/about" aria-label="Open Petalcore profile">
-                    <img src="/images/product-hero.png" alt="" />
-                    <span className="followDot">+</span>
-                  </Link>
+                  <nav className="tabs" aria-label="Feed tabs">
+                    <span>Community</span>
+                    <span>Local</span>
+                    <span>Following</span>
+                    <span>Shop</span>
+                    <span className="tabActive">For You</span>
+                  </nav>
+                  <Search size={32} strokeWidth={3} />
+                </header>
+                <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>
+                  <span className="shopIcon">
+                    <ShoppingCart size={22} />
+                  </span>
+                  <span>
+                    Shop · low stock
+                    <span className="shopSubcopy">{clip.metrics.repurchased} repurchased</span>
+                  </span>
+                </button>
+                <div className="videoMeta">
+                  <div className="creatorLine">
+                    <strong>{clip.creator}</strong>
+                    <span>💫</span>
+                  </div>
+                  <p className="caption">{clip.caption}</p>
                 </div>
-                <button className={`railButton ${liked ? "isActive" : ""}`} type="button" onClick={() => setLiked((value) => !value)} aria-label="Like video">
-                  <Heart size={39} strokeWidth={2.8} />
-                  <span>{clip.metrics.likes}</span>
-                </button>
-                <button className="railButton" type="button" onClick={() => { setActiveClipIndex(index); setSheet("comments"); }} aria-label="Open comments">
-                  <MessageCircle size={39} strokeWidth={2.8} />
-                  <span>{clip.metrics.comments}</span>
-                </button>
-                <button className={`railButton ${saved ? "isActive" : ""}`} type="button" onClick={() => setSaved((value) => !value)} aria-label="Save video">
-                  <Bookmark size={38} strokeWidth={2.8} />
-                  <span>{clip.metrics.saves}</span>
-                </button>
-                <button className="railButton" type="button" onClick={shareVideo} aria-label="Share video">
-                  <Send size={38} strokeWidth={2.8} />
-                  <span>{shareNote || clip.metrics.shares}</span>
-                </button>
-                <span className="disc">
-                  <img src="/images/petalcore-logo.png" alt="" />
-                </span>
-              </aside>
-            </article>
-          ))}
+                <div className="musicLine">
+                  <Music2 size={15} />
+                  <span className="marquee">{clip.audio}</span>
+                </div>
+                <aside className="actionRail" aria-label="Video actions">
+                  <div className="profileStack">
+                    <button className="profileLiveCue" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open Petalcore live">
+                      LIVE
+                    </button>
+                    <Link className="profileButton" href="/about" aria-label="Open Petalcore profile">
+                      <img src="/images/product-hero.png" alt="" />
+                      <span className="followDot">+</span>
+                    </Link>
+                  </div>
+                  <button className={`railButton ${liked ? "isActive" : ""}`} type="button" onClick={() => setLiked((value) => !value)} aria-label="Like video">
+                    <Heart size={39} strokeWidth={2.8} />
+                    <span>{clip.metrics.likes}</span>
+                  </button>
+                  <button className="railButton" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("comments"); }} aria-label="Open comments">
+                    <MessageCircle size={39} strokeWidth={2.8} />
+                    <span>{clip.metrics.comments}</span>
+                  </button>
+                  <button className={`railButton ${saved ? "isActive" : ""}`} type="button" onClick={() => setSaved((value) => !value)} aria-label="Save video">
+                    <Bookmark size={38} strokeWidth={2.8} />
+                    <span>{clip.metrics.saves}</span>
+                  </button>
+                  <button className="railButton" type="button" onClick={shareVideo} aria-label="Share video">
+                    <Send size={38} strokeWidth={2.8} />
+                    <span>{shareNote || clip.metrics.shares}</span>
+                  </button>
+                  <span className="disc">
+                    <img src="/images/petalcore-logo.png" alt="" />
+                  </span>
+                </aside>
+              </article>
+            );
+          })}
         </div>
         <nav className="bottomNav" aria-label="App navigation">
           <span className="navItem navItemActive"><Home size={28} fill="currentColor" />Home</span>
