@@ -14,12 +14,11 @@ import {
   ShoppingCart,
   UserRound,
   UsersRound,
-  Wifi,
   X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const shopLink = process.env.NEXT_PUBLIC_SHOP_LINK || "https://petalcorebeauty.com/cart/44387093381165:1";
+const checkoutLink = "/checkout";
 
 const clips = [
   {
@@ -149,6 +148,7 @@ export default function HomePage() {
   const [shareNote, setShareNote] = useState("");
   const [needsTap, setNeedsTap] = useState(false);
   const [activeClipIndex, setActiveClipIndex] = useState(0);
+  const [showLiveInvite, setShowLiveInvite] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeClip = clips[activeClipIndex];
 
@@ -172,6 +172,11 @@ export default function HomePage() {
 
     videos.forEach((video) => observer.observe(video));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowLiveInvite(true), 1800);
+    return () => window.clearTimeout(timer);
   }, []);
 
   async function shareVideo() {
@@ -245,14 +250,6 @@ export default function HomePage() {
               </button>
               <div className="scrimTop" />
               <div className="scrimBottom" />
-              <div className="statusBar">
-                <span>10:25</span>
-              </div>
-              <div className="systemIcons">
-                <span className="signal">SOS</span>
-                <Wifi size={18} strokeWidth={3} />
-                <span className="battery" />
-              </div>
               <header className="tabBar">
                 <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(index); setSheet("live"); }} aria-label="Open live shopping">
                   LIVE
@@ -326,6 +323,21 @@ export default function HomePage() {
           <button className="navItem" type="button" onClick={() => setSheet("comments")}><MessageCircle size={28} />Inbox</button>
           <Link className="navItem" href="/about"><UserRound size={28} />Profile</Link>
         </nav>
+        {showLiveInvite && !sheet && (
+          <div className="liveInviteToast" role="status">
+            <img src="/images/product-hero.png" alt="" />
+            <div>
+              <strong>Petalcore Beauty</strong>
+              <span>is inviting you to watch their live shopping</span>
+            </div>
+            <button type="button" onClick={() => { setShowLiveInvite(false); setSheet("live"); }}>
+              Watch
+            </button>
+            <button className="liveInviteClose" type="button" onClick={() => setShowLiveInvite(false)} aria-label="Dismiss live invite">
+              <X size={15} />
+            </button>
+          </div>
+        )}
         {sheet && sheet !== "live" && <button className="drawerBackdrop" type="button" aria-label="Close sheet" onClick={() => setSheet(null)} />}
         {sheet === "comments" && <CommentsSheet commentCount={activeClip.metrics.comments} onClose={() => setSheet(null)} />}
         {sheet === "shop" && <ShopSheet onClose={() => setSheet(null)} />}
@@ -429,10 +441,10 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
       </div>
       <footer className="shopStickyBar" id="checkout">
         <div className="buttonRow">
-          <a className="cartButton" href={shopLink}>
+          <a className="cartButton" href={checkoutLink}>
             Add to cart
           </a>
-          <a className="payNow" href={shopLink}>
+          <a className="payNow" href={checkoutLink}>
             Pay now
             <span>Free 3-day delivery</span>
           </a>
@@ -444,12 +456,11 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
 
 function LiveShopPage({ onClose }: { onClose: () => void }) {
   const liveComments = [
-    ["camilleglow", "show the texture again pls"],
-    ["skinbyren", "just got mine, checkout was fast"],
+    ["L.A", "Love how glowy this looks"],
+    ["Nemisis", "joined"],
+    ["skinbyren", "wait show the texture again pls"],
     ["petalcorebeauty", "Riche Creme is pinned below"],
     ["mollymakeup", "does it sit well under concealer?"],
-    ["ashleyskincare", "wait the glow on camera is actually wild"],
-    ["petalcorebeauty", "tap the product card for the 50 ml Riche Creme"],
   ];
 
   return (
@@ -465,48 +476,34 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
       />
       <div className="scrimTop" />
       <div className="scrimBottom" />
-      <div className="statusBar">
-        <span>10:25</span>
-      </div>
-      <div className="systemIcons">
-        <span className="signal">SOS</span>
-        <Wifi size={18} strokeWidth={3} />
-        <span className="battery" />
-      </div>
       <header className="livePageHeader">
-        <button className="liveCloseButton" type="button" onClick={onClose} aria-label="Close live"><X size={26} /></button>
         <div className="liveHost">
-          <img src="/images/product-hero.png" alt="" />
+          <img src="/avatars/face-04.jpg" alt="" />
           <div>
             <strong>Petalcore Beauty</strong>
-            <span>2.8K watching</span>
+            <span>Gold Star Seller</span>
           </div>
         </div>
-        <span className="liveNowPill">LIVE</span>
+        <button className="liveFollowButton" type="button">+ Follow</button>
+        <span className="liveViewerPill">295</span>
+        <button className="liveRoundButton" type="button" aria-label="Minimize live">⌄</button>
+        <button className="liveCloseX" type="button" onClick={onClose} aria-label="Close live"><X size={34} /></button>
       </header>
-      <aside className="liveActionRail" aria-label="Live actions">
-        <button className="railButton" type="button" aria-label="Like live">
-          <Heart size={38} strokeWidth={2.8} />
-          <span>98.4K</span>
+      <div className="liveTopBadges">
+        <span className="dailyRanking">Daily Ranking</span>
+        <span className="viewerLabel">Viewers</span>
+        <button className="liveMiniProduct" type="button" aria-label="Live product preview">
+          <img src="/images/riche-creme.jpg" alt="" />
+          <span>11:04</span>
         </button>
-        <button className="railButton" type="button" aria-label="Share live" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })}>
-          <Send size={36} strokeWidth={2.8} />
-          <span>Share</span>
-        </button>
-      </aside>
+        <button className="liveCouponChip" type="button" aria-label="Live coupon">%</button>
+      </div>
       <div className="liveCommercePanel">
-        <a className="livePinnedProduct" href={shopLink}>
-          <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
-          <div>
-            <span className="liveProductEyebrow">Pinned product</span>
-            <strong>Riche Creme</strong>
-            <span>$59 · Free 3-day delivery</span>
-          </div>
-          <span className="liveProductCta">Shop</span>
-        </a>
+        <div className="liveViewingToast">1 user is viewing products</div>
         <div className="liveChat">
-          {liveComments.map(([name, text]) => (
+          {liveComments.map(([name, text], index) => (
             <p key={`${name}-${text}`}>
+              {index < 2 && <span className="gemCount">{index === 0 ? "21" : "10"}</span>}
               <strong>@{name}</strong>
               <span>{text}</span>
             </p>
@@ -514,14 +511,23 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
         </div>
       </div>
       <footer className="liveBuyBar">
-        <div className="buttonRow">
-          <a className="cartButton" href={shopLink}>
-            Add to cart
-          </a>
-          <a className="payNow" href={shopLink}>
-            Pay now
-            <span>Free 3-day delivery</span>
-          </a>
+        <article className="liveCheckoutCard">
+          <span className="liveItemNumber">1</span>
+          <img src="/images/riche-creme.jpg" alt="Petalcore Riche Creme product" />
+          <div>
+            <strong>(Live) Petalcore Riche Creme — Pro-Aging Nourishing Face Cream</strong>
+            <span className="liveDealText">Extra $5 off orders $30+</span>
+            <span className="liveShipText">Free shipping | Free returns</span>
+            <p><span>From </span><strong>$59</strong> <s>$74</s> <em>(-20%)</em></p>
+          </div>
+          <a href={checkoutLink}>Buy</a>
+        </article>
+        <div className="liveInputDock">
+          <span className="liveBag">1</span>
+          <span className="liveInput">Type...</span>
+          <span>☺</span>
+          <span>🎁</span>
+          <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })}>↗</button>
         </div>
       </footer>
     </section>
