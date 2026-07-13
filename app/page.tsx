@@ -63,7 +63,7 @@ const clips = [
 ];
 
 const feedClips = [...clips, ...clips];
-const liveInviteDelayMs = 1800;
+const liveInviteDelayMs = 15000;
 const liveInviteVisibleMs = 5200;
 const liveInviteRepeatMs = 30000;
 
@@ -505,6 +505,7 @@ function ShopSheet({ onClose }: { onClose: () => void }) {
 
 function LiveShopPage({ onClose }: { onClose: () => void }) {
   const [viewerCount, setViewerCount] = useState(6024);
+  const [liveDraft, setLiveDraft] = useState("");
   const liveCommentPool = [
     { name: "L.A", text: "Love how glowy this looks", gems: "21" },
     { name: "Nemisis", text: "joined", gems: "10" },
@@ -553,6 +554,18 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
 
     return () => window.clearInterval(timer);
   }, []);
+
+  function submitLiveComment(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const text = liveDraft.trim();
+    if (!text) return;
+
+    setLiveComments((current) => [
+      ...current.slice(-5),
+      { id: `you-${Date.now()}`, name: "you", text },
+    ]);
+    setLiveDraft("");
+  }
 
   return (
     <section className="livePage" aria-label="Petalcore live shopping">
@@ -613,13 +626,21 @@ function LiveShopPage({ onClose }: { onClose: () => void }) {
           </div>
           <a href={checkoutLink}>Buy</a>
         </article>
-        <div className="liveInputDock">
+        <form className="liveInputDock" onSubmit={submitLiveComment}>
           <span className="liveBag">1</span>
-          <span className="liveInput">Type...</span>
-          <span>☺</span>
+          <input
+            className="liveInput"
+            type="text"
+            value={liveDraft}
+            placeholder="Type..."
+            maxLength={80}
+            aria-label="Type a live comment"
+            onChange={(event) => setLiveDraft(event.target.value)}
+          />
+          <button type="submit" aria-label="Send live comment">☺</button>
           <span>🎁</span>
-          <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })}>↗</button>
-        </div>
+          <button type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">↗</button>
+        </form>
       </footer>
     </section>
   );

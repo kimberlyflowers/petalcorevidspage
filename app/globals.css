@@ -1296,7 +1296,8 @@ video {
 }
 
 .liveInputDock > span,
-.liveInputDock > button {
+.liveInputDock > button,
+.liveInputDock > input {
   min-height: 44px;
   display: grid;
   place-items: center;
@@ -1306,6 +1307,13 @@ video {
   backdrop-filter: blur(14px);
   font-size: 21px;
   font-weight: 880;
+}
+
+.liveInputDock > input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
 }
 
 .liveInputDock .liveBag {
@@ -1325,12 +1333,16 @@ video {
   box-shadow: 0 0 0 2px #fff;
 }
 
-.liveInputDock .liveInput {
+.liveInputDock input.liveInput {
   justify-content: start;
-  padding-left: 18px;
-  color: rgba(255, 255, 255, 0.72);
+  padding: 0 16px;
+  color: #fff;
   font-size: 17px;
   font-weight: 720;
+}
+
+.liveInputDock input.liveInput::placeholder {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .liveSheet {
