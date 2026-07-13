@@ -71,6 +71,31 @@ const liveInviteDelayMs = 15000;
 const liveInviteVisibleMs = 5200;
 const liveInviteRepeatMs = 30000;
 
+function FeedLiveIcon() {
+  return (
+    <span className="feedLiveMark" aria-hidden="true">
+      <svg className="feedLiveSvg" viewBox="0 0 42 42" focusable="false">
+        <path className="feedLiveStroke" d="M15.1 5.6 21 10.9l5.9-5.3" />
+        <path className="feedLiveStroke" d="M21 10.9v4.2" />
+        <path className="feedLiveStroke" d="M9.3 14.2h23.4c2 0 3.5 1.6 3.5 3.5v14.2c0 2-1.6 3.5-3.5 3.5H9.3c-2 0-3.5-1.6-3.5-3.5V17.7c0-2 1.6-3.5 3.5-3.5Z" />
+        <path className="feedLiveStroke" d="M11.4 20.1h19.2" />
+      </svg>
+      <span>LIVE</span>
+    </span>
+  );
+}
+
+function TikTokShareIcon() {
+  return (
+    <svg className="liveShareSvg" viewBox="0 0 64 50" aria-hidden="true" focusable="false">
+      <path
+        d="M39.4 5.1 60 20.3 39.4 35.5v-9.1c-12.6.2-23.5 5.7-31.1 17.5C10.4 25 21.5 12.5 39.4 11.1V5.1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 function formatViewerCount(count: number) {
   return `${(count / 1000).toFixed(1)}K`;
 }
@@ -323,8 +348,7 @@ export default function HomePage() {
                 <div className="scrimBottom" />
                 <header className="tabBar">
                   <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open live shopping">
-                    <span className="liveTvIcon" aria-hidden="true" />
-                    <span>LIVE</span>
+                    <FeedLiveIcon />
                   </button>
                   <nav className="tabs" aria-label="Feed tabs">
                     <button type="button" onClick={openTikTokLogin}>Community</button>
@@ -796,7 +820,7 @@ function LiveShopPage({
           <button type="submit" aria-label="Send live comment">☺</button>
           <span>🎁</span>
           <button className="liveShareButton" type="button" onClick={() => navigator.share?.({ title: "Petalcore LIVE", url: window.location.href })} aria-label="Share live">
-            <span className="liveShareArrow" aria-hidden="true" />
+            <TikTokShareIcon />
             <span className="liveShareCount">62</span>
           </button>
         </form>
