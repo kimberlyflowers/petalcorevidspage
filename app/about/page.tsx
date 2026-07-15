@@ -28,14 +28,14 @@ export default function AboutPage() {
             </div>
           </div>
           <p>
-            Petalcore Beauty makes skincare for skin that wants to look soft, hydrated, and naturally lit before makeup or on its own.
+            Petalcore Beauty makes skincare and beauty essentials for skin that wants to look soft, hydrated, smooth, and naturally lit.
           </p>
           <p>
-            Riche Creme helps comfort dry-looking skin, smooth the look of texture, and leave your face with a healthy glow that feels rich without feeling heavy.
+            Our products are made for everyday routines: comforting dry-looking skin, boosting a healthy glow, helping makeup sit better, and giving your skin a fresh finish without feeling heavy.
           </p>
           <Link className="fallbackLink" href="/#checkout">
             <ShoppingBag size={19} />
-            Shop Riche Creme
+            Shop Petalcore
           </Link>
         </div>
       </section>
