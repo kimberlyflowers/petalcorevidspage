@@ -33,7 +33,7 @@ export default function AboutPage() {
           <p>
             Our products are made for everyday routines: comforting dry-looking skin, boosting a healthy glow, helping makeup sit better, and giving your skin a fresh finish without feeling heavy.
           </p>
-          <Link className="fallbackLink" href="/#checkout">
+          <Link className="fallbackLink" href="https://petalcorebeauty.com">
             <ShoppingBag size={19} />
             Shop Petalcore
           </Link>
