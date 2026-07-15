@@ -28,14 +28,14 @@ export default function AboutPage() {
             </div>
           </div>
           <p>
-            Petalcore Beauty creates soft-glow products designed for close-up routines, creator demos, and real-life skin days. Bloom Shield is built to feel light, photograph clean, and make the final step of a beauty routine look finished.
+            Petalcore Beauty makes skincare for skin that wants to look soft, hydrated, and naturally lit before makeup or on its own.
           </p>
           <p>
-            This profile is connected to the video shopping page so viewers can move from a creator clip to comments, product proof, and checkout without leaving the mobile experience.
+            Riche Creme helps comfort dry-looking skin, smooth the look of texture, and leave your face with a healthy glow that feels rich without feeling heavy.
           </p>
           <Link className="fallbackLink" href="/#checkout">
             <ShoppingBag size={19} />
-            Shop Bloom Shield
+            Shop Riche Creme
           </Link>
         </div>
       </section>
