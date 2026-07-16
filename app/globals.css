@@ -140,13 +140,13 @@ video {
 .liveFeedHeadline {
   position: absolute;
   left: 50%;
-  top: 102px;
+  top: 76px;
   z-index: 5;
-  width: min(88%, 350px);
+  width: min(82%, 330px);
   color: #ff62d2;
-  font-size: 35px;
+  font-size: 32px;
   font-weight: 1000;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: 0;
   text-align: center;
   text-transform: uppercase;

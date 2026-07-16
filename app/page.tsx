@@ -375,7 +375,7 @@ export default function HomePage() {
                   {isLivePreview && (
                     <>
                       <span className="liveFeedHeadline">
-                        Women over 50: swap the 10-step routine for one rich glow cream
+                        Over 50? Get the rich-cream glow in one step
                       </span>
                       <span className="liveFeedWatchPill">
                         <span className="liveFeedBars" aria-hidden="true">
