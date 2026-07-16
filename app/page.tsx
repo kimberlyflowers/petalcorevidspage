@@ -351,6 +351,10 @@ export default function HomePage() {
                       setSheet("live");
                       return;
                     }
+                    if (storyVideo && "videos" in clip && clip.videos) {
+                      changeStoryPart(clip.id, 1, clip.videos.length);
+                      return;
+                    }
                     enableFeedSound();
                   }}
                 >
@@ -408,7 +412,10 @@ export default function HomePage() {
                       type="button"
                       aria-label="Previous story part"
                       disabled={storyPart === 0}
-                      onClick={() => changeStoryPart(clip.id, -1, clip.videos.length)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        changeStoryPart(clip.id, -1, clip.videos.length);
+                      }}
                     >
                       ‹
                     </button>
@@ -417,7 +424,10 @@ export default function HomePage() {
                       type="button"
                       aria-label="Next story part"
                       disabled={storyPart === clip.videos.length - 1}
-                      onClick={() => changeStoryPart(clip.id, 1, clip.videos.length)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        changeStoryPart(clip.id, 1, clip.videos.length);
+                      }}
                     >
                       ›
                     </button>
