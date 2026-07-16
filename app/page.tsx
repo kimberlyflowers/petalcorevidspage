@@ -44,6 +44,16 @@ const clips = [
     metrics: { likes: "1.2M", comments: "14.2K", saves: "103K", shares: "48.6K", repurchased: "9.8K+" },
   },
   {
+    id: "petalcore-live-preview",
+    src: "/videos/live-shopping.mp4",
+    poster: "/posters/live-shopping.jpg",
+    creator: "Petalcore Beauty",
+    caption: "Live now with skincare routine help and product questions",
+    audio: "Petalcore LIVE shopping",
+    livePreview: true,
+    metrics: { likes: "1220", comments: "295", saves: "6.1K", shares: "2", repurchased: "6.1K+" },
+  },
+  {
     id: "secret-friends-collage",
     videos: [
       { src: "/videos/winner-03.mp4", poster: "/posters/winner-03.jpg" },
@@ -317,14 +327,22 @@ export default function HomePage() {
         <div className="feedScroller" ref={scrollerRef}>
           {feedClips.map((clip, index) => {
             const logicalIndex = index % clips.length;
+            const isLivePreview = "livePreview" in clip && clip.livePreview;
 
             return (
-              <article className="feedItem" key={`${clip.id}-${index}`}>
+              <article className={`feedItem ${isLivePreview ? "liveFeedItem" : ""}`} key={`${clip.id}-${index}`}>
                 <button
                   className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
                   type="button"
-                  aria-label="Play or pause video"
-                  onClick={enableFeedSound}
+                  aria-label={isLivePreview ? "Open Petalcore live" : "Play video audio"}
+                  onClick={() => {
+                    if (isLivePreview) {
+                      setActiveClipIndex(logicalIndex);
+                      setSheet("live");
+                      return;
+                    }
+                    enableFeedSound();
+                  }}
                 >
                   {clip.videos ? (
                     <div className="videoCollage">
@@ -353,6 +371,23 @@ export default function HomePage() {
                       loop
                       preload={index === 0 ? "metadata" : "none"}
                     />
+                  )}
+                  {isLivePreview && (
+                    <>
+                      <span className="liveFeedHeadline">
+                        Women over 50: swap the 10-step routine for one rich glow cream
+                      </span>
+                      <span className="liveFeedWatchPill">
+                        <span className="liveFeedBars" aria-hidden="true">
+                          <i />
+                          <i />
+                          <i />
+                        </span>
+                        Click to watch LIVE
+                        <kbd>D</kbd>
+                      </span>
+                      <span className="liveFeedNowBadge">LIVE now</span>
+                    </>
                   )}
                 </button>
                 <div className="scrimTop" />
