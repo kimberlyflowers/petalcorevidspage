@@ -194,6 +194,7 @@ export default function HomePage() {
   const [sheet, setSheet] = useState<"comments" | "shop" | "live" | "assistant" | "tiktokLogin" | null>(null);
   const [shareNote, setShareNote] = useState("");
   const [activeClipIndex, setActiveClipIndex] = useState(0);
+  const [storyParts, setStoryParts] = useState<Record<string, number>>({});
   const [showLiveInvite, setShowLiveInvite] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -321,6 +322,13 @@ export default function HomePage() {
     setSheet("tiktokLogin");
   }
 
+  function changeStoryPart(clipId: string, direction: -1 | 1, totalParts: number) {
+    setStoryParts((current) => {
+      const nextPart = Math.min(totalParts - 1, Math.max(0, (current[clipId] ?? 0) + direction));
+      return { ...current, [clipId]: nextPart };
+    });
+  }
+
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
@@ -328,11 +336,13 @@ export default function HomePage() {
           {feedClips.map((clip, index) => {
             const logicalIndex = index % clips.length;
             const isLivePreview = "livePreview" in clip && clip.livePreview;
+            const storyPart = "videos" in clip && clip.videos ? storyParts[clip.id] ?? 0 : 0;
+            const storyVideo = "videos" in clip && clip.videos ? clip.videos[storyPart] : null;
 
             return (
               <article className={`feedItem ${isLivePreview ? "liveFeedItem" : ""}`} key={`${clip.id}-${index}`}>
                 <button
-                  className={`videoTapLayer ${clip.videos ? "collageTapLayer" : ""}`}
+                  className={`videoTapLayer ${storyVideo ? "storyTapLayer" : ""}`}
                   type="button"
                   aria-label={isLivePreview ? "Open Petalcore live" : "Play video audio"}
                   onClick={() => {
@@ -344,22 +354,17 @@ export default function HomePage() {
                     enableFeedSound();
                   }}
                 >
-                  {clip.videos ? (
-                    <div className="videoCollage">
-                      {clip.videos.map((video, videoIndex) => (
-                        <video
-                          className={`feedVideo collageVideo collageVideo${videoIndex + 1}`}
-                          key={video.src}
-                          src={video.src}
-                          poster={video.poster}
-                          data-clip-index={logicalIndex}
-                          muted={sheet === "live" || !soundOn}
-                          playsInline
-                          loop
-                          preload={index === 0 ? "metadata" : "none"}
-                        />
-                      ))}
-                    </div>
+                  {storyVideo ? (
+                    <video
+                      className="feedVideo storyVideo"
+                      src={storyVideo.src}
+                      poster={storyVideo.poster}
+                      data-clip-index={logicalIndex}
+                      muted={sheet === "live" || !soundOn}
+                      playsInline
+                      loop
+                      preload={index === 0 ? "metadata" : "none"}
+                    />
                   ) : (
                     <video
                       className="feedVideo"
@@ -390,6 +395,34 @@ export default function HomePage() {
                     </>
                   )}
                 </button>
+                {storyVideo && "videos" in clip && clip.videos && (
+                  <div className="storyOverlay" aria-label={`${clip.caption} story controls`}>
+                    <div className="storyProgress" aria-hidden="true">
+                      {clip.videos.map((video, videoIndex) => (
+                        <span className={videoIndex <= storyPart ? "storyProgressActive" : ""} key={video.src} />
+                      ))}
+                    </div>
+                    <span className="storyPartLabel">Part {storyPart + 1} of {clip.videos.length}</span>
+                    <button
+                      className="storyNav storyNavPrev"
+                      type="button"
+                      aria-label="Previous story part"
+                      disabled={storyPart === 0}
+                      onClick={() => changeStoryPart(clip.id, -1, clip.videos.length)}
+                    >
+                      ‹
+                    </button>
+                    <button
+                      className="storyNav storyNavNext"
+                      type="button"
+                      aria-label="Next story part"
+                      disabled={storyPart === clip.videos.length - 1}
+                      onClick={() => changeStoryPart(clip.id, 1, clip.videos.length)}
+                    >
+                      ›
+                    </button>
+                  </div>
+                )}
                 <div className="scrimTop" />
                 <div className="scrimBottom" />
                 <header className="tabBar">
