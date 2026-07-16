@@ -285,6 +285,21 @@ export default function HomePage() {
     });
   }, [soundOn, sheet]);
 
+  useEffect(() => {
+    if (sheet) return;
+
+    const storyVideos = Array.from(document.querySelectorAll<HTMLVideoElement>(".storyVideo"));
+    const visibleStoryVideo = storyVideos.find((video) => {
+      const rect = video.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.35 && rect.bottom > window.innerHeight * 0.65;
+    });
+
+    if (!visibleStoryVideo) return;
+    visibleStoryVideo.muted = !soundOn;
+    visibleStoryVideo.currentTime = 0;
+    visibleStoryVideo.play().catch(() => undefined);
+  }, [storyParts, soundOn, sheet]);
+
   async function shareVideo() {
     const url = window.location.href;
     const text = "Watch this Petalcore Beauty video sales page";
@@ -360,7 +375,9 @@ export default function HomePage() {
                 >
                   {storyVideo ? (
                     <video
+                      autoPlay
                       className="feedVideo storyVideo"
+                      key={storyVideo.src}
                       src={storyVideo.src}
                       poster={storyVideo.poster}
                       data-clip-index={logicalIndex}
