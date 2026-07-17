@@ -4,6 +4,7 @@ Audience: women 45+ who feel their skin is dry, tight, dull, or harder to prep t
 Goal: move viewers from curiosity to purchase during a TikTok-style live-shopping experience.  
 Core promise: Riche Creme gives skin a richer, more comfortable, hydrated-looking glow with fewer routine steps.  
 Primary CTA: Tap Buy Now for Petalcore Riche Creme.
+Timed chat layer: `docs/riche-creme-live-chat-plan.md`
 
 ## Runtime Requirement
 
