@@ -5,6 +5,18 @@ Goal: move viewers from curiosity to purchase during a TikTok-style live-shoppin
 Core promise: Riche Creme gives skin a richer, more comfortable, hydrated-looking glow with fewer routine steps.  
 Primary CTA: Tap Buy Now for Petalcore Riche Creme.
 
+## Runtime Requirement
+
+Target this as a 20-25 minute live-shopping presentation. At 200 WPM, the minimum spoken script needs roughly 4,000 words. The expanded broadcast script is built with a buffer so the final video can breathe, show product close-ups, display before/after assets, and still clear 20 minutes.
+
+Use the four guest interviews as the core watch-time engine. Each guest should highlight a different daily problem while reinforcing the same product story:
+- Nora: dry, tight, uncomfortable skin that needs comfort.
+- Elaine: makeup sitting better over softer, more hydrated-looking skin.
+- Tasha: simplifying a routine that has too many products.
+- Marisol: nighttime nourishment and waking up with a fresher-looking glow.
+
+Every segment should repeat the same buying logic in natural words: Riche Creme is easy to use, feels great on skin, makes skin feel nourished, and visually helps skin look softer, fresher, and more finished.
+
 ## Narrative Spine
 
 By the end, viewers should believe Riche Creme is the simple, confidence-building face cream to try because it solves the daily frustration of skin that feels dry, looks tired, and makes makeup harder than it needs to be.

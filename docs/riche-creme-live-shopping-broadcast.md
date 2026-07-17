@@ -1,7 +1,7 @@
 # Petalcore Riche Creme Live Shopping Broadcast
 
 Format: vertical 9:16 live-shopping broadcast for HeyGen and Petalcore UGC page  
-Length target: 25 minutes  
+Length target: 20-25 minutes spoken runtime  
 Product: Petalcore Riche Creme, Pro-Aging Nourishing Face Cream, 50 ml  
 Primary CTA: Tap Buy Now for the pinned Riche Creme checkout  
 Compliance note: guest stories and images are simulated placeholders unless replaced with real customer assets.
@@ -22,6 +22,398 @@ Compliance note: guest stories and images are simulated placeholders unless repl
 | Guest 4 before | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-04-before.png` |
 | Guest 4 after | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-04-after.png` |
 | Guest 4 interview | 9:16 HeyGen-ready straight-on home interview shot | `/public/images/live-guests/guest-04-interview.png` |
+
+## Expanded 20-Minute Spoken Script
+
+Use this as the actual broadcast script. The shorter structure below remains a production outline.
+
+### Opening Hook
+
+Host:
+"Okay, if you are watching this and your skin has been feeling dry, tight, dull, or just harder to make look finished than it used to, stay with me. I want you to see this before you keep scrolling."
+
+"Tonight we are talking about Petalcore Riche Creme. This is the face cream I want you to look at if your routine has slowly turned into ten steps, but somehow your skin still does not feel as nourished as you want it to feel."
+
+"And I want to be very clear from the beginning. This is not about trying to look twenty. This is not about chasing filtered skin. This is about real skin feeling comfortable, looking hydrated, and giving you that soft, healthy-looking glow that makes you feel more put together before makeup, after makeup, or even when you are not wearing makeup at all."
+
+"A lot of us hit a point where the products keep multiplying. You have one thing for dry patches, another thing for texture, another thing for glow, another thing for makeup prep, and then at the end of it your skin still feels like it is asking for more. That is the moment Riche Creme is made for."
+
+"I have four women joining me from their homes tonight. Each of them had a different frustration, but listen for the pattern, because the story is really the same. They wanted something easy. They wanted something that felt good on the skin. They wanted their skin to feel nourished, not coated. And they wanted to see a visible difference in how their skin looked."
+
+"The product is pinned at the bottom. You can tap it any time. If you tap Buy Now, checkout opens while the live keeps playing, so you do not have to leave the video to grab it."
+
+"But first, I want to show you the texture, because that is where this cream starts to make sense."
+
+### Texture and Product Demo
+
+Host:
+"Here is the jar. I am going to show it close so you can really see what we are talking about. Riche Creme has that rich, plush texture people want when their skin feels dry or underfed, but the finish is not supposed to look heavy. That is the balance."
+
+"When I scoop it, you can see it has body. It is not watery. It is not disappearing before you even get it onto your face. But when I warm it between my fingertips, it starts to melt down and spread. That is what makes it easy to use. You are not fighting with it, and you are not dragging your skin around trying to make it move."
+
+"I like to press it first, especially on the cheeks. If your cheeks are the area that always feels tight, start there. Press, hold for a second, then smooth. Then I go around the mouth, because that is where makeup can catch. Then forehead. Then whatever is left goes down the neck."
+
+"You do not need a complicated method. Cleanse, use a serum if you already like one, then Riche Creme. Morning, night, or both. In the morning, start with less and give it a minute before makeup. At night, if your skin feels dry, use a little more and let it be that comforting final step."
+
+"The feeling I want you to pay attention to is not greasy. It is nourished. There is a difference. Greasy feels like something sitting on top of your face. Nourished feels like your skin has a little more cushion, a little more comfort, and a little more life to it."
+
+"And visually, this is why people like it for video and makeup days. The skin catches light better. It looks softer. It looks less flat. It looks like you actually finished your routine instead of just stacking products."
+
+"If you already know this is what your skin has been asking for, the Riche Creme is pinned. Tap Buy Now. If you want to hear the guest stories first, stay with me, because I think the interviews are what make this really click."
+
+### Guest 1 - Nora: Comfort and Dry, Tight Skin
+
+Host:
+"I want to bring in Nora first. Nora, your main frustration was that tight feeling, especially around the cheeks and mouth. Tell everyone what was happening before you tried Riche Creme."
+
+Nora:
+"Yes, that was exactly it. My skin did not necessarily look terrible every day, but it felt uncomfortable. I would wash my face, put on my products, and within a little while my cheeks felt tight again. Around my mouth felt dry. And when I smiled or talked, I could just feel that my skin wanted more."
+
+Host:
+"That is such a specific feeling, and so many people know exactly what you mean. It is not always about a dramatic skin issue. Sometimes it is just that your face never feels fully comfortable."
+
+Nora:
+"Exactly. I did not want something greasy. I had tried heavier creams before and some of them made me feel shiny in the wrong way. I wanted my skin to feel soft and cared for, but I still wanted to look like myself."
+
+Host:
+"So when you first used Riche Creme, what stood out?"
+
+Nora:
+"The first thing was the way it felt going on. It was rich, but it spread easily. I pressed it into my cheeks and around my mouth, and it felt like my skin calmed down. Not in a medical way, just in that comfort way where your face finally stops feeling tight."
+
+Host:
+"That word comfort is important. We talk so much about glow and texture and makeup, but comfort is what makes you keep using a product."
+
+Nora:
+"Yes. If something feels bad, I will not keep using it. This felt good right away. And then visually, after I used it consistently, my skin looked more rested. My cheeks looked softer. When I put makeup on, I did not get that dry patch look as much."
+
+Host:
+"I am going to put your before on screen. This is the photo where you said your skin felt dry and kind of flat."
+
+Nora:
+"Yes, that is the one. I remember that day because I had done my routine and still felt like my skin looked tired."
+
+Host:
+"And now here is the after. What do you notice when you look at this one?"
+
+Nora:
+"It looks more alive. That is the best way I can say it. I still look like myself, but my skin looks softer and more hydrated. And that matched how it felt, which is why I liked it."
+
+Host:
+"That is the story I want people to hear. Easy to use, feels great, makes the skin feel nourished, and visually the skin looks better. Not fake. Not filtered. Just better."
+
+Nora:
+"Yes. It made my routine feel less frustrating. I did not feel like I had to keep adding more things to get comfortable."
+
+Host:
+"For anyone watching who is dealing with tight cheeks, dry-feeling skin around the mouth, or makeup catching on dry areas, Nora's routine is simple. Cleanse, optional serum, then press in Riche Creme. Start with the cheeks. Give it a minute. Let the skin feel supported before you move on."
+
+Host:
+"Nora, thank you. That comfort piece is such a good first story because if your skin does not feel good, nothing else about the routine matters."
+
+Nora:
+"Exactly. And that is why I kept using it."
+
+Host:
+"If Nora's story sounds like your skin, the Riche Creme is pinned below. Tap Buy Now, and the checkout will open without stopping the live."
+
+### Host Reset and Routine Repetition
+
+Host:
+"Quick reset for everyone just joining. We are talking about Petalcore Riche Creme, the rich nourishing face cream for skin that feels dry, tight, dull, or like your routine is doing too much and still not giving you that finished glow."
+
+"The big idea tonight is simple. Your skincare should not feel like homework. It should be easy enough to actually use. It should feel good when it goes on. It should make your skin feel nourished. And when you look in the mirror, your skin should look better: softer, more hydrated, more awake."
+
+"I am going to show the texture again because people keep asking if it is heavy. Look at the way it warms up. You can start small. If you are wearing makeup, start with a smaller amount. If it is nighttime and your skin feels dry, use a little more. The product is flexible."
+
+"Now I want to go to Elaine, because her story is about makeup. This is the one so many of us care about because makeup can either glide over your skin or it can make everything look more obvious."
+
+### Guest 2 - Elaine: Makeup Prep and Smoother-Looking Finish
+
+Host:
+"Elaine, before Riche Creme, what was happening when you wore makeup?"
+
+Elaine:
+"My makeup just did not sit the way I wanted it to. I would put it on and it looked fine for maybe an hour, but then by lunchtime I would see dry areas. Foundation would catch in places. Around my cheeks and around my mouth, it looked patchy. And I felt like the more I tried to fix it, the heavier everything looked."
+
+Host:
+"That is such a common cycle. You see texture or dryness, so you add more makeup, but the skin underneath is not comfortable, so more makeup does not solve it."
+
+Elaine:
+"Exactly. I realized the issue was not only the foundation. It was the prep. My skin needed to feel more nourished before I put anything on top."
+
+Host:
+"How did you use Riche Creme in the morning?"
+
+Elaine:
+"I washed my face, used a small amount of Riche Creme, and pressed it in. I waited a few minutes before foundation. That part mattered. I did not rush it. I let it settle."
+
+Host:
+"And what changed?"
+
+Elaine:
+"My makeup looked smoother. It did not look heavier. It actually looked lighter because I was not fighting dry patches. My skin had a softer look underneath, so the makeup did not have to do all the work."
+
+Host:
+"That line is important: the makeup did not have to do all the work. Riche Creme is not a cover-up product. It is the prep step that helps your skin look more finished before the makeup even starts."
+
+Elaine:
+"Yes. I do not want my makeup to look like a mask. I want my skin to look fresh under it. This helped with that."
+
+Host:
+"I am going to show your before. This was the day you said your makeup was catching on dry-looking texture."
+
+Elaine:
+"Yes, and I remember feeling like I had done everything right, but it still looked uneven."
+
+Host:
+"And here is the after. What do you see?"
+
+Elaine:
+"I see a softer finish. My skin looks more hydrated. It looks smoother around the places where makeup usually gave me trouble. And I felt more confident because I was not checking my face every hour."
+
+Host:
+"That is what I want people to understand. Riche Creme is not only a nighttime comfort product. It can be your makeup-prep cream when you use the right amount. Small amount in the morning, press it in, give it a minute, then go in with makeup."
+
+Elaine:
+"And it feels good. That is why I like it. Some products look nice at first but do not feel comfortable. This felt good on my skin."
+
+Host:
+"Easy to use, feels great, skin feels nourished, and visually the makeup looks better. That is the same story again, just through a different daily problem."
+
+Elaine:
+"Yes. It made my morning easier."
+
+Host:
+"If makeup sitting badly is your problem, tap the product card. Riche Creme is pinned. You can buy now, or stay with us because I am bringing in Tasha next, and her story is for everyone with too many bottles on the counter."
+
+### Host Demo - One-Minute Application
+
+Host:
+"Before Tasha comes in, I want to show the application again in real time. This is the part you should remember if you order tonight."
+
+"Start with clean skin. If you already use a serum you love, keep it. This is not about throwing your whole routine away if you love it. But if your routine has become too complicated, Riche Creme can become the product you build around."
+
+"I take a small amount and warm it between my fingertips. Then I press on the cheeks. I do not start by rubbing. Press first. Let the cream meet the skin. Then smooth."
+
+"Around the mouth, I use a lighter touch. That area is where makeup can grab, so I want comfort there, not a thick layer. Forehead gets a smaller amount. Neck gets whatever is left."
+
+"If I am doing this at night, I might use a little more. If I am doing this before makeup, I use less and wait. That is the difference."
+
+"The finish should look like skin that has been taken care of. Not oily. Not sticky. Just nourished and soft-looking."
+
+### Guest 3 - Tasha: Simpler Routine, Better-Looking Skin
+
+Host:
+"Tasha, your story is about the routine getting too long. Tell me what was on your counter before this."
+
+Tasha:
+"Too much. That is the honest answer. I had toner, essence, two serums, an oil, a cream, and then sometimes another cream because the first one did not feel like enough. I was doing all of that and still looking in the mirror like, why does my skin look tired?"
+
+Host:
+"That is such a real skincare moment. More products, more steps, more money, more time, and still not the feeling you wanted."
+
+Tasha:
+"Exactly. I was not trying to be complicated. I just kept buying things because I wanted my skin to look healthy and feel nourished. But the routine started feeling like a chore."
+
+Host:
+"So where did Riche Creme fit in?"
+
+Tasha:
+"At night first. I used it after cleansing. Sometimes I used one serum, but not always. Then Riche Creme became the step that made my skin feel finished. That was the difference. I did not feel like I needed to keep layering."
+
+Host:
+"That word finished keeps coming up. Nora said comfortable. Elaine said smoother under makeup. You are saying finished."
+
+Tasha:
+"Yes, because that is what I was missing. My skin did not feel done. With this, it felt like I had actually completed my routine."
+
+Host:
+"How did it feel on your skin?"
+
+Tasha:
+"Rich, but in a good way. Like my skin was getting something. It did not feel like just a slippery layer. It felt nourishing. And I liked that I could keep it simple."
+
+Host:
+"I am going to show your before. This was when you said your skin looked tired even though you were doing a lot."
+
+Tasha:
+"Yes. I was doing the most and still not getting the glow I wanted."
+
+Host:
+"And here is the after."
+
+Tasha:
+"That is what I wanted. My skin looks softer. It looks more awake. It looks like I am taking care of it, but not like I have a filter on. And the biggest thing is that it felt easier. I could actually keep doing it."
+
+Host:
+"That matters so much. The best routine is the one you can repeat. If a product makes your routine feel calmer and easier, you are more likely to use it consistently."
+
+Tasha:
+"Exactly. I did not want another complicated step. I wanted something that made the rest of the routine make sense."
+
+Host:
+"So for everyone watching with a crowded bathroom counter, here is the takeaway. Riche Creme can be your final step. You do not need to layer five moisturizers. You do not need to keep guessing. Cleanse, use the one or two products you trust, then finish with Riche Creme."
+
+Tasha:
+"That is how I use it. And my skin feels better."
+
+Host:
+"Easy to use. Feels great. Skin feels nourished. Skin looks better. Same story again, just from the routine-simplifying angle."
+
+Host:
+"Tasha, thank you. I know a lot of people needed to hear that because sometimes the answer is not more steps. Sometimes it is the right final step."
+
+Tasha:
+"Yes, exactly."
+
+Host:
+"If your routine has become too much, the product is pinned. Tap Buy Now. And remember, checkout opens while the live continues."
+
+### Offer and Checkout Walkthrough
+
+Host:
+"Let me pause for a second and show you how the shopping part works, because this is supposed to feel easy."
+
+"When you tap the product card, you will see Petalcore Riche Creme, the 50 ml jar, the product details, and the Buy Now button. The live video keeps going while you look. So if you are listening to the guest stories or watching the demo, you do not lose the broadcast."
+
+"If you want the fastest route, tap Buy Now. If you want to keep watching, close the checkout panel and stay with us. I will keep answering questions."
+
+"A few common questions in the chat: yes, this is the Riche Creme. It is the nourishing face cream. It is not the deodorant. It is not a lip product. It is the cream we are showing in the jar."
+
+"Can you use it morning and night? Yes. Use less in the morning, more at night if your skin wants it."
+
+"Can you use it under makeup? Yes, start small and let it settle."
+
+"Is it only for women over 50? No. But we are speaking to women over 50 because that is where a lot of people start noticing the routine that worked before is not giving the same comfort or finish."
+
+"Does it replace every product? It can simplify your routine, but you can still use your favorite serum. Think of this as the nourishing final step that helps the routine feel complete."
+
+"And as always with skincare, patch test if you are sensitive. Results vary because every face is different. What we are talking about tonight is the feel, the ease of use, the hydrated-looking glow, and the visible softness people notice when their skin is better moisturized."
+
+### Mid-Live Comment Reset and Social Proof
+
+Host:
+"I see a lot of people coming in right now, so let me reset the room. This is Petalcore Riche Creme. It is the rich nourishing face cream we are showing tonight for skin that feels dry, tight, dull, or like it needs a softer, more finished look."
+
+"The reason we are spending time on the guest stories is because everyone is coming from a slightly different skin frustration. Some of you are saying your skin feels tight after cleansing. Some of you are saying your makeup looks patchy. Some of you are saying you are tired of having a counter full of products. Some of you are saying you just want to wake up and look more rested."
+
+"Those are different problems on the surface, but underneath, they all connect to the same thing. The skin needs comfort. The skin needs nourishment. The routine needs to be easy enough that you actually keep doing it. And visually, you want the mirror to show you skin that looks softer, fresher, and more alive."
+
+"I am seeing the question, 'Is this sticky?' No, the way I use it is not sticky. If you put on too much of any rich cream, of course it can feel like too much. Start small. Warm it between the fingers. Press it in. Give it a minute. That one minute matters."
+
+"Someone asked, 'Can I use it if I do not wear makeup?' Yes. Honestly, that may be when you love it most, because the whole point is not to hide your skin. The point is to help your real skin look better cared for. On no-makeup days, Riche Creme gives that soft, hydrated-looking finish so your face does not look flat or tired."
+
+"Someone else asked, 'Is this for night only?' No. Think of it as adjustable. Morning is a smaller amount, especially if you are doing sunscreen and makeup after. Night is where you can be more generous and make it that comforting last step."
+
+"And if you are asking why people keep saying it feels different, I think it is because there is a difference between a product that only looks good in a jar and a product that makes you want to keep touching your cheeks because your skin finally feels cared for. That is the feeling people are describing."
+
+"The product is pinned right here. If you already know this is the cream your routine has been missing, tap Buy Now. If you want one more story before you decide, stay with me, because Marisol is going to talk about nighttime use and that waking-up glow."
+
+### Guest 4 - Marisol: Night Routine and Morning Glow
+
+Host:
+"Now I want to bring in Marisol. Marisol, your story is the nighttime routine and waking up with skin that looks more awake. Tell us what you were noticing before."
+
+Marisol:
+"My skin looked flat in the morning. That was the thing. I would wake up, wash my face, and it just looked tired. Even when I slept, it did not always look like I slept."
+
+Host:
+"That is such a good way to say it. Sometimes the skin just looks like it did not get what it needed overnight."
+
+Marisol:
+"Yes. And I did not want a long routine at night. By the end of the day, I want simple. I want to wash my face, use something that feels good, and go to bed."
+
+Host:
+"So how did you use Riche Creme?"
+
+Marisol:
+"At night. I cleansed, then I used Riche Creme on my cheeks, around my mouth, and down my neck. I used a little more than I would in the morning. I pressed it in, and it felt really comforting."
+
+Host:
+"What did you notice first?"
+
+Marisol:
+"The feel. My skin felt nourished. Not greasy, just cared for. I liked that I could put it on and feel like my routine was done."
+
+Host:
+"And visually, what changed?"
+
+Marisol:
+"In the morning, my skin looked more awake. It felt softer when I washed my face. My cheeks looked more hydrated. I did not look as dull."
+
+Host:
+"I am going to show your before. This was the dull-looking morning skin photo."
+
+Marisol:
+"Yes. That is the one where I felt like my face needed life."
+
+Host:
+"And here is the after."
+
+Marisol:
+"That is why I kept using it. My skin looks richer. It looks more comfortable. It looks like it has more glow. And honestly, it made me feel better starting the day."
+
+Host:
+"I love that because skincare is not only the mirror. It is also how you feel in your own face. When your skin feels dry and tight, you think about it all day. When it feels nourished, you can move on."
+
+Marisol:
+"Yes. I did not want to keep thinking about my skin. I wanted it to feel good."
+
+Host:
+"So for anyone watching who wants an easy night routine, Marisol's version is simple. Cleanse. Riche Creme. Press it in. Cheeks, mouth area, forehead, neck. Go to bed. Wake up and see how your skin feels."
+
+Marisol:
+"That is exactly it."
+
+Host:
+"And there it is again. Easy to use, feels great, skin feels nourished, and visually the skin looks better. Four different women, four different frustrations, same core result."
+
+Host:
+"Marisol, thank you. That nighttime story is going to be the one for a lot of people."
+
+Marisol:
+"Thank you. I really do love how it feels."
+
+### Full Objection Handling
+
+Host:
+"Let me answer the questions fast, because I know people are jumping in and out."
+
+"Question one: is this only for mature skin? No. Riche Creme is for anyone who wants a richer moisturizing step and a soft hydrated-looking finish. We are talking to women over 50 tonight because a lot of women in that season notice dryness, dullness, and makeup prep becoming more frustrating."
+
+"Question two: will it feel heavy? It is rich, but you control the amount. Start small. Warm it up. Press it in. If your skin wants more, add a little more. If you are wearing makeup, use less."
+
+"Question three: can I use it under foundation? Yes. That was Elaine's whole story. Use a smaller amount, let it settle, then apply makeup. The goal is skin that looks prepped and hydrated, not slippery."
+
+"Question four: is it a morning or night product? It can be either. Morning for glow and makeup prep. Night for comfort and nourishment. Some people will use it both ways."
+
+"Question five: how fast do you notice it? The feel can be immediate. The skin can look more hydrated right away because moisturized skin catches light differently. Longer-term results depend on your routine and consistency."
+
+"Question six: do I still need my serum? If you love your serum, keep it. Riche Creme can be the final step. If your routine feels too long, simplify. Cleanse, optional serum, Riche Creme."
+
+"Question seven: is it greasy? It should not be used like a mask in the morning. Use the right amount. At night you can use more. During the day, less is usually better."
+
+"And question eight: why are people buying it during the live? Because it solves a problem they recognize immediately. Dry-feeling skin. Makeup that does not sit right. Too many steps. Skin that does not look as nourished as it feels like it should. That is the problem this cream is here to help with."
+
+### Final Demo and Close
+
+Host:
+"Before we close, I want to do the glow prep one more time. If you order tonight, this is the routine I want you to remember."
+
+"Clean skin. Small amount. Warm it between your fingertips. Press cheeks first. Press around the mouth. Smooth forehead. Neck with what is left. Give it a minute."
+
+"Look at the finish. Soft. Hydrated-looking. Not fake. Not glittery. Not like you dipped your face in oil. Just cared for."
+
+"That is the Petalcore lane. We want real skin to look better in real life. We want the routine to feel easy enough to repeat. We want the product to feel good on the skin, not just look pretty in the jar."
+
+"Nora's story was comfort. Elaine's story was makeup. Tasha's story was simplifying the routine. Marisol's story was nighttime nourishment and morning glow. Four different angles, same message: Riche Creme is easy to use, feels great, makes skin feel nourished, and visually helps skin look softer, fresher, and more finished."
+
+"If your skin has been feeling dry, tight, dull, or like your routine is doing too much and still not giving you the finish you want, this is the Petalcore product to try."
+
+"The checkout is pinned right here. Tap Buy Now. The live will keep playing while you check out. And if you are watching the replay, the product button still works."
+
+"Thank you for being here. I will stay in the chat answering questions about texture, routine, makeup prep, shipping, and checkout. If you grab Riche Creme tonight, start small, press it in, and pay attention to how your skin feels first. That is where the love for this cream starts."
 
 ## Broadcast Structure
 
