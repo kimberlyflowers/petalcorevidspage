@@ -35,20 +35,26 @@ These are the questions Cheryl should answer verbally. All other chat should mos
 | 0:45 | Opening hook | DeniseM | "Is this for mature skin or all ages?" | Say it is for anyone wanting richer moisture, but tonight speaks to women 45/50+ because dryness, dullness, and makeup prep become common frustrations. |
 | 1:40 | Product texture | lynn.skin | "Show the texture closer pls" | Hold the jar closer, scoop product, describe rich-but-spreadable texture. |
 | 2:35 | Product texture | CarlaR | "Is it greasy??" | Explain rich does not mean greasy; start small, warm it, press it in. |
+| 3:05 | Proactive FAQ | Host-led | Cheryl answers before asked: oily/combination skin, dry skin, sensitive skin, and why this is richer than a lightweight moisturizer. | Chat should react with skin-type follow-ups and "that's me" comments. |
 | 3:50 | Nora setup | jules_52 | "My cheeks feel tight after washing, is that what this helps with?" | Bridge into Nora's story about cheek and mouth-area comfort. |
 | 5:20 | Nora before/after | softglowkim | "Does it work right away or over time?" | Say feel can be immediate, visual softness depends on consistency; avoid guaranteed result claims. |
 | 6:45 | Reset | MariaBeauty | "How much do you use?" | Pea-to-dime amount, less before makeup, more at night if skin wants it. |
 | 7:10 | Proactive FAQ | Host-led | Cheryl answers before asked: daytime amount, serum layering, age range, greasy concerns. | Chat should respond with agreement and follow-ups, not just more questions. |
 | 7:45 | Elaine intro | makeupover50 | "Can I put foundation over it?" | Bridge into Elaine; smaller amount, let it settle, then makeup. |
 | 9:30 | Elaine after | TeriL | "Does it pill under sunscreen?" | Say use a small amount, let it absorb, layer sunscreen after; patch/routine compatibility varies. |
+| 9:55 | Chat question | SPFfirst | "what order with sunscreen?" | Say Riche Creme, settle, sunscreen, then makeup if wearing it. |
 | 10:50 | Application demo | glowwithjan | "Do you rub or press it in?" | Demonstrate pressing cheeks first, then smoothing. |
 | 12:10 | Tasha intro | too_many_serums | "Can this replace some steps?" | Bridge into Tasha; it can simplify the final moisturizing step, but keep favorite serum if they love it. |
 | 14:20 | Tasha after | RobynK | "I have so many products and still look tired" | Validate frustration; repeat that the routine should feel easier and skin should feel finished. |
+| 15:05 | Chat question | neckcarepls | "can I put it on my neck too?" | Say yes, bring leftover product down the neck, starting small. |
 | 15:30 | Checkout walkthrough | nikki_shop | "If I tap buy does the live stop?" | Explain checkout opens while the live keeps playing. |
 | 16:20 | Checkout walkthrough | AimeeL | "Which product is pinned?" | Clarify Petalcore Riche Creme, 50 ml face cream. |
+| 16:55 | Proactive FAQ | Host-led | Cheryl answers before asked: vitamin C, retinol, and reactive skin. | Chat should include active-ingredient follow-ups and patch-test comments. |
 | 17:35 | Marisol intro | nightcreamgirl | "Is it better morning or night?" | Bridge into Marisol; morning or night, but night can be more generous and comforting. |
 | 19:00 | Marisol after | VeeR | "Will it make me shiny in the morning?" | Say start with the right amount; goal is nourished and hydrated-looking, not oily. |
+| 19:45 | Chat question | scent_sensitive | "is it scented?" | Tell viewers to check product details before checkout if fragrance or ingredient sensitivity matters. |
 | 20:25 | Objections | LisaB | "Sensitive skin?" | Recommend patch testing; do not overpromise. |
+| 20:55 | Chat question | porepanic | "will it clog pores?" | Say start small, patch test if congestion-prone, and use the amount skin likes. |
 | 21:20 | Final demo | shelly_49 | "Can you show the glow one more time?" | Repeat final application close-up and CTA. |
 | 22:00 | Final CTA | PamLovesSkin | "Where do I buy?" | Tell them to tap the pinned product and Buy Now. |
 
@@ -81,6 +87,11 @@ Use these as rotating comments between anchor questions.
 - "does it smell strong?"
 - "can you use with serum"
 - "press don't rub?"
+- "combination skin here"
+- "what skin type is this for"
+- "sensitive skin?"
+- "how is it different from moisturizer"
+- "is this too rich for oily t zone"
 
 ### Nora Segment
 
@@ -128,6 +139,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "I like that she said start small"
 - "nighttime more morning less got it"
 - "I was about to ask that"
+- "I use retinol where does it go"
+- "vitamin c question"
+- "spf after got it"
+- "my sunscreen pills sometimes"
+- "small amount makes sense"
 
 ### Tasha Segment
 
@@ -141,6 +157,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "does this go last"
 - "one cream sounds nice"
 - "I want easy"
+- "can I put it on my neck"
+- "neck gets dry too"
+- "does this replace moisturizer"
+- "so this is last step?"
+- "this is better than 6 products"
 
 ### Checkout
 
@@ -154,6 +175,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "cart opened"
 - "still watching"
 - "pin it again"
+- "does it work with retinol"
+- "can I use with vitamin c"
+- "patch test yes"
+- "my skin is reactive"
+- "what if I use actives"
 
 ### Marisol Segment
 
@@ -167,6 +193,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "soft not oily"
 - "this feels like my skin"
 - "I love simple night creams"
+- "is it scented"
+- "fragrance sensitive here"
+- "night cream or moisturizer?"
+- "can I use every day"
+- "what order at night"
 
 ### Final CTA
 
@@ -180,6 +211,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "last question texture?"
 - "buy now button where"
 - "okay sold"
+- "will it clog pores"
+- "how much is in the jar"
+- "50 ml?"
+- "does checkout keep playing"
+- "what product is pinned"
 
 ## Visual Treatment
 

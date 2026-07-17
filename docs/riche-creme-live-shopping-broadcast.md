@@ -57,6 +57,8 @@ Host:
 
 "The feeling I want you to pay attention to is not greasy. It is nourished. There is a difference. Greasy feels like something sitting on top of your face. Nourished feels like your skin has a little more cushion, a little more comfort, and a little more life to it."
 
+"A few quick texture questions before they flood the chat. If you are oily or combination, start smaller and use it where your skin wants comfort. If you are dry, you may like it all over. If you are sensitive, patch test first. And if you are wondering what makes it different from a lightweight moisturizer, the answer is the richer cushion. This is for the step where you want your skin to feel more supported."
+
 "And visually, this is why people like it for video and makeup days. The skin catches light better. It looks softer. It looks less flat. It looks like you actually finished your routine instead of just stacking products."
 
 "If you already know this is what your skin has been asking for, the Riche Creme is pinned. Tap Buy Now. If you want to hear the guest stories first, stay with me, because I think the interviews are what make this really click."
@@ -185,6 +187,8 @@ Elaine:
 Host:
 "That is what I want people to understand. Riche Creme is not only a nighttime comfort product. It can be your makeup-prep cream when you use the right amount. Small amount in the morning, press it in, give it a minute, then go in with makeup."
 
+"And I see the sunscreen question too. In the morning, I would do Riche Creme, let it settle, then sunscreen, then makeup if you wear it. If your sunscreen or foundation pills, use less product or give the layers more time."
+
 Elaine:
 "And it feels good. That is why I like it. Some products look nice at first but do not feel comfortable. This felt good on my skin."
 
@@ -280,6 +284,8 @@ Tasha:
 Host:
 "If your routine has become too much, the product is pinned. Tap Buy Now. And remember, checkout opens while the live continues."
 
+"And since I see this question repeating, yes, you can bring it down the neck. I do. Whatever is left after the face goes down the neck, because that area gets dry too. Just keep the same rule: start with a small amount and add more only if your skin wants it."
+
 ### Offer and Checkout Walkthrough
 
 Host:
@@ -299,6 +305,8 @@ Host:
 
 "Does it replace every product? It can simplify your routine, but you can still use your favorite serum. Think of this as the nourishing final step that helps the routine feel complete."
 
+"Can you use it with vitamin C or retinol? In a basic routine, Riche Creme can be the moisturizing final step after the active product you already tolerate. If your skin is reactive, patch test and keep the rest simple."
+
 "And as always with skincare, patch test if you are sensitive. Results vary because every face is different. What we are talking about tonight is the feel, the ease of use, the hydrated-looking glow, and the visible softness people notice when their skin is better moisturized."
 
 ### Mid-Live Comment Reset and Social Proof
@@ -315,6 +323,10 @@ Host:
 "Someone asked, 'Can I use it if I do not wear makeup?' Yes. Honestly, that may be when you love it most, because the whole point is not to hide your skin. The point is to help your real skin look better cared for. On no-makeup days, Riche Creme gives that soft, hydrated-looking finish so your face does not look flat or tired."
 
 "Someone else asked, 'Is this for night only?' No. Think of it as adjustable. Morning is a smaller amount, especially if you are doing sunscreen and makeup after. Night is where you can be more generous and make it that comforting last step."
+
+"I see 'Is it scented?' coming through. If scent is a dealbreaker for you, check the product details before checkout. I always want you to read the product page if you are sensitive to fragrance or specific ingredients."
+
+"And someone asked, 'Is this a moisturizer or a night cream?' Think of it as a rich face cream that can play both roles. Small amount for daytime glow prep. More generous amount for nighttime comfort."
 
 "And if you are asking why people keep saying it feels different, I think it is because there is a difference between a product that only looks good in a jar and a product that makes you want to keep touching your cheeks because your skin finally feels cared for. That is the feeling people are describing."
 
@@ -404,7 +416,11 @@ Host:
 
 "Question seven: is it greasy? It should not be used like a mask in the morning. Use the right amount. At night you can use more. During the day, less is usually better."
 
-"And question eight: why are people buying it during the live? Because it solves a problem they recognize immediately. Dry-feeling skin. Makeup that does not sit right. Too many steps. Skin that does not look as nourished as it feels like it should. That is the problem this cream is here to help with."
+"Question eight: will it clog pores? I cannot promise how any one person's skin will respond, so start small and patch test if you are prone to congestion. Do not use a heavy amount just because it is a rich cream. Use the amount your skin actually likes."
+
+"Question nine: what is in the jar and how do I buy it? This is Petalcore Riche Creme, the 50 ml face cream pinned below. Tap the product card, tap Buy Now, and the checkout opens while the live keeps playing."
+
+"And question ten: why are people buying it during the live? Because the problem is familiar: dry-feeling skin, makeup prep, too many steps, and skin that does not look nourished."
 
 ### Final Demo and Close
 
