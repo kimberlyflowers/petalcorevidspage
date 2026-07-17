@@ -68,7 +68,7 @@ CTA:
 
 ### 3:30-6:30 - Guest 1: Dry, Tight Morning Skin
 
-Visual: Split-screen host and Guest 1. Guest is in a home bathroom or bedroom, iPhone-style framing. Show `guest-01-before.png`, then `guest-01-after.png`.
+Visual: Split-screen host and Guest 1. Guest is in a natural home interview setting, iPhone-style framing. Show `guest-01-before.png`, then `guest-01-after.png`.
 
 Host:
 "I want to bring in our first guest. She told us her biggest issue was waking up with skin that felt tight, especially around the cheeks and mouth."
@@ -212,7 +212,7 @@ Guest 3:
 "That after photo is why I kept using it. My skin looked softer. Not perfect, just better and more comfortable."
 
 Host:
-"That is such an important point. We are selling a skincare routine you can actually live with. Petalcore is for real mornings, real bathrooms, real makeup days, and real skin."
+"That is such an important point. We are selling a skincare routine you can actually live with. Petalcore is for real mornings, real home routines, real makeup days, and real skin."
 
 CTA:
 "If your routine has become too much, tap Buy Now and try simplifying around this one cream."
