@@ -126,6 +126,16 @@ Host:
 
 "I am going to show the texture again because people keep asking if it is heavy. Look at the way it warms up. You can start small. If you are wearing makeup, start with a smaller amount. If it is nighttime and your skin feels dry, use a little more. The product is flexible."
 
+"Before I bring Elaine in, I want to answer the questions that usually come up before people even type them."
+
+"First, if you are wondering, 'Is this going to be too much for daytime?' The answer is that it depends on how much you use. Morning is a small amount. Press it in, let it settle, then do sunscreen or makeup. Night is where you can be a little more generous."
+
+"Second, if you are thinking, 'I already have a serum, do I have to stop using it?' No. Keep the serum you love. Riche Creme is the comforting final step. It is the step that makes the routine feel complete instead of like your skin is still asking for more."
+
+"Third, if your question is, 'Am I old enough for this?' or 'Am I too young for this?' Do not think of it that way. Think about how your skin feels. If your skin feels dry, tight, dull, or hard to prep, this is the kind of rich cream you look at."
+
+"And fourth, if you are worried about looking greasy, start with less than you think. You can always add more. The finish we want is soft and nourished, not shiny in a way you do not like."
+
 "Now I want to go to Elaine, because her story is about makeup. This is the one so many of us care about because makeup can either glide over your skin or it can make everything look more obvious."
 
 ### Guest 2 - Elaine: Makeup Prep and Smoother-Looking Finish

@@ -12,6 +12,7 @@ Compliance note: simulated chat should not claim verified real purchases, medica
 - Viewer count changes every 8-15 seconds.
 - Chat moves fastest during product close-ups, before/after reveals, discount/checkout moments, and final CTA.
 - Most comments are reactions or repeated questions. Only 1 anchor question every 60-120 seconds should be answered out loud.
+- Add proactive FAQ moments where Cheryl answers common objections before a specific visible question appears. Immediately after those moments, let chat chime in with agreement, follow-up questions, and "you answered my question" comments.
 - Add light purchase intent comments throughout, but avoid fake hard claims like "I bought 10" or "this cured my skin."
 - Use mixed usernames: first names, initials, beauty handles, mom-style handles, and anonymous-looking names.
 
@@ -37,6 +38,7 @@ These are the questions Cheryl should answer verbally. All other chat should mos
 | 3:50 | Nora setup | jules_52 | "My cheeks feel tight after washing, is that what this helps with?" | Bridge into Nora's story about cheek and mouth-area comfort. |
 | 5:20 | Nora before/after | softglowkim | "Does it work right away or over time?" | Say feel can be immediate, visual softness depends on consistency; avoid guaranteed result claims. |
 | 6:45 | Reset | MariaBeauty | "How much do you use?" | Pea-to-dime amount, less before makeup, more at night if skin wants it. |
+| 7:10 | Proactive FAQ | Host-led | Cheryl answers before asked: daytime amount, serum layering, age range, greasy concerns. | Chat should respond with agreement and follow-ups, not just more questions. |
 | 7:45 | Elaine intro | makeupover50 | "Can I put foundation over it?" | Bridge into Elaine; smaller amount, let it settle, then makeup. |
 | 9:30 | Elaine after | TeriL | "Does it pill under sunscreen?" | Say use a small amount, let it absorb, layer sunscreen after; patch/routine compatibility varies. |
 | 10:50 | Application demo | glowwithjan | "Do you rub or press it in?" | Demonstrate pressing cheeks first, then smoothing. |
@@ -105,6 +107,27 @@ Use these as rotating comments between anchor questions.
 - "how long before foundation"
 - "that softer finish"
 - "need this under concealer"
+
+### Proactive FAQ Chime-In
+
+Use these immediately after Cheryl answers FAQs before being asked.
+
+- "you literally answered my question"
+- "ok so small amount daytime"
+- "I was wondering about serum"
+- "good to know I can keep my serum"
+- "not greasy is what I needed"
+- "I hate shiny creams"
+- "that makes sense less in morning"
+- "I am 47 and need this"
+- "age doesn't matter it's the dryness"
+- "can I use with vitamin c?"
+- "what about sunscreen after?"
+- "yes my skin still feels dry after serum"
+- "this is helpful"
+- "I like that she said start small"
+- "nighttime more morning less got it"
+- "I was about to ask that"
 
 ### Tasha Segment
 
