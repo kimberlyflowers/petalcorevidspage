@@ -12,18 +12,22 @@ Compliance note: guest stories and images are simulated placeholders unless repl
 | --- | --- | --- |
 | Guest 1 before | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-01-before.png` |
 | Guest 1 after | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-01-after.png` |
+| Guest 1 interview | 9:16 HeyGen-ready straight-on home interview shot | `/public/images/live-guests/guest-01-interview.png` |
 | Guest 2 before | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-02-before.png` |
 | Guest 2 after | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-02-after.png` |
+| Guest 2 interview | 9:16 HeyGen-ready straight-on home interview shot | `/public/images/live-guests/guest-02-interview.png` |
 | Guest 3 before | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-03-before.png` |
 | Guest 3 after | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-03-after.png` |
+| Guest 3 interview | 9:16 HeyGen-ready straight-on home interview shot | `/public/images/live-guests/guest-03-interview.png` |
 | Guest 4 before | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-04-before.png` |
 | Guest 4 after | 9:16 iPhone-style home shot | `/public/images/live-guests/guest-04-after.png` |
+| Guest 4 interview | 9:16 HeyGen-ready straight-on home interview shot | `/public/images/live-guests/guest-04-interview.png` |
 
 ## Broadcast Structure
 
 ### 0:00-1:30 - Cold Open
 
-Visual: Host framed close on face in a warm bathroom or vanity setup. Product visible near cheek level. Live chat begins moving immediately.
+Visual: Host framed close on face in a warm home-studio, living-room, or vanity-table setup. Product visible near cheek level. Live chat begins moving immediately.
 
 On-screen headline: `Over 50? Trade the 10-step routine for one rich-cream glow.`
 
@@ -329,4 +333,3 @@ Final on-screen text:
 `Petalcore Riche Creme`
 `Soft glow. Rich comfort. Fewer steps.`
 `Tap Buy Now`
-
