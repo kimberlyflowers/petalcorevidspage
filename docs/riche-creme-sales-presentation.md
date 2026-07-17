@@ -34,7 +34,7 @@ Offer line:
 `Petalcore Riche Creme is pinned below. Tap Buy Now and keep watching while checkout opens.`
 
 Positioning:
-Riche Creme is not about chasing filtered skin. It is about making real skin feel comfortable, look hydrated, and finish the routine with a soft, healthy-looking glow.
+Riche Creme isn't about chasing filtered skin. It's about making real skin feel comfortable, look hydrated, and finish the routine with a soft, healthy-looking glow.
 
 ## Presentation Flow
 
@@ -55,13 +55,13 @@ CTA:
 ### 2. Reframe the Desire
 
 Viewer problem:
-They do not want to look fake or filtered. They want to look rested, moisturized, and put together.
+They don't want to look fake or filtered. They want to look rested, moisturized, and put together.
 
 Visual:
 Soft face close-up, light bounce on cheek, product jar in hand.
 
 Host line:
-"This is not about trying to look twenty. This is about skin that feels comfortable, looks fresh on camera, and makes the final step of your routine feel finished."
+"This isn't about trying to look twenty. This is about skin that feels comfortable, looks fresh on camera, and makes the final step of your routine feel finished."
 
 Proof cue:
 Flash comments:
@@ -113,7 +113,7 @@ Voice:
 Voice ID: `XFGMLu5K9PoKI0oN5jnN`
 
 Guest line:
-"The first thing I noticed was comfort. My cheeks did not feel tight after I put it on. Then my makeup started sitting better."
+"The first thing I noticed was comfort. My cheeks didn't feel tight after I put it on. Then my makeup started sitting better."
 
 Before/after assets:
 - `/public/images/live-guests/guest-01-before.png`
@@ -161,7 +161,7 @@ Routine:
 6. Wait before makeup.
 
 Host line:
-"Do not rub aggressively. Press first, then smooth. The goal is skin that feels prepped, not slippery."
+"Don't rub aggressively. Press first, then smooth. The goal is skin that feels prepped, not slippery."
 
 ### 8. Tasha: Too Many Bottles
 
@@ -213,7 +213,7 @@ Question:
 "Is it only for women over 50?"
 
 Answer:
-"No. It is for anyone who wants a richer moisturizing step. We are speaking to women over 50 because dry-feeling, changing skin can make routines frustrating."
+"No. It's for anyone who wants a richer moisturizing step. We're speaking to women over 50 because dry-feeling, changing skin can make routines frustrating."
 
 Question:
 "Will it make me greasy?"
@@ -242,7 +242,7 @@ Visual:
 Host taps product card. Checkout panel opens while video continues.
 
 Host line:
-"When you tap the product, you do not lose the live. Checkout opens right here, and you can keep watching while you decide."
+"When you tap the product, you don't lose the live. Checkout opens right here, and you can keep watching while you decide."
 
 CTA:
 "Tap Buy Now for Petalcore Riche Creme."

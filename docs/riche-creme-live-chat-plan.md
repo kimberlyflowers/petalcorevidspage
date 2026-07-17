@@ -5,7 +5,7 @@ Purpose: make the 20+ minute Riche Creme live-shopping broadcast feel like an ac
 Viewer target: fluctuate between 5.8K and 8.2K, averaging around 6.7K.  
 Chat style: fast, imperfect, repetitive, mostly short comments.  
 Host behavior: Cheryl should answer only selected anchor questions so it feels live, not scripted.  
-Compliance note: simulated chat should not claim verified real purchases, medical results, or guaranteed outcomes.
+Compliance note: simulated chat shouldn't claim verified real purchases, medical results, or guaranteed outcomes.
 
 ## Live Rhythm
 
@@ -32,9 +32,9 @@ These are the questions Cheryl should answer verbally. All other chat should mos
 
 | Time | Segment | Username | Visible Chat Question | Cheryl Answer Goal |
 | --- | --- | --- | --- | --- |
-| 0:45 | Opening hook | DeniseM | "Is this for mature skin or all ages?" | Say it is for anyone wanting richer moisture, but tonight speaks to women 45/50+ because dryness, dullness, and makeup prep become common frustrations. |
+| 0:45 | Opening hook | DeniseM | "Is this for mature skin or all ages?" | Say it's for anyone wanting richer moisture, but tonight speaks to women 45/50+ because dryness, dullness, and makeup prep become common frustrations. |
 | 1:40 | Product texture | lynn.skin | "Show the texture closer pls" | Hold the jar closer, scoop product, describe rich-but-spreadable texture. |
-| 2:35 | Product texture | CarlaR | "Is it greasy??" | Explain rich does not mean greasy; start small, warm it, press it in. |
+| 2:35 | Product texture | CarlaR | "Is it greasy??" | Explain rich doesn't mean greasy; start small, warm it, press it in. |
 | 3:05 | Proactive FAQ | Host-led | Cheryl answers before asked: oily/combination skin, dry skin, sensitive skin, and why this is richer than a lightweight moisturizer. | Chat should react with skin-type follow-ups and "that's me" comments. |
 | 3:50 | Nora setup | jules_52 | "My cheeks feel tight after washing, is that what this helps with?" | Bridge into Nora's story about cheek and mouth-area comfort. |
 | 5:20 | Nora before/after | softglowkim | "Does it work right away or over time?" | Say feel can be immediate, visual softness depends on consistency; avoid guaranteed result claims. |
@@ -53,7 +53,7 @@ These are the questions Cheryl should answer verbally. All other chat should mos
 | 17:35 | Marisol intro | nightcreamgirl | "Is it better morning or night?" | Bridge into Marisol; morning or night, but night can be more generous and comforting. |
 | 19:00 | Marisol after | VeeR | "Will it make me shiny in the morning?" | Say start with the right amount; goal is nourished and hydrated-looking, not oily. |
 | 19:45 | Chat question | scent_sensitive | "is it scented?" | Tell viewers to check product details before checkout if fragrance or ingredient sensitivity matters. |
-| 20:25 | Objections | LisaB | "Sensitive skin?" | Recommend patch testing; do not overpromise. |
+| 20:25 | Objections | LisaB | "Sensitive skin?" | Recommend patch testing; don't overpromise. |
 | 20:55 | Chat question | porepanic | "will it clog pores?" | Say start small, patch test if congestion-prone, and use the amount skin likes. |
 | 21:20 | Final demo | shelly_49 | "Can you show the glow one more time?" | Repeat final application close-up and CTA. |
 | 22:00 | Final CTA | PamLovesSkin | "Where do I buy?" | Tell them to tap the pinned product and Buy Now. |
@@ -102,7 +102,7 @@ Use these as rotating comments between anchor questions.
 - "I need comfort not shine"
 - "does it help dry patches"
 - "can men use it too?"
-- "just joined what is this"
+- "just joined what's this"
 - "is it for winter skin"
 - "I like how natural she looks"
 
@@ -130,7 +130,7 @@ Use these immediately after Cheryl answers FAQs before being asked.
 - "not greasy is what I needed"
 - "I hate shiny creams"
 - "that makes sense less in morning"
-- "I am 47 and need this"
+- "I'm 47 and need this"
 - "age doesn't matter it's the dryness"
 - "can I use with vitamin c?"
 - "what about sunscreen after?"
@@ -202,11 +202,11 @@ Use these immediately after Cheryl answers FAQs before being asked.
 ### Final CTA
 
 - "show the jar again"
-- "what is the price"
+- "what's the price"
 - "is it still pinned"
 - "I added to cart"
 - "need this for my mom"
-- "I am 56 will try"
+- "I'm 56 will try"
 - "does it work under makeup again?"
 - "last question texture?"
 - "buy now button where"
@@ -221,7 +221,7 @@ Use these immediately after Cheryl answers FAQs before being asked.
 
 - Chat should stack from lower left, above the pinned product card.
 - Use profile circles with realistic face photos, initials, and color avatars mixed together.
-- Do not make every comment the same length or same casing.
+- Don't make every comment the same length or same casing.
 - Repeat questions naturally because real viewers join late.
 - Add small bursts of hearts during before/after reveals and checkout moments.
 - Keep the newest comment brighter and older comments fading upward.
