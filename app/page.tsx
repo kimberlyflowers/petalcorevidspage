@@ -20,7 +20,7 @@ import {
   Wand2,
   X,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const checkoutLink = "/checkout";
 
@@ -77,6 +77,31 @@ const clips = [
 ];
 
 const feedClips = [...clips, ...clips];
+type AdvisorClip = {
+  id: string;
+  creator: string;
+  caption: string;
+  thumbnailUrl: string;
+  viewCount: number;
+  interests: string[];
+};
+
+const advisorManifests = ["advisor-michael-kitces", "advisor-carl-richards", "advisor-samantha-russell", "advisor-taylor-schulte", "advisor-jason-pereira", "advisor-meg-bartelt", "advisor-steve-sanduski", "advisor-penny-phillips", "advisor-jamie-hopkins", "advisor-josh-brown"];
+const creatorInterests: Record<string, string[]> = {
+  "Michael Kitces": ["Technical Planning", "Practice Management", "Advisor Careers"],
+  "Carl Richards": ["Behavioral Finance", "Client Conversations", "Financial Psychology"],
+  "Samantha Russell": ["Advisor Marketing", "SEO & AI Search", "Social Media"],
+  "Taylor Schulte": ["Retirement Planning", "Advisor Marketing", "Practice Growth"],
+  "Jason Pereira": ["Wealthtech", "AI & Automation", "Advisor Workflows"],
+  "Meg Bartelt": ["Equity Compensation", "Career Transitions", "Women in Technology"],
+  "Steve Sanduski": ["Advisor Leadership", "Client Experience", "Practice Management"],
+  "Penny Phillips": ["RIA Growth", "Advisor Leadership", "Service Models"],
+  "Jamie Hopkins": ["Retirement Income", "Tax-Aware Planning", "Housing Wealth"],
+  "Josh Brown": ["Markets", "Media Strategy", "Advisor Brand"],
+};
+
+const topicSlug = (topic: string) => topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const topicMatches = (left: string[], right: string[]) => left.some((topic) => right.some((candidate) => topicSlug(topic) === topicSlug(candidate)));
 const liveInviteDelayMs = 15000;
 const liveInviteVisibleMs = 5200;
 const liveInviteRepeatMs = 30000;
@@ -197,8 +222,66 @@ export default function HomePage() {
   const [storyParts, setStoryParts] = useState<Record<string, number>>({});
   const [showLiveInvite, setShowLiveInvite] = useState(false);
   const [soundOn, setSoundOn] = useState(false);
+  const [advisorClips, setAdvisorClips] = useState<AdvisorClip[]>([]);
+  const [advisorLikes, setAdvisorLikes] = useState<Set<string>>(new Set());
+  const [advisorSaves, setAdvisorSaves] = useState<Set<string>>(new Set());
+  const [playingAdvisor, setPlayingAdvisor] = useState("");
+  const [entrySeed, setEntrySeed] = useState<{ video: string; interest: string }>({ video: "", interest: "" });
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeClip = clips[activeClipIndex];
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setEntrySeed({ video: params.get("video") || "", interest: params.get("interest") || "" });
+    setPlayingAdvisor(params.get("video") || "");
+    Promise.all(advisorManifests.map(async (name) => {
+      const response = await fetch(`https://bloomie-watch.vercel.app/catalog/youtube/${name}.json`);
+      if (!response.ok) return [];
+      const manifest = await response.json();
+      return (manifest.videos || []).slice(0, 3).map((video: { id: string; creator?: string; title: string; thumbnailUrl: string; viewCount?: number }) => ({
+        id: video.id,
+        creator: video.creator || manifest.title,
+        caption: video.title,
+        thumbnailUrl: video.thumbnailUrl,
+        viewCount: video.viewCount || 0,
+        interests: creatorInterests[video.creator || manifest.title] || ["Financial Education"],
+      }));
+    })).then((groups) => setAdvisorClips(groups.flat())).catch(() => setAdvisorClips([]));
+  }, []);
+
+  const orderedAdvisorClips = useMemo(() => {
+    if (!advisorClips.length) return [];
+    const seed = advisorClips.find((clip) => clip.id === entrySeed.video);
+    const seedTopics = seed?.interests || (entrySeed.interest ? [entrySeed.interest] : []);
+    if (!seedTopics.length) return advisorClips;
+    const related = advisorClips.filter((clip) => clip.id !== seed?.id && topicMatches(clip.interests, seedTopics));
+    const adjacent = advisorClips.filter((clip) => clip.id !== seed?.id && !related.some((item) => item.id === clip.id));
+    const interleaveCreators = (items: AdvisorClip[]) => {
+      const groupedByCreator = items.reduce((map, item) => map.set(item.creator, [...(map.get(item.creator) || []), item]), new Map<string, AdvisorClip[]>());
+      const groups = [...groupedByCreator.entries()].sort(([left], [right]) => Number(left === seed?.creator) - Number(right === seed?.creator)).map(([, group]) => group);
+      const ordered: AdvisorClip[] = [];
+      while (groups.some((group) => group.length)) groups.forEach((group) => { const next = group.shift(); if (next) ordered.push(next); });
+      return ordered;
+    };
+    return [...(seed ? [seed] : []), ...interleaveCreators(related), ...interleaveCreators(adjacent)];
+  }, [advisorClips, entrySeed]);
+
+  function toggleAdvisor(setter: React.Dispatch<React.SetStateAction<Set<string>>>, id: string) {
+    setter((current) => {
+      const next = new Set(current);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }
+
+  async function shareAdvisor(clip: AdvisorClip) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("video", clip.id);
+    url.searchParams.set("interest", topicSlug(clip.interests[0]));
+    const payload = { title: clip.caption, text: `Watch ${clip.caption} in the Bloomie Feed`, url: url.toString() };
+    if (navigator.share) await navigator.share(payload).catch(() => undefined);
+    else await navigator.clipboard.writeText(url.toString());
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -344,10 +427,35 @@ export default function HomePage() {
     });
   }
 
+  const advisorFeedItems = orderedAdvisorClips.map((clip) => (
+    <article className="feedItem advisorFeedItem" data-interest={topicSlug(clip.interests[0])} key={`advisor-${clip.id}`}>
+      <div className="advisorMediaStage">
+        {playingAdvisor === clip.id ? <iframe title={clip.caption} src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`} allow="autoplay; encrypted-media; picture-in-picture; web-share" allowFullScreen /> : <button className="advisorPoster" type="button" onClick={() => setPlayingAdvisor(clip.id)} aria-label={`Play ${clip.caption}`}><img src={clip.thumbnailUrl.replace("hqdefault", "maxresdefault")} onError={(event) => { event.currentTarget.src = clip.thumbnailUrl; }} alt="" loading="lazy" /><span>▶</span></button>}
+      </div>
+      <div className="scrimTop" /><div className="scrimBottom" />
+      <header className="tabBar advisorTabBar">
+        <a className="watchFeedBack" href="https://bloomie-watch.vercel.app" aria-label="Back to Bloomie Watch">B</a>
+        <nav className="tabs" aria-label="Feed tabs"><button type="button">Following</button><button className="tabActive" type="button">For You</button></nav>
+        <button className="searchButton" type="button" onClick={openTikTokLogin} aria-label="Search Feed"><Search size={30} strokeWidth={3} /></button>
+      </header>
+      <div className="advisorInterestPill">{clip.interests[0]}</div>
+      <div className="videoMeta advisorVideoMeta"><div className="creatorLine"><strong>{clip.creator}</strong><span>✓</span></div><p className="caption">{clip.caption}</p><div className="advisorTopics">{clip.interests.map((interest) => <span key={interest}>#{topicSlug(interest)}</span>)}</div></div>
+      <div className="musicLine"><Music2 size={15} /><span className="marquee">Bloomie Feed · {clip.interests[0]}</span></div>
+      <aside className="actionRail" aria-label="Video actions">
+        <span className="advisorAvatar">{clip.creator.split(" ").map((part) => part[0]).slice(0,2).join("")}</span>
+        <button className={`railButton ${advisorLikes.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => toggleAdvisor(setAdvisorLikes, clip.id)} aria-label={`Like ${clip.caption}`}><Heart size={39} strokeWidth={2.8} /><span>{clip.viewCount >= 1000 ? `${(clip.viewCount / 1000).toFixed(1)}K` : clip.viewCount}</span></button>
+        <button className="railButton" type="button" onClick={() => setSheet("comments")} aria-label={`Open comments for ${clip.caption}`}><MessageCircle size={39} strokeWidth={2.8} /><span>Discuss</span></button>
+        <button className={`railButton ${advisorSaves.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => toggleAdvisor(setAdvisorSaves, clip.id)} aria-label={`Save ${clip.caption}`}><Bookmark size={38} strokeWidth={2.8} /><span>Save</span></button>
+        <button className="railButton" type="button" onClick={() => shareAdvisor(clip)} aria-label={`Share ${clip.caption}`}><Send size={38} strokeWidth={2.8} /><span>Share</span></button>
+      </aside>
+    </article>
+  ));
+
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
         <div className="feedScroller" ref={scrollerRef}>
+          {(entrySeed.video || entrySeed.interest) && advisorFeedItems}
           {feedClips.map((clip, index) => {
             const logicalIndex = index % clips.length;
             const isLivePreview = "livePreview" in clip && clip.livePreview;
@@ -523,9 +631,10 @@ export default function HomePage() {
               </article>
             );
           })}
+          {!entrySeed.video && !entrySeed.interest && advisorFeedItems}
         </div>
         <nav className="bottomNav" aria-label="App navigation">
-          <button className="navItem navItemActive" type="button"><Home size={28} fill="currentColor" />Home</button>
+          <a className="navItem navItemActive" href="https://bloomie-watch.vercel.app"><Home size={28} fill="currentColor" />Watch</a>
           <button className="navItem" type="button" onClick={openTikTokLogin}><UsersRound size={28} />Friends</button>
           <button className="navItem" type="button" onClick={openTikTokLogin} aria-label="Create post"><span className="postButton"><Plus size={25} strokeWidth={3.5} /></span></button>
           <button className="navItem" type="button" onClick={() => setSheet("comments")}><MessageCircle size={28} />Inbox</button>

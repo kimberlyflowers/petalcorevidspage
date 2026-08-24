@@ -5,6 +5,20 @@
   --ink: #09090b;
 }
 
+.advisorFeedItem { background:#000; }
+.advisorMediaStage { position:absolute; inset:0 0 58px; display:grid; place-items:center; background:#000; }
+.advisorMediaStage iframe { display:block; width:100%; aspect-ratio:16/9; border:0; background:#000; }
+.advisorPoster { position:relative; display:grid; place-items:center; width:100%; aspect-ratio:16/9; overflow:hidden; background:#000; }
+.advisorPoster img { width:100%; height:100%; object-fit:contain; }
+.advisorPoster span { position:absolute; display:grid; place-items:center; width:62px; height:48px; border-radius:14px; background:rgba(255,70,35,.92); color:#fff; font-size:23px; box-shadow:0 8px 30px rgba(0,0,0,.5); }
+.advisorTabBar { grid-template-columns:54px minmax(0,1fr) 44px; }
+.advisorTabBar .tabs { justify-content:center; }
+.watchFeedBack { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(145deg,#ff8d5d,#ff4b1f); color:#fff; font-size:19px; font-weight:1000; box-shadow:0 6px 22px rgba(255,83,37,.32); }
+.advisorInterestPill { position:absolute; z-index:8; left:18px; bottom:204px; max-width:calc(100% - 105px); padding:8px 12px; border:1px solid rgba(255,255,255,.2); border-radius:999px; background:rgba(0,0,0,.58); color:#fff; font-size:12px; font-weight:850; backdrop-filter:blur(12px); }
+.advisorVideoMeta { bottom:113px; }
+.advisorTopics { display:flex; flex-wrap:wrap; gap:5px 9px; margin-top:7px; color:#ffb095; font-size:11px; font-weight:750; }
+.advisorAvatar { display:grid; place-items:center; width:48px; height:48px; border:2px solid #fff; border-radius:50%; background:linear-gradient(145deg,#ff8657,#7f210b); color:#fff; font-size:14px; font-weight:950; box-shadow:0 5px 18px #000; }
+
 .commentComposer { position: sticky; z-index: 5; left: 0; right: 0; bottom: 0; min-height: 64px; display: grid; grid-template-columns: 38px minmax(0,1fr) 42px; align-items: center; gap: 9px; padding: 9px 13px calc(9px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.1); background: rgba(18,18,18,.96); backdrop-filter: blur(18px); }
 .commentComposerAvatar,.commentViewerAvatar { display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg,#ff7e50,#ff2d67); color: #fff; font-size: 10px; font-weight: 900; }
 .commentComposerAvatar { width: 36px; height: 36px; }
