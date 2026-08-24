@@ -1,0 +1,729 @@
+{
+  "generatedAt": "2026-08-24T21:12:34.091Z",
+  "source": "YouTube creator outlier analysis",
+  "method": "Creator-owned videos only; views/day with creator-relative outlier multiple; minimum 5,000 views and 5 views/day",
+  "count": 36,
+  "videos": [
+    {
+      "id": "UwMS0J2eTXE",
+      "title": "Give me 58 sec..i'll DELETE your fear of rejection",
+      "creator": "Dan Martell",
+      "viewCount": 10749172,
+      "uploadDate": "20250509",
+      "duration": 58,
+      "seed": "Dan Martell business growth",
+      "days": 3650,
+      "viewsPerDay": 2944.9786301369863,
+      "outlierMultiple": 34.75063929937315,
+      "outlierScore": 41.44972805199786,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/UwMS0J2eTXE/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "vBp4xCud4WA",
+      "title": "You Will Never Be Able To Sell Until…",
+      "creator": "Myron Golden",
+      "viewCount": 2057334,
+      "uploadDate": "20231023",
+      "duration": 1410,
+      "seed": "Myron Golden sales",
+      "days": 3650,
+      "viewsPerDay": 563.6531506849315,
+      "outlierMultiple": 20.764372224465077,
+      "outlierScore": 28.768439528870854,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/vBp4xCud4WA/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6Vfs9u0BxAc",
+      "title": "Here's What Happens When You Draw Down Your 401k To Increase Social Security (Surprising)",
+      "creator": "James Conole, CFP®",
+      "viewCount": 528533,
+      "uploadDate": "20250426",
+      "duration": 771,
+      "seed": "James Conole CFP Root Financial",
+      "days": 3650,
+      "viewsPerDay": 144.80356164383562,
+      "outlierMultiple": 10.342706743375993,
+      "outlierScore": 18.405471477070716,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/6Vfs9u0BxAc/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "BATOUdWnPLw",
+      "title": "Fake Business with Tim Dillon | The Compound and Friends",
+      "creator": "The Compound",
+      "viewCount": 454966,
+      "uploadDate": "20220208",
+      "duration": 2774,
+      "seed": "Josh Brown The Compound",
+      "days": 3650,
+      "viewsPerDay": 124.64821917808219,
+      "outlierMultiple": 7.778792230884967,
+      "outlierScore": 15.780405011559662,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/BATOUdWnPLw/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "ZVEfS6yAIcc",
+      "title": "Instagram Expert Explains How to Grow from Zero Followers in 2026",
+      "creator": "Pat Flynn",
+      "viewCount": 222468,
+      "uploadDate": "20260121",
+      "duration": 2115,
+      "seed": "Pat Flynn marketing",
+      "days": 3650,
+      "viewsPerDay": 60.95013698630137,
+      "outlierMultiple": 7.5433337854333375,
+      "outlierScore": 14.686393580117006,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/ZVEfS6yAIcc/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "Ab7RArMfCuQ",
+      "title": "If I Started YouTube from Scratch in 2026, I’d Do THIS",
+      "creator": "Think Media",
+      "viewCount": 546562,
+      "uploadDate": "20251217",
+      "duration": 739,
+      "seed": "Think Media YouTube growth",
+      "days": 3650,
+      "viewsPerDay": 149.74301369863014,
+      "outlierMultiple": 5.186581894097551,
+      "outlierScore": 13.066957361909626,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/Ab7RArMfCuQ/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "spvksM1OxOc",
+      "title": "The Week of Meetings | Teacher Evolution Ep 8",
+      "creator": "Pocketful of Primary",
+      "viewCount": 437068,
+      "uploadDate": "20171001",
+      "duration": 4961,
+      "seed": "Pocketful of Primary teacher",
+      "days": 3650,
+      "viewsPerDay": 119.74465753424657,
+      "outlierMultiple": 4.878208848609313,
+      "outlierScore": 12.458115044014221,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/spvksM1OxOc/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "VwLqwcjJwRo",
+      "title": "How Anyone Can Develop The Mindset Of A Multi-Million Dollar Entrepreneur - Daniel Priestley",
+      "creator": "Ali Abdaal – Lifestyle Business Academy",
+      "viewCount": 1967783,
+      "uploadDate": "20221117",
+      "duration": 8639,
+      "seed": "Ali Abdaal creator business",
+      "days": 3650,
+      "viewsPerDay": 539.1186301369863,
+      "outlierMultiple": 3.8464063019214607,
+      "outlierScore": 12.343914265952856,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/VwLqwcjJwRo/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "QB26WVge0s8",
+      "title": "If I Started a YouTube Channel in 2026, I'd Do This",
+      "creator": "Think Media",
+      "viewCount": 463913,
+      "uploadDate": "20251229",
+      "duration": 1628,
+      "seed": "Think Media YouTube growth",
+      "days": 3650,
+      "viewsPerDay": 127.09945205479453,
+      "outlierMultiple": 4.4022869614727655,
+      "outlierScore": 11.889125769577554,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/QB26WVge0s8/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "B-NxAZiDkKo",
+      "title": "Selling Without Being Salesy: The Kind Way to Sell.",
+      "creator": "The Futur",
+      "viewCount": 628745,
+      "uploadDate": "20231223",
+      "duration": 2547,
+      "seed": "Chris Do The Futur sales",
+      "days": 3650,
+      "viewsPerDay": 172.25890410958905,
+      "outlierMultiple": 3.6429134268862184,
+      "outlierScore": 11.06722393269453,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/B-NxAZiDkKo/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "oZKGihL-Wr0",
+      "title": "How To Become The Greatest Sales Person In The World",
+      "creator": "Myron Golden",
+      "viewCount": 367710,
+      "uploadDate": "20230505",
+      "duration": 714,
+      "seed": "Myron Golden sales",
+      "days": 3650,
+      "viewsPerDay": 100.74246575342465,
+      "outlierMultiple": 3.7112434396447314,
+      "outlierScore": 10.721739586717854,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/oZKGihL-Wr0/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "EW3fHetYoEw",
+      "title": "Lightbulb Moments | Teacher Evolution Ep 6",
+      "creator": "Pocketful of Primary",
+      "viewCount": 314178,
+      "uploadDate": "20170917",
+      "duration": 4648,
+      "seed": "Pocketful of Primary teacher",
+      "days": 3650,
+      "viewsPerDay": 86.07616438356165,
+      "outlierMultiple": 3.5066074378320464,
+      "outlierScore": 10.294003000940666,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/EW3fHetYoEw/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "KvDHMeJJ_cY",
+      "title": "How Much Money I Made as a YouTuber & Entrepreneur (2022)",
+      "creator": "Ali Abdaal",
+      "viewCount": 1211650,
+      "uploadDate": "20230105",
+      "duration": 2775,
+      "seed": "Ali Abdaal creator business",
+      "days": 3650,
+      "viewsPerDay": 331.958904109589,
+      "outlierMultiple": 2.368400476944428,
+      "outlierScore": 9.362084800854817,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/KvDHMeJJ_cY/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "w7g08dVTwaE",
+      "title": "Watch this to get your first 5 customers",
+      "creator": "Alex Hormozi",
+      "viewCount": 1496966,
+      "uploadDate": "20230802",
+      "duration": 613,
+      "seed": "Alex Hormozi client acquisition",
+      "days": 3650,
+      "viewsPerDay": 410.1276712328767,
+      "outlierMultiple": 2.258258974030186,
+      "outlierScore": 9.27980699746218,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/w7g08dVTwaE/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "72a1PjnZFIM",
+      "title": "Give Me 29 Minutes and I’ll Teach You to Make $1 Million",
+      "creator": "Daniel Priestley",
+      "viewCount": 424539,
+      "uploadDate": "20250904",
+      "duration": 1782,
+      "seed": "Daniel Priestley entrepreneur",
+      "days": 3650,
+      "viewsPerDay": 116.31205479452055,
+      "outlierMultiple": 2.541373592495705,
+      "outlierScore": 8.971865936060208,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/72a1PjnZFIM/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "HjUJf5bKCpU",
+      "title": "Full Social Media Marketing Strategy In 8 Minutes | GaryVee Q&A Session",
+      "creator": "GaryVee",
+      "viewCount": 315614,
+      "uploadDate": "20241015",
+      "duration": 477,
+      "seed": "GaryVee marketing",
+      "days": 3650,
+      "viewsPerDay": 86.46958904109589,
+      "outlierMultiple": 2.4194065204559565,
+      "outlierScore": 8.553651866149927,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/HjUJf5bKCpU/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "diNff-eQo7A",
+      "title": "The New Rules of Social Media (2026)",
+      "creator": "GaryVee",
+      "viewCount": 291134,
+      "uploadDate": "20260624",
+      "duration": 564,
+      "seed": "GaryVee marketing",
+      "days": 3650,
+      "viewsPerDay": 79.76273972602739,
+      "outlierMultiple": 2.2317498524350134,
+      "outlierScore": 8.162853829342257,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/diNff-eQo7A/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "VVNjAQyxOac",
+      "title": "BREAKING: YouTube Just Changed Monetization",
+      "creator": "Think Media",
+      "viewCount": 223721,
+      "uploadDate": "20260811",
+      "duration": 1197,
+      "seed": "Think Media YouTube growth",
+      "days": 3650,
+      "viewsPerDay": 61.293424657534246,
+      "outlierMultiple": 2.122992977794648,
+      "outlierScore": 7.794815340714814,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/VVNjAQyxOac/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "NMahb_Itn2c",
+      "title": "9 UNCOMMON Book Marketing & Promotion Tips (That I've Used to Become a Bestseller)",
+      "creator": "Pat Flynn",
+      "viewCount": 69873,
+      "uploadDate": "20180411",
+      "duration": 653,
+      "seed": "Pat Flynn marketing",
+      "days": 3650,
+      "viewsPerDay": 19.143287671232876,
+      "outlierMultiple": 2.3692187711921875,
+      "outlierScore": 7.456585921022128,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/NMahb_Itn2c/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "MZWr_UGPOYY",
+      "title": "The Roth Conversion Sweet Spot: Maximize Retirement Savings (And Avoid Costly Mistakes)",
+      "creator": "James Conole, CFP®",
+      "viewCount": 108032,
+      "uploadDate": "20240709",
+      "duration": 1424,
+      "seed": "James Conole CFP Root Financial",
+      "days": 3650,
+      "viewsPerDay": 29.59780821917808,
+      "outlierMultiple": 2.1140464169699813,
+      "outlierScore": 7.318723216644873,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/MZWr_UGPOYY/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "TDWFU_uEexc",
+      "title": "The Biggest Marketing Opportunity in History Is Being Ignored",
+      "creator": "GaryVee",
+      "viewCount": 219484,
+      "uploadDate": "20260219",
+      "duration": 1187,
+      "seed": "GaryVee marketing",
+      "days": 3650,
+      "viewsPerDay": 60.132602739726025,
+      "outlierMultiple": 1.6825014756498606,
+      "outlierScore": 6.928427404649446,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/TDWFU_uEexc/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "SnFlOwmtLNg",
+      "title": "Sell This Way & Have People Thanking You - Selling Simplified",
+      "creator": "Myron Golden",
+      "viewCount": 173137,
+      "uploadDate": "20220402",
+      "duration": 575,
+      "seed": "Myron Golden sales",
+      "days": 3650,
+      "viewsPerDay": 47.434794520547946,
+      "outlierMultiple": 1.7474465078724264,
+      "outlierScore": 6.924714045598125,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/SnFlOwmtLNg/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "4L-7AkYE09g",
+      "title": "Why You Must Become an Entrepreneur",
+      "creator": "Daniel Priestley",
+      "viewCount": 269591,
+      "uploadDate": "20250919",
+      "duration": 852,
+      "seed": "Daniel Priestley entrepreneur",
+      "days": 3650,
+      "viewsPerDay": 73.86054794520548,
+      "outlierMultiple": 1.6138245206553687,
+      "outlierScore": 6.898992718727892,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/4L-7AkYE09g/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "-_sTrDwoZyM",
+      "title": "The Secret to Handling Any Sales Objection (They’ll Never See It Coming)",
+      "creator": "The Futur",
+      "viewCount": 256207,
+      "uploadDate": "20251211",
+      "duration": 299,
+      "seed": "Chris Do The Futur sales",
+      "days": 3650,
+      "viewsPerDay": 70.19369863013699,
+      "outlierMultiple": 1.4844490538489172,
+      "outlierScore": 6.5897380338311855,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/-_sTrDwoZyM/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "CMAHghfFLyY",
+      "title": "How Should I Invest Bucket #1 of my Retirement Portfolio (3 Bucket Strategy)",
+      "creator": "James Conole, CFP®",
+      "viewCount": 80987,
+      "uploadDate": "20240227",
+      "duration": 1510,
+      "seed": "James Conole CFP Root Financial",
+      "days": 3650,
+      "viewsPerDay": 22.188219178082193,
+      "outlierMultiple": 1.5848107706156316,
+      "outlierScore": 6.179235592693995,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/CMAHghfFLyY/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "J_sl0pN7DnI",
+      "title": "Why Demand for Compute Is About to Explode | TCAF 253",
+      "creator": "The Compound",
+      "viewCount": 90659,
+      "uploadDate": "20260731",
+      "duration": 5146,
+      "seed": "Josh Brown The Compound",
+      "days": 3650,
+      "viewsPerDay": 24.83808219178082,
+      "outlierMultiple": 1.550044453563124,
+      "outlierScore": 6.172074969102185,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/J_sl0pN7DnI/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "FMzKk73iUhw",
+      "title": "How To Get Customers So Fast It Feels ILLEGAL",
+      "creator": "Alex Hormozi",
+      "viewCount": 724447,
+      "uploadDate": "20241216",
+      "duration": 2503,
+      "seed": "Alex Hormozi client acquisition",
+      "days": 3650,
+      "viewsPerDay": 198.4786301369863,
+      "outlierMultiple": 1.09286980396298,
+      "outlierScore": 6.126081412659534,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/FMzKk73iUhw/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "SHeYzrrOBig",
+      "title": "I'm Doing The Best I Can | That Teacher Life Ep 31",
+      "creator": "Pocketful of Primary",
+      "viewCount": 122484,
+      "uploadDate": "20170211",
+      "duration": 3091,
+      "seed": "Pocketful of Primary teacher",
+      "days": 3650,
+      "viewsPerDay": 33.5572602739726,
+      "outlierMultiple": 1.3670699584802892,
+      "outlierScore": 5.949113747613848,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/SHeYzrrOBig/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "Mst4hreQYl0",
+      "title": "Watch This To Generate 1000s of Leads (In Any Niche)",
+      "creator": "Alex Hormozi",
+      "viewCount": 662885,
+      "uploadDate": "20251108",
+      "duration": 1891,
+      "seed": "Alex Hormozi client acquisition",
+      "days": 3650,
+      "viewsPerDay": 181.6123287671233,
+      "outlierMultiple": 1,
+      "outlierScore": 5.821444743288764,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/Mst4hreQYl0/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "Jcoam1CeAq4",
+      "title": "I spent $50,000 on a business coach so you don’t have to",
+      "creator": "Ali Abdaal",
+      "viewCount": 511590,
+      "uploadDate": "20230628",
+      "duration": 1313,
+      "seed": "Ali Abdaal creator business",
+      "days": 3650,
+      "viewsPerDay": 140.16164383561645,
+      "outlierMultiple": 1,
+      "outlierScore": 5.7089305358066165,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/Jcoam1CeAq4/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "CHqG5Ca4BRQ",
+      "title": "How CEOs Schedule Their Day",
+      "creator": "Dan Martell",
+      "viewCount": 325668,
+      "uploadDate": "20231023",
+      "duration": 379,
+      "seed": "Dan Martell business growth",
+      "days": 3650,
+      "viewsPerDay": 89.22410958904109,
+      "outlierMultiple": 1.05284120482473,
+      "outlierScore": 5.6565647339727105,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/CHqG5Ca4BRQ/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "eY9gpdaXW7w",
+      "title": "Business is Hard Until You Build These Systems",
+      "creator": "Dan Martell",
+      "viewCount": 312054,
+      "uploadDate": "20251112",
+      "duration": 3029,
+      "seed": "Dan Martell business growth",
+      "days": 3650,
+      "viewsPerDay": 85.49424657534247,
+      "outlierMultiple": 1.008828958725992,
+      "outlierScore": 5.518444596374879,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/eY9gpdaXW7w/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "naF88vS6z8o",
+      "title": "How to Sell Anything! $6,500 Sales Script (FREE)",
+      "creator": "The Futur",
+      "viewCount": 182189,
+      "uploadDate": "20231209",
+      "duration": 899,
+      "seed": "Chris Do The Futur sales",
+      "days": 3650,
+      "viewsPerDay": 49.91479452054794,
+      "outlierMultiple": 1.0555928943068704,
+      "outlierScore": 5.404792817154729,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/naF88vS6z8o/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "n4C4DZoz9iw",
+      "title": "The Man Who Called the Roaring 2020s | TCAF 254",
+      "creator": "The Compound",
+      "viewCount": 68679,
+      "uploadDate": "20260807",
+      "duration": 4528,
+      "seed": "Josh Brown The Compound",
+      "days": 3650,
+      "viewsPerDay": 18.816164383561645,
+      "outlierMultiple": 1.1742408699220355,
+      "outlierScore": 5.241366817606748,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/n4C4DZoz9iw/hqdefault.jpg",
+      "interests": [
+        "Advisor Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "NdcygytQlYQ",
+      "title": "Trust Me, You Want a Highly Profitable Lifestyle Business",
+      "creator": "Daniel Priestley",
+      "viewCount": 167051,
+      "uploadDate": "20251102",
+      "duration": 703,
+      "seed": "Daniel Priestley entrepreneur",
+      "days": 3650,
+      "viewsPerDay": 45.767397260273974,
+      "outlierMultiple": 1,
+      "outlierScore": 5.2228750766938195,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/NdcygytQlYQ/hqdefault.jpg",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "HdHAF09kC-g",
+      "title": "Affiliate Marketing Workshop with Pat Flynn (LIVE)",
+      "creator": "Pat Flynn",
+      "viewCount": 37073,
+      "uploadDate": "20220412",
+      "duration": 5012,
+      "seed": "Pat Flynn marketing",
+      "days": 3650,
+      "viewsPerDay": 10.156986301369862,
+      "outlierMultiple": 1.2570527600705275,
+      "outlierScore": 5.122884113754821,
+      "platform": "youtube",
+      "thumbnailUrl": "https://i.ytimg.com/vi/HdHAF09kC-g/hqdefault.jpg",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    }
+  ]
+}
+

@@ -8,10 +8,20 @@
 .advisorFeedItem { background:#000; }
 .advisorMediaStage { position:absolute; inset:0; display:grid; place-items:center; overflow:hidden; background:#000; }
 .advisorMediaStage iframe { display:block; width:100%; height:100%; border:0; background:#000; }
-.advisorMediaStage.portraitCrop iframe { width:177.78%; max-width:none; }
-.advisorMediaStage.originalFit iframe { width:100%; height:auto; aspect-ratio:16/9; }
-.advisorMediaStage.originalFit:has(iframe[src*="tiktok.com"]) iframe { height:100%; aspect-ratio:auto; }
-.videoFitToggle { position:absolute; z-index:12; right:16px; top:calc(env(safe-area-inset-top) + 112px); min-height:34px; padding:0 12px; border:1px solid rgba(255,255,255,.3); border-radius:999px; background:rgba(0,0,0,.64); color:#fff; font-size:12px; font-weight:900; backdrop-filter:blur(12px); }
+.advisorMediaStage.youtubeNative iframe { width:100%; height:auto; aspect-ratio:16/9; }
+.advisorMediaStage.tiktokNative iframe { width:100%; height:100%; }
+.feedBloomieIdent { position:absolute; inset:0; z-index:12; display:grid; place-items:center; overflow:hidden; isolation:isolate; background:radial-gradient(circle at 50% 48%,#2a0c04 0,#070201 40%,#000 76%); animation:feed-ident-exit 1.8s ease both; pointer-events:none; }
+.feedBloomieIdent .feedIdentOrbit { position:absolute; inset:-35%; background:conic-gradient(from 110deg,transparent 0 29%,#ff7a4540 39%,transparent 49% 70%,#ffd7c52b 80%,transparent 90%); animation:feed-ident-orbit 1.8s cubic-bezier(.2,.8,.2,1) both; }
+.feedBloomieIdent img { position:relative; z-index:3; width:min(42vw,70vh,560px); height:min(42vw,70vh,560px); object-fit:contain; mix-blend-mode:screen; -webkit-mask-image:radial-gradient(ellipse at center,#000 48%,#000 58%,transparent 78%); mask-image:radial-gradient(ellipse at center,#000 48%,#000 58%,transparent 78%); filter:drop-shadow(0 0 16px #ff7a45aa) drop-shadow(0 0 70px #ff4c1655); animation:feed-ident-mark 1.8s cubic-bezier(.18,.78,.22,1) both; }
+.feedBloomieIdent.portrait img { width:min(78vw,56vh,560px); height:min(78vw,56vh,560px); }
+.feedBloomieIdent strong { position:absolute; z-index:5; top:calc(50% + min(30%,260px)); color:#fff; font:800 clamp(11px,1.3vw,18px)/1 sans-serif; letter-spacing:.7em; text-indent:.7em; animation:feed-ident-word 1.8s ease both; }
+.feedIdentPetals { position:absolute; inset:0; z-index:2; }
+.feedIdentPetals i { --angle:calc(var(--petal) * 12.857deg); position:absolute; left:50%; top:50%; width:clamp(5px,1.1vw,13px); height:clamp(9px,2vw,22px); border-radius:80% 10% 80% 10%; background:linear-gradient(145deg,#ffd2b9,#ff5b25 60%,#7c1405); box-shadow:0 0 14px #ff704399; transform:rotate(var(--angle)) translateY(-5vh) scale(.2); opacity:0; animation:feed-petal-flight 1.55s cubic-bezier(.15,.72,.28,1) calc(var(--petal) * 13ms) both; }
+@keyframes feed-petal-flight { 0%{opacity:0;transform:rotate(var(--angle)) translateY(-4vh) scale(.15)} 35%{opacity:1} 80%{opacity:.9} to{opacity:0;transform:rotate(var(--angle)) translateY(-43vmax) rotate(220deg) scale(1)} }
+@keyframes feed-ident-mark { 0%,38%{opacity:0;transform:scale(.62);filter:blur(18px)} 67%{opacity:1;transform:scale(1.04);filter:blur(0) drop-shadow(0 0 22px #ff7a45bb) drop-shadow(0 0 80px #ff4c1666)} 84%{opacity:1;transform:scale(1)} to{opacity:0;transform:scale(1.18);filter:blur(5px)} }
+@keyframes feed-ident-orbit { 0%{opacity:0;transform:rotate(-110deg) scale(.3)} 42%{opacity:1} to{opacity:0;transform:rotate(45deg) scale(1.2)} }
+@keyframes feed-ident-word { 0%,48%{opacity:0;letter-spacing:1.6em;filter:blur(8px)} 70%,84%{opacity:1;letter-spacing:.7em;filter:blur(0)} to{opacity:0;letter-spacing:.9em} }
+@keyframes feed-ident-exit { 0%,92%{visibility:visible} to{visibility:hidden} }
 .tiktokPosterArt { display:grid; place-items:center; gap:8px; width:100%; height:100%; background:radial-gradient(circle at 55% 35%,#29204a 0,#111 42%,#000 75%); }
 .tiktokPosterArt b { font-size:74px; line-height:1; text-shadow:-4px 0 #25f4ee,4px 0 #fe2c55; }
 .tiktokPosterArt small { font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
@@ -20,15 +30,22 @@
 .advisorPoster span { position:absolute; display:grid; place-items:center; width:62px; height:48px; border-radius:14px; background:rgba(255,70,35,.92); color:#fff; font-size:23px; box-shadow:0 8px 30px rgba(0,0,0,.5); }
 .advisorTabBar,.simpleTabBar { grid-template-columns:1fr; }
 .advisorTabBar .tabs { justify-content:center; }
-.unifiedTabs { justify-content:center; gap:25px; }
-.unifiedTabs a,.unifiedTabs button { position:relative; padding:9px 0; color:rgba(255,255,255,.78); font-size:15px; font-weight:850; }
+.unifiedTabs { width:100%; min-width:0; display:flex; align-items:center; justify-content:center; gap:clamp(10px,3.4vw,18px); padding:0 4px; overflow:visible; }
+.unifiedTabs a,.unifiedTabs button { position:relative; flex:0 0 auto; padding:9px 0; color:rgba(255,255,255,.78); font-size:clamp(12px,3.35vw,15px); font-weight:850; white-space:nowrap; }
 .unifiedTabs a { color:#fff; }
 .unifiedTabs .tabActive::after { content:""; position:absolute; left:50%; bottom:2px; width:22px; height:3px; border-radius:999px; background:#fff; transform:translateX(-50%); }
+.searchTabButton { display:grid; place-items:center; width:25px; }
+.feedSearchPanel { position:absolute; z-index:45; top:calc(env(safe-area-inset-top) + 62px); left:14px; right:14px; display:grid; grid-template-columns:20px minmax(0,1fr) 26px; align-items:center; gap:8px; height:48px; padding:0 12px; border:1px solid rgba(255,255,255,.18); border-radius:15px; background:rgba(8,8,10,.92); box-shadow:0 12px 34px rgba(0,0,0,.42); backdrop-filter:blur(18px); }
+.feedSearchPanel input { min-width:0; border:0; outline:0; background:transparent; color:#fff; font-size:14px; }
+.feedSearchPanel input::placeholder { color:rgba(255,255,255,.52); }
 .watchFeedBack { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(145deg,#ff8d5d,#ff4b1f); color:#fff; font-size:19px; font-weight:1000; box-shadow:0 6px 22px rgba(255,83,37,.32); }
 .advisorInterestPill { position:absolute; z-index:8; left:18px; bottom:204px; max-width:calc(100% - 105px); padding:8px 12px; border:1px solid rgba(255,255,255,.2); border-radius:999px; background:rgba(0,0,0,.58); color:#fff; font-size:12px; font-weight:850; backdrop-filter:blur(12px); }
 .advisorVideoMeta { bottom:113px; }
 .advisorTopics { display:flex; flex-wrap:wrap; gap:5px 9px; margin-top:7px; color:#ffb095; font-size:11px; font-weight:750; }
 .advisorAvatar { display:grid; place-items:center; width:48px; height:48px; border:2px solid #fff; border-radius:50%; background:linear-gradient(145deg,#ff8657,#7f210b); color:#fff; font-size:14px; font-weight:950; box-shadow:0 5px 18px #000; }
+.advisorAvatar { position:relative; }
+.advisorAvatar i { position:absolute; right:-3px; bottom:-5px; display:grid; place-items:center; width:21px; height:21px; border:2px solid #000; border-radius:50%; background:#ff2d55; color:#fff; font-size:14px; font-style:normal; }
+.advisorAvatar.isFollowing i { background:#fff; color:#111; }
 
 .commentComposer { position: sticky; z-index: 5; left: 0; right: 0; bottom: 0; min-height: 64px; display: grid; grid-template-columns: 38px minmax(0,1fr) 42px; align-items: center; gap: 9px; padding: 9px 13px calc(9px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.1); background: rgba(18,18,18,.96); backdrop-filter: blur(18px); }
 .commentComposerAvatar,.commentViewerAvatar { display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg,#ff7e50,#ff2d67); color: #fff; font-size: 10px; font-weight: 900; }
@@ -394,12 +411,13 @@ video {
 
 .tabBar {
   top: calc(max(16px, env(safe-area-inset-top) + 12px));
-  left: 13px;
-  right: 14px;
+  left: 0;
+  right: 0;
   display: grid;
   grid-template-columns: 45px minmax(0, 1fr) 34px;
   align-items: center;
-  gap: 8px;
+  gap: 0;
+  padding: 0 10px;
 }
 
 .liveTab {
@@ -457,6 +475,19 @@ video {
   color: inherit;
   font: inherit;
   font-weight: inherit;
+}
+
+.tabBar.advisorTabBar,
+.tabBar.simpleTabBar {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tabBar .tabs.unifiedTabs {
+  width: 100%;
+  justify-content: center;
+  gap: clamp(10px, 3.4vw, 18px);
+  padding: 0 4px;
+  transform: none;
 }
 
 .tabActive {
@@ -1074,6 +1105,10 @@ video {
   font-size: 15px;
   font-weight: 780;
 }
+
+.feedAuthMark { display:grid; place-items:center; width:64px; height:64px; margin:0 auto 18px; border-radius:20px; background:linear-gradient(145deg,#ff8d5d,#ff3d1f); color:#fff; font-size:31px; font-weight:1000; box-shadow:0 14px 36px rgba(255,77,31,.3); }
+.feedAuthPrompt .googleSignInButton { width:100%; min-height:50px; margin-top:18px; border-radius:14px; background:#fff; color:#111; font-weight:900; }
+.feedAuthPrompt small { display:block; margin-top:12px; color:#ff9d9d; line-height:1.35; }
 
 .liveInviteToast {
   position: absolute;

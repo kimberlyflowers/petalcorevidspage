@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import type { FormEvent } from "react";
+import type { CSSProperties, FormEvent } from "react";
+import type { User } from "@supabase/supabase-js";
 import {
   Bookmark,
   ChevronDown,
@@ -21,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { supabase } from "./supabase";
 
 const checkoutLink = "/checkout";
 
@@ -85,6 +87,9 @@ type AdvisorClip = {
   viewCount: number;
   interests: string[];
   platform?: "youtube" | "tiktok";
+  outlierScore?: number;
+  outlierMultiple?: number;
+  curation?: string;
 };
 
 const advisorManifests = ["advisor-michael-kitces", "advisor-carl-richards", "advisor-samantha-russell", "advisor-taylor-schulte", "advisor-jason-pereira", "advisor-meg-bartelt", "advisor-steve-sanduski", "advisor-penny-phillips", "advisor-jamie-hopkins", "advisor-josh-brown"];
@@ -217,7 +222,7 @@ const comments = [
 export default function HomePage() {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [sheet, setSheet] = useState<"comments" | "shop" | "live" | "assistant" | "tiktokLogin" | null>(null);
+  const [sheet, setSheet] = useState<"comments" | "shop" | "live" | "assistant" | "tiktokLogin" | "feedAuth" | null>(null);
   const [shareNote, setShareNote] = useState("");
   const [activeClipIndex, setActiveClipIndex] = useState(0);
   const [storyParts, setStoryParts] = useState<Record<string, number>>({});
@@ -227,11 +232,53 @@ export default function HomePage() {
   const [advisorLikes, setAdvisorLikes] = useState<Set<string>>(new Set());
   const [advisorSaves, setAdvisorSaves] = useState<Set<string>>(new Set());
   const [playingAdvisor, setPlayingAdvisor] = useState("");
-  const [landscapeFit, setLandscapeFit] = useState<Set<string>>(new Set());
+  const [introFor, setIntroFor] = useState("");
   const [feedMode, setFeedMode] = useState<"following" | "for-you">("for-you");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [viewer, setViewer] = useState<User | null>(null);
+  const [followedCreators, setFollowedCreators] = useState<Set<string>>(new Set());
   const [entrySeed, setEntrySeed] = useState<{ video: string; interest: string }>({ video: "", interest: "" });
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeClip = clips[activeClipIndex];
+
+  useEffect(() => {
+    if (!supabase) return;
+    supabase.auth.getUser().then(({ data }) => setViewer(data.user || null));
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => setViewer(session?.user || null));
+    return () => data.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (!viewer) return;
+    const savedIds = JSON.parse(localStorage.getItem(`feed-saves:${viewer.id}`) || "[]");
+    const followed = JSON.parse(localStorage.getItem(`feed-follows:${viewer.id}`) || "[]");
+    setAdvisorSaves(new Set(savedIds));
+    setFollowedCreators(new Set(followed));
+  }, [viewer]);
+
+  useEffect(() => {
+    if (viewer) localStorage.setItem(`feed-saves:${viewer.id}`, JSON.stringify([...advisorSaves]));
+  }, [advisorSaves, viewer]);
+
+  useEffect(() => {
+    if (viewer) localStorage.setItem(`feed-follows:${viewer.id}`, JSON.stringify([...followedCreators]));
+  }, [followedCreators, viewer]);
+
+  function requireFeedAccount(action: () => void) {
+    if (!viewer) { setSheet("feedAuth"); return; }
+    action();
+  }
+
+  useEffect(() => {
+    if (!playingAdvisor) { setIntroFor(""); return; }
+    setIntroFor(playingAdvisor);
+    const sound = new Audio("/brand/bloomie-ident-sound.mp3");
+    sound.volume = .72;
+    sound.play().catch(() => undefined);
+    const timer = window.setTimeout(() => setIntroFor(""), 1800);
+    return () => { window.clearTimeout(timer); sound.pause(); };
+  }, [playingAdvisor]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -252,7 +299,7 @@ export default function HomePage() {
         platform: "youtube" as const,
       }));
       }),
-      ...["discovery-youtube", "discovery-tiktok"].map(async (name) => {
+      ...["discovery-youtube", "discovery-tiktok", "influencer-outliers-youtube", "influencer-outliers-tiktok"].map(async (name) => {
         const response = await fetch(`/catalog/${name}.json`);
         if (!response.ok) return [];
         const manifest = await response.json();
@@ -261,7 +308,10 @@ export default function HomePage() {
     ]).then((groups) => {
       const unique = new Map<string, AdvisorClip>();
       groups.flat().forEach((clip) => unique.set(`${clip.platform || "youtube"}:${clip.id}`, clip));
-      const next = [...unique.values()];
+      // TikTok's official iframe always carries TikTok branding. Keep those
+      // records available for curation, but do not render branded embeds in
+      // Bloomie's viewer. TikTok clips return when a licensed/self-hosted MP4 exists.
+      const next = [...unique.values()].filter((clip) => clip.platform !== "tiktok");
       setAdvisorClips(next);
       setPlayingAdvisor((current) => current || next[0]?.id || "");
     }).catch(() => setAdvisorClips([]));
@@ -271,7 +321,8 @@ export default function HomePage() {
     if (!advisorClips.length) return [];
     const seed = advisorClips.find((clip) => clip.id === entrySeed.video);
     const seedTopics = seed?.interests || (entrySeed.interest ? [entrySeed.interest] : []);
-    if (!seedTopics.length) return advisorClips;
+    const affinityTopics = advisorClips.filter((clip) => advisorLikes.has(clip.id) || advisorSaves.has(clip.id)).flatMap((clip) => clip.interests);
+    if (!seedTopics.length && !affinityTopics.length) return advisorClips;
     const related = advisorClips.filter((clip) => clip.id !== seed?.id && topicMatches(clip.interests, seedTopics));
     const adjacent = advisorClips.filter((clip) => clip.id !== seed?.id && !related.some((item) => item.id === clip.id));
     const interleaveCreators = (items: AdvisorClip[]) => {
@@ -281,8 +332,18 @@ export default function HomePage() {
       while (groups.some((group) => group.length)) groups.forEach((group) => { const next = group.shift(); if (next) ordered.push(next); });
       return ordered;
     };
-    return [...(seed ? [seed] : []), ...interleaveCreators(related), ...interleaveCreators(adjacent)];
-  }, [advisorClips, entrySeed]);
+    const score = (clip: AdvisorClip) => {
+      const entryMatch = topicMatches(clip.interests, seedTopics) ? 18 : 0;
+      const affinityMatch = topicMatches(clip.interests, affinityTopics) ? 26 : 0;
+      const engagement = advisorSaves.has(clip.id) ? 35 : advisorLikes.has(clip.id) ? 22 : 0;
+      const authority = Math.log10(Math.max(10, clip.viewCount || 0)) * 2;
+      const velocity = Math.min(18, Math.log2(Math.max(1, clip.outlierMultiple || 1)) * 4);
+      const exploration = [...clip.id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 7;
+      return entryMatch + affinityMatch + engagement + authority + velocity + exploration;
+    };
+    const ranked = [...related, ...adjacent].sort((a, b) => score(b) - score(a));
+    return [...(seed ? [seed] : []), ...interleaveCreators(ranked)];
+  }, [advisorClips, entrySeed, advisorLikes, advisorSaves]);
 
   function toggleAdvisor(setter: React.Dispatch<React.SetStateAction<Set<string>>>, id: string) {
     setter((current) => {
@@ -340,12 +401,11 @@ export default function HomePage() {
       entries.forEach((entry) => {
         const item = entry.target as HTMLElement;
         if (entry.isIntersecting && entry.intersectionRatio >= .62) setPlayingAdvisor(item.dataset.videoId || "");
-        else if (!entry.isIntersecting && item.dataset.videoId === playingAdvisor) setPlayingAdvisor("");
       });
     }, { threshold: .18 });
     advisorItems.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [advisorClips, playingAdvisor]);
+  }, [advisorClips]);
 
   useEffect(() => {
     if (sheet) {
@@ -442,14 +502,28 @@ export default function HomePage() {
     });
   }
 
-  const visibleAdvisorClips = feedMode === "following" ? orderedAdvisorClips.filter((clip) => Boolean(creatorInterests[clip.creator])) : orderedAdvisorClips;
+  const searchRankedClips = useMemo(() => {
+    const terms = searchQuery.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    if (!terms.length) return orderedAdvisorClips;
+    const score = (clip: AdvisorClip) => {
+      const title = clip.caption.toLowerCase();
+      const creator = clip.creator.toLowerCase();
+      const topics = clip.interests.join(" ").toLowerCase();
+      const relevance = terms.reduce((total, term) => total + (title.includes(term) ? 18 : 0) + (creator.includes(term) ? 12 : 0) + (topics.includes(term) ? 10 : 0), 0);
+      const engagement = Math.log10(Math.max(10, clip.viewCount || 0)) * 2;
+      const quality = clip.curation === "influencer-outlier" ? 7 : 0;
+      return relevance + engagement + quality;
+    };
+    return orderedAdvisorClips.filter((clip) => terms.every((term) => `${clip.caption} ${clip.creator} ${clip.interests.join(" ")}`.toLowerCase().includes(term))).sort((a, b) => score(b) - score(a));
+  }, [orderedAdvisorClips, searchQuery]);
+  const visibleAdvisorClips = searchOpen && searchQuery.trim() ? searchRankedClips : feedMode === "following" ? orderedAdvisorClips.filter((clip) => followedCreators.has(clip.creator)) : orderedAdvisorClips;
   const advisorFeedItems = visibleAdvisorClips.map((clip, index) => (
     <article className="feedItem advisorFeedItem" data-interest={topicSlug(clip.interests[0])} data-video-id={clip.id} style={{ order: index + Math.floor(index / 3) }} key={`advisor-${clip.id}`}>
-      <div className={`advisorMediaStage ${clip.platform !== "tiktok" && !landscapeFit.has(clip.id) ? "portraitCrop" : "originalFit"}`}>
+      <div className={`advisorMediaStage nativeMedia ${clip.platform === "tiktok" ? "tiktokNative" : "youtubeNative"}`}>
         {playingAdvisor === clip.id ? (
           <iframe
             title={clip.caption}
-            src={clip.platform === "tiktok" ? `https://www.tiktok.com/player/v1/${clip.id}?autoplay=1&loop=1` : `https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`}
+            src={clip.platform === "tiktok" ? `https://www.tiktok.com/player/v1/${clip.id}?autoplay=1&loop=1&controls=0` : `https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&controls=0`}
             allow="autoplay; encrypted-media; picture-in-picture; web-share"
             allowFullScreen
           />
@@ -459,24 +533,26 @@ export default function HomePage() {
             <span>▶</span>
           </button>
         )}
-        {clip.platform !== "tiktok" && <button className="videoFitToggle" type="button" onClick={() => setLandscapeFit((current) => { const next = new Set(current); next.has(clip.id) ? next.delete(clip.id) : next.add(clip.id); return next; })}>{landscapeFit.has(clip.id) ? "Fill screen" : "16:9"}</button>}
+        {introFor === clip.id && <BloomieIdent format={clip.platform === "tiktok" ? "portrait" : "landscape"} />}
       </div>
       <div className="scrimTop" /><div className="scrimBottom" />
       <header className="tabBar advisorTabBar">
         <nav className="tabs unifiedTabs" aria-label="Feed tabs">
           <a href="https://bloomie-watch.vercel.app">Shows</a>
+          <button type="button" onClick={() => setSheet("live")}>Live</button>
           <button className={feedMode === "following" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("following"); scrollerRef.current?.scrollTo({ top: 0 }); }}>Following</button>
           <button className={feedMode === "for-you" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("for-you"); scrollerRef.current?.scrollTo({ top: 0 }); }}>For You</button>
+          <button className={searchOpen ? "tabActive searchTabButton" : "searchTabButton"} type="button" onClick={() => setSearchOpen((value) => !value)} aria-label="Search Feed"><Search size={19} /></button>
         </nav>
       </header>
       <div className="advisorInterestPill">{clip.interests[0]}</div>
       <div className="videoMeta advisorVideoMeta"><div className="creatorLine"><strong>{clip.creator}</strong><span>✓</span></div><p className="caption">{clip.caption}</p><div className="advisorTopics">{clip.interests.map((interest) => <span key={interest}>#{topicSlug(interest)}</span>)}</div></div>
       <div className="musicLine"><Music2 size={15} /><span className="marquee">Bloomie Feed · {clip.platform === "tiktok" ? "TikTok Search" : "YouTube"} · {clip.interests[0]}</span></div>
       <aside className="actionRail" aria-label="Video actions">
-        <span className="advisorAvatar">{clip.creator.split(" ").map((part) => part[0]).slice(0,2).join("")}</span>
+        <button className={`advisorAvatar ${followedCreators.has(clip.creator) ? "isFollowing" : ""}`} type="button" onClick={() => requireFeedAccount(() => setFollowedCreators((current) => { const next = new Set(current); next.has(clip.creator) ? next.delete(clip.creator) : next.add(clip.creator); return next; }))} aria-label={`${followedCreators.has(clip.creator) ? "Unfollow" : "Follow"} ${clip.creator}`}>{clip.creator.split(" ").map((part) => part[0]).slice(0,2).join("")}<i>{followedCreators.has(clip.creator) ? "✓" : "+"}</i></button>
         <button className={`railButton ${advisorLikes.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => toggleAdvisor(setAdvisorLikes, clip.id)} aria-label={`Like ${clip.caption}`}><Heart size={39} strokeWidth={2.8} /><span>{clip.viewCount >= 1000 ? `${(clip.viewCount / 1000).toFixed(1)}K` : clip.viewCount}</span></button>
-        <button className="railButton" type="button" onClick={() => setSheet("comments")} aria-label={`Open comments for ${clip.caption}`}><MessageCircle size={39} strokeWidth={2.8} /><span>Discuss</span></button>
-        <button className={`railButton ${advisorSaves.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => toggleAdvisor(setAdvisorSaves, clip.id)} aria-label={`Save ${clip.caption}`}><Bookmark size={38} strokeWidth={2.8} /><span>Save</span></button>
+        <button className="railButton" type="button" onClick={() => requireFeedAccount(() => setSheet("comments"))} aria-label={`Open comments for ${clip.caption}`}><MessageCircle size={39} strokeWidth={2.8} /><span>Discuss</span></button>
+        <button className={`railButton ${advisorSaves.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => requireFeedAccount(() => toggleAdvisor(setAdvisorSaves, clip.id))} aria-label={`Save ${clip.caption}`}><Bookmark size={38} strokeWidth={2.8} /><span>Save</span></button>
         <button className="railButton" type="button" onClick={() => shareAdvisor(clip)} aria-label={`Share ${clip.caption}`}><Send size={38} strokeWidth={2.8} /><span>Share</span></button>
       </aside>
     </article>
@@ -594,8 +670,10 @@ export default function HomePage() {
                 <header className="tabBar simpleTabBar">
                   <nav className="tabs unifiedTabs" aria-label="Feed tabs">
                     <a href="https://bloomie-watch.vercel.app">Shows</a>
+                    <button type="button" onClick={() => setSheet("live")}>Live</button>
                     <button className={feedMode === "following" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("following"); scrollerRef.current?.scrollTo({ top: 0 }); }}>Following</button>
                     <button className={feedMode === "for-you" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("for-you"); scrollerRef.current?.scrollTo({ top: 0 }); }}>For You</button>
+                    <button className={searchOpen ? "tabActive searchTabButton" : "searchTabButton"} type="button" onClick={() => setSearchOpen((value) => !value)} aria-label="Search Feed"><Search size={19} /></button>
                   </nav>
                 </header>
                 <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>
@@ -635,11 +713,11 @@ export default function HomePage() {
                     <Heart size={39} strokeWidth={2.8} />
                     <span>{clip.metrics.likes}</span>
                   </button>
-                  <button className="railButton" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("comments"); }} aria-label="Open comments">
+                  <button className="railButton" type="button" onClick={() => requireFeedAccount(() => { setActiveClipIndex(logicalIndex); setSheet("comments"); })} aria-label="Open comments">
                     <MessageCircle size={39} strokeWidth={2.8} />
                     <span>{clip.metrics.comments}</span>
                   </button>
-                  <button className={`railButton ${saved ? "isActive" : ""}`} type="button" onClick={() => setSaved((value) => !value)} aria-label="Save video">
+                  <button className={`railButton ${saved ? "isActive" : ""}`} type="button" onClick={() => requireFeedAccount(() => setSaved((value) => !value))} aria-label="Save video">
                     <Bookmark size={38} strokeWidth={2.8} />
                     <span>{clip.metrics.saves}</span>
                   </button>
@@ -655,11 +733,12 @@ export default function HomePage() {
             );
           })}
         </div>
+        {searchOpen && <div className="feedSearchPanel"><Search size={18} /><input autoFocus value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Search topics, creators, or questions" aria-label="Search the Feed" /><button type="button" onClick={() => { setSearchQuery(""); setSearchOpen(false); }} aria-label="Close search"><X size={18} /></button></div>}
         <nav className="bottomNav" aria-label="App navigation">
           <a className="navItem navItemActive" href="https://bloomie-watch.vercel.app"><Home size={28} fill="currentColor" />Watch</a>
           <button className="navItem" type="button" onClick={openTikTokLogin}><UsersRound size={28} />Friends</button>
           <button className="navItem" type="button" onClick={openTikTokLogin} aria-label="Create post"><span className="postButton"><Plus size={25} strokeWidth={3.5} /></span></button>
-          <button className="navItem" type="button" onClick={() => setSheet("comments")}><MessageCircle size={28} />Inbox</button>
+          <button className="navItem" type="button" onClick={() => requireFeedAccount(() => setSheet("comments"))}><MessageCircle size={28} />Inbox</button>
           <Link className="navItem" href="/about"><UserRound size={28} />Profile</Link>
         </nav>
         {showLiveInvite && !sheet && (
@@ -682,6 +761,7 @@ export default function HomePage() {
         {sheet === "shop" && <ShopSheet clip={activeClip} onClose={() => setSheet(null)} />}
         {sheet === "assistant" && <AssistantPanel onClose={() => setSheet(null)} onLoginRequest={openTikTokLogin} />}
         {sheet === "tiktokLogin" && <TikTokLoginPrompt onClose={() => setSheet(null)} />}
+        {sheet === "feedAuth" && <FeedAuthPrompt onClose={() => setSheet(null)} currentVideo={playingAdvisor} />}
         {sheet === "live" && <LiveShopPage soundOn={soundOn} onEnableSound={() => setSoundOn(true)} onClose={() => setSheet(null)} />}
       </section>
     </main>
@@ -761,6 +841,46 @@ function TikTokLoginPrompt({ onClose }: { onClose: () => void }) {
       <p>Open TikTok to use this feature.</p>
       <a href="https://www.tiktok.com/login" rel="noreferrer" target="_blank">Continue with TikTok</a>
       <button type="button" onClick={onClose}>Not now</button>
+    </section>
+  );
+}
+
+function BloomieIdent({ format }: { format: "portrait" | "landscape" }) {
+  return (
+    <div className={`feedBloomieIdent ${format}`} aria-label="Bloomie intro">
+      <div className="feedIdentOrbit" />
+      <div className="feedIdentPetals" aria-hidden="true">
+        {Array.from({ length: 28 }, (_, index) => <i key={index} style={{ "--petal": index } as CSSProperties} />)}
+      </div>
+      <img src="/brand/bloomie-petal-b-ident-v2.jpg" alt="" />
+      <strong>BLOOMIE</strong>
+    </div>
+  );
+}
+
+function FeedAuthPrompt({ onClose, currentVideo }: { onClose: () => void; currentVideo: string }) {
+  const [error, setError] = useState("");
+
+  async function signIn() {
+    if (!supabase) { setError("Feed sign-in is being configured. Please try again shortly."); return; }
+    const returnUrl = new URL(window.location.href);
+    if (currentVideo) returnUrl.searchParams.set("video", currentVideo);
+    const { error: authError } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: returnUrl.toString() },
+    });
+    if (authError) setError(authError.message);
+  }
+
+  return (
+    <section className="tiktokLoginPrompt feedAuthPrompt" aria-label="Sign in to the Feed">
+      <button className="loginClose" type="button" onClick={onClose} aria-label="Close sign-in"><X size={22} /></button>
+      <div className="feedAuthMark" aria-hidden="true">B</div>
+      <h2>Join the Feed</h2>
+      <p>Sign in to follow creators, join the conversation, and save videos for later.</p>
+      <button className="googleSignInButton" type="button" onClick={signIn}>Continue with Google</button>
+      {error && <small>{error}</small>}
+      <button type="button" onClick={onClose}>Keep watching</button>
     </section>
   );
 }

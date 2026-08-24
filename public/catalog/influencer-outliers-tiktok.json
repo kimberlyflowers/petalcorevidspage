@@ -1,0 +1,349 @@
+{
+  "generatedAt": "2026-08-24T21:17:31.642Z",
+  "source": "Authenticated TikTok creator Popular tabs",
+  "method": "Topic-relevant creator Popular videos scored by views/day and profile-relative outlier multiple",
+  "count": 20,
+  "videos": [
+    {
+      "id": "7114518226121510190",
+      "creator": "ahormozi",
+      "caption": "How Restaurants Use Mints To Make More Money 💰💰 created by Alex Hormozi with Alex Hormozi’s original sound",
+      "viewCount": 4900000,
+      "publishedAt": "2022-06-29",
+      "viewsPerDay": 3229,
+      "outlierMultiple": 1,
+      "outlierScore": 6.69,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7095944875476028718",
+      "creator": "ahormozi",
+      "caption": "What’s The Most Common Objection You Get From Customers? created by Alex Hormozi with Alex Hormozi’s original sound",
+      "viewCount": 4099999.9999999995,
+      "publishedAt": "2022-05-10",
+      "viewsPerDay": 2616,
+      "outlierMultiple": 0.81,
+      "outlierScore": 5.95,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6968175709248441605",
+      "creator": "garyvee",
+      "caption": "There are other ways to get educated, without having a huge college debt created by GaryVee with GaryVee’s original sound",
+      "viewCount": 40800000,
+      "publishedAt": "2021-05-30",
+      "viewsPerDay": 21343,
+      "outlierMultiple": 1,
+      "outlierScore": 7.61,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6970094240428772614",
+      "creator": "garyvee",
+      "caption": "Communication is #communication created by GaryVee with unknown’s 啵2",
+      "viewCount": 29200000,
+      "publishedAt": "2021-06-05",
+      "viewsPerDay": 15316,
+      "outlierMultiple": 0.72,
+      "outlierScore": 6.32,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7192259873348865322",
+      "creator": "thechrisdo",
+      "caption": "Creating eye-catching thumbnails is one of the best ways to improve your CTR (click-thru rate) and get more views. Fortunately, @adobeexpress has a great YouTube banner maker that can easily adapt content to be cross-functional! ​​ Best part? You can do all of this while sitting on your couch or waiting in line for cof",
+      "viewCount": 4099999.9999999995,
+      "publishedAt": "2023-01-24",
+      "viewsPerDay": 3135,
+      "outlierMultiple": 6.61,
+      "outlierScore": 17,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7011285360340782342",
+      "creator": "thechrisdo",
+      "caption": "How to avoid building a proposal when the client hasn’t committed to a budget. #graphicdesignertips #freelancertips #graphicdesign #salesatrategy created by Chris Do with Claude Debussy’s Clair De Lune - Suite Bergamasque",
+      "viewCount": 851700,
+      "publishedAt": "2021-09-24",
+      "viewsPerDay": 474,
+      "outlierMultiple": 1,
+      "outlierScore": 5.93,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7367042297508187434",
+      "creator": "thechrisdo",
+      "caption": "Hey creatives, let’s talk about a common trap young or inexperienced designers fall into: the myth that more intricate means better. 🌀🔍 Here’s the real scoop: 1. Keep It Simple: A great logo isn’t about complexity; it’s about making a memorable, iconic, and easily recognizable mark. 🎯 2. Think Systematically: Don’t ",
+      "viewCount": 411200,
+      "publishedAt": "2024-05-09",
+      "viewsPerDay": 491,
+      "outlierMultiple": 1.04,
+      "outlierScore": 5.71,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7571144090767691063",
+      "creator": "roryvaden",
+      "caption": "8 Best Ways To Start A Speech 🙌 Want to speak with confidence, clarity, and power? Follow for more expert tips to become a more powerful speaker! created by Rory Vaden with Rory Vaden’s original sound",
+      "viewCount": 58000,
+      "publishedAt": "2025-11-10",
+      "viewsPerDay": 202,
+      "outlierMultiple": 4.41,
+      "outlierScore": 10,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7650169394034756877",
+      "creator": "roryvaden",
+      "caption": "The Perfect First 30 Seconds Of A Speech 🗣️ Follow if you want to grow your influence, income, and impact to become a more powerful speaker! #personalbranding #entrepreneur #professionalspeaking #publicspeaking #speech created by Rory Vaden with Rory Vaden’s original sound - Rory Vaden",
+      "viewCount": 6515,
+      "publishedAt": "2026-06-11",
+      "viewsPerDay": 88,
+      "outlierMultiple": 1.92,
+      "outlierScore": 5.29,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7578936129827785997",
+      "creator": "roryvaden",
+      "caption": "Good Speakers vs. Great Speakers 🎤 Follow to turn your story into paid keynotes! created by Rory Vaden with Rory Vaden’s original sound",
+      "viewCount": 12200,
+      "publishedAt": "2025-12-01",
+      "viewsPerDay": 46,
+      "outlierMultiple": 1,
+      "outlierScore": 4.09,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Client Acquisition",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7587425517742066999",
+      "creator": "bored_teachers",
+      "caption": "It's mind-blowing what baffles them. created by Bored Teachers with Bored Teachers’s original sound",
+      "viewCount": 5500000,
+      "publishedAt": "2025-12-24",
+      "viewsPerDay": 22642,
+      "outlierMultiple": 7.5,
+      "outlierScore": 18.46,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7399408648390216991",
+      "creator": "bored_teachers",
+      "caption": "Don't try to go into a roast battle with a teacher. You will lose. BRAND NEW EPISODE of  @Teachers Off Duty Podcast out now created by Bored Teachers with Bored Teachers’s original sound",
+      "viewCount": 6200000,
+      "publishedAt": "2024-08-04",
+      "viewsPerDay": 8271,
+      "outlierMultiple": 2.74,
+      "outlierScore": 11.25,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7234892984930602286",
+      "creator": "bored_teachers",
+      "caption": "Brett’s Chromebook: 👁️👄👁️ #teachersoftiktok #teacher #chromebook #student #endoftheschoolyear   created by Bored Teachers with Bored Teachers’s original sound",
+      "viewCount": 3600000,
+      "publishedAt": "2023-05-19",
+      "viewsPerDay": 3018,
+      "outlierMultiple": 1,
+      "outlierScore": 6.56,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Educator Growth",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7063205647357250863",
+      "creator": "mrsdowjones",
+      "caption": "Comment below if you’ve tried this 👇#financetok #moneytok #traveltiktok #traveltips #moneytips #savingmoney #airlines #freemoney #advice #SelfCare created by Mrs. Dow Jones with IndieHay’s Oh No I Hope I Don't Fall...",
+      "viewCount": 3500000,
+      "publishedAt": "2022-02-10",
+      "viewsPerDay": 2114,
+      "outlierMultiple": 1,
+      "outlierScore": 6.54,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7135509202188979499",
+      "creator": "mrsdowjones",
+      "caption": "Would you rather save $35 million or make $380 million? Wrong answers only @adele #financeiscool #leverage #debt  #secretsoftherich #mortgagetips #mortgage created by Mrs. Dow Jones with Fat Cat’s I Wanna Go Home",
+      "viewCount": 2200000,
+      "publishedAt": "2022-08-24",
+      "viewsPerDay": 1506,
+      "outlierMultiple": 0.71,
+      "outlierScore": 5.35,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7062782653250194734",
+      "creator": "humphreytalks",
+      "caption": "Rich Dad Lesson on the Market using an iPhone analogy. #personalfinance #apple created by Humphrey Yang with Humphrey Yang’s original sound",
+      "viewCount": 18000000,
+      "publishedAt": "2022-02-09",
+      "viewsPerDay": 10865,
+      "outlierMultiple": 1.37,
+      "outlierScore": 8.48,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6954771789348130053",
+      "creator": "humphreytalks",
+      "caption": "Money Hacks Pt. 2 💵 Inspired by @onlyjayus! #personalfinance #learnontiktok #tiktokpartner created by Humphrey Yang with Queens Road, Fabian Graetz’s FEEL THE GROOVE",
+      "viewCount": 15500000,
+      "publishedAt": "2021-04-24",
+      "viewsPerDay": 7958,
+      "outlierMultiple": 1,
+      "outlierScore": 7.19,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6969960192221940998",
+      "creator": "humphreytalks",
+      "caption": "How Taxes Actually Work! 🇺🇸#personalfinance #taxes #learnontiktok #tiktokpartner created by Humphrey Yang with Humphrey Yang’s original sound",
+      "viewCount": 8000000,
+      "publishedAt": "2021-06-04",
+      "viewsPerDay": 4195,
+      "outlierMultiple": 0.53,
+      "outlierScore": 5.01,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "6947681488750038277",
+      "creator": "herfirst100k",
+      "caption": "Take my free money personality quiz in my bio #jobinterview #manifestit #moneytoks #passiveincome #budgeting #savemoney #studentloans #debt #debtfree created by Tori Dunlap — Money Expert with Nitro Fun’s New Game",
+      "viewCount": 6200000,
+      "publishedAt": "2021-04-05",
+      "viewsPerDay": 3152,
+      "outlierMultiple": 1.09,
+      "outlierScore": 7.08,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    },
+    {
+      "id": "7050995826776132910",
+      "creator": "herfirst100k",
+      "caption": "free negotiation tips via the quiz in my bio! #negotiationtips #careercoach #jobinterview created by Tori Dunlap — Money Expert with Presley Walker’s presleywalker",
+      "viewCount": 4900000,
+      "publishedAt": "2022-01-09",
+      "viewsPerDay": 2902,
+      "outlierMultiple": 1,
+      "outlierScore": 6.69,
+      "platform": "tiktok",
+      "thumbnailUrl": "",
+      "interests": [
+        "Financial Education",
+        "Creator Outliers"
+      ],
+      "curation": "influencer-outlier"
+    }
+  ]
+}
+
