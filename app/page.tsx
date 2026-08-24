@@ -84,6 +84,7 @@ type AdvisorClip = {
   thumbnailUrl: string;
   viewCount: number;
   interests: string[];
+  platform?: "youtube" | "tiktok";
 };
 
 const advisorManifests = ["advisor-michael-kitces", "advisor-carl-richards", "advisor-samantha-russell", "advisor-taylor-schulte", "advisor-jason-pereira", "advisor-meg-bartelt", "advisor-steve-sanduski", "advisor-penny-phillips", "advisor-jamie-hopkins", "advisor-josh-brown"];
@@ -226,6 +227,8 @@ export default function HomePage() {
   const [advisorLikes, setAdvisorLikes] = useState<Set<string>>(new Set());
   const [advisorSaves, setAdvisorSaves] = useState<Set<string>>(new Set());
   const [playingAdvisor, setPlayingAdvisor] = useState("");
+  const [landscapeFit, setLandscapeFit] = useState<Set<string>>(new Set());
+  const [feedMode, setFeedMode] = useState<"following" | "for-you">("for-you");
   const [entrySeed, setEntrySeed] = useState<{ video: string; interest: string }>({ video: "", interest: "" });
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeClip = clips[activeClipIndex];
@@ -234,7 +237,8 @@ export default function HomePage() {
     const params = new URLSearchParams(window.location.search);
     setEntrySeed({ video: params.get("video") || "", interest: params.get("interest") || "" });
     setPlayingAdvisor(params.get("video") || "");
-    Promise.all(advisorManifests.map(async (name) => {
+    Promise.all([
+      ...advisorManifests.map(async (name) => {
       const response = await fetch(`https://bloomie-watch.vercel.app/catalog/youtube/${name}.json`);
       if (!response.ok) return [];
       const manifest = await response.json();
@@ -245,8 +249,22 @@ export default function HomePage() {
         thumbnailUrl: video.thumbnailUrl,
         viewCount: video.viewCount || 0,
         interests: creatorInterests[video.creator || manifest.title] || ["Financial Education"],
+        platform: "youtube" as const,
       }));
-    })).then((groups) => setAdvisorClips(groups.flat())).catch(() => setAdvisorClips([]));
+      }),
+      ...["discovery-youtube", "discovery-tiktok"].map(async (name) => {
+        const response = await fetch(`/catalog/${name}.json`);
+        if (!response.ok) return [];
+        const manifest = await response.json();
+        return (manifest.videos || []).map((video: AdvisorClip) => ({ ...video, interests: video.interests?.length ? video.interests : ["Client Growth"] }));
+      }),
+    ]).then((groups) => {
+      const unique = new Map<string, AdvisorClip>();
+      groups.flat().forEach((clip) => unique.set(`${clip.platform || "youtube"}:${clip.id}`, clip));
+      const next = [...unique.values()];
+      setAdvisorClips(next);
+      setPlayingAdvisor((current) => current || next[0]?.id || "");
+    }).catch(() => setAdvisorClips([]));
   }, []);
 
   const orderedAdvisorClips = useMemo(() => {
@@ -321,7 +339,8 @@ export default function HomePage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const item = entry.target as HTMLElement;
-        if (!entry.isIntersecting && item.dataset.videoId === playingAdvisor) setPlayingAdvisor("");
+        if (entry.isIntersecting && entry.intersectionRatio >= .62) setPlayingAdvisor(item.dataset.videoId || "");
+        else if (!entry.isIntersecting && item.dataset.videoId === playingAdvisor) setPlayingAdvisor("");
       });
     }, { threshold: .18 });
     advisorItems.forEach((item) => observer.observe(item));
@@ -423,20 +442,36 @@ export default function HomePage() {
     });
   }
 
-  const advisorFeedItems = orderedAdvisorClips.map((clip, index) => (
+  const visibleAdvisorClips = feedMode === "following" ? orderedAdvisorClips.filter((clip) => Boolean(creatorInterests[clip.creator])) : orderedAdvisorClips;
+  const advisorFeedItems = visibleAdvisorClips.map((clip, index) => (
     <article className="feedItem advisorFeedItem" data-interest={topicSlug(clip.interests[0])} data-video-id={clip.id} style={{ order: index + Math.floor(index / 3) }} key={`advisor-${clip.id}`}>
-      <div className="advisorMediaStage">
-        {playingAdvisor === clip.id ? <iframe title={clip.caption} src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`} allow="autoplay; encrypted-media; picture-in-picture; web-share" allowFullScreen /> : <button className="advisorPoster" type="button" onClick={() => setPlayingAdvisor(clip.id)} aria-label={`Play ${clip.caption}`}><img src={clip.thumbnailUrl.replace("hqdefault", "maxresdefault")} onError={(event) => { event.currentTarget.src = clip.thumbnailUrl; }} alt="" loading="lazy" /><span>▶</span></button>}
+      <div className={`advisorMediaStage ${clip.platform !== "tiktok" && !landscapeFit.has(clip.id) ? "portraitCrop" : "originalFit"}`}>
+        {playingAdvisor === clip.id ? (
+          <iframe
+            title={clip.caption}
+            src={clip.platform === "tiktok" ? `https://www.tiktok.com/player/v1/${clip.id}?autoplay=1&loop=1` : `https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`}
+            allow="autoplay; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : (
+          <button className={`advisorPoster ${clip.platform === "tiktok" ? "tiktokPoster" : ""}`} type="button" onClick={() => setPlayingAdvisor(clip.id)} aria-label={`Play ${clip.caption}`}>
+            {clip.thumbnailUrl ? <img src={clip.thumbnailUrl.replace("hqdefault", "maxresdefault")} onError={(event) => { event.currentTarget.src = clip.thumbnailUrl; }} alt="" loading="lazy" /> : <div className="tiktokPosterArt"><b>{clip.creator.slice(0, 1).toUpperCase()}</b><small>TikTok</small></div>}
+            <span>▶</span>
+          </button>
+        )}
+        {clip.platform !== "tiktok" && <button className="videoFitToggle" type="button" onClick={() => setLandscapeFit((current) => { const next = new Set(current); next.has(clip.id) ? next.delete(clip.id) : next.add(clip.id); return next; })}>{landscapeFit.has(clip.id) ? "Fill screen" : "16:9"}</button>}
       </div>
       <div className="scrimTop" /><div className="scrimBottom" />
       <header className="tabBar advisorTabBar">
-        <a className="watchFeedBack" href="https://bloomie-watch.vercel.app" aria-label="Back to Bloomie Watch">B</a>
-        <nav className="tabs" aria-label="Feed tabs"><button type="button">Following</button><button className="tabActive" type="button">For You</button></nav>
-        <button className="searchButton" type="button" onClick={openTikTokLogin} aria-label="Search Feed"><Search size={30} strokeWidth={3} /></button>
+        <nav className="tabs unifiedTabs" aria-label="Feed tabs">
+          <a href="https://bloomie-watch.vercel.app">Shows</a>
+          <button className={feedMode === "following" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("following"); scrollerRef.current?.scrollTo({ top: 0 }); }}>Following</button>
+          <button className={feedMode === "for-you" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("for-you"); scrollerRef.current?.scrollTo({ top: 0 }); }}>For You</button>
+        </nav>
       </header>
       <div className="advisorInterestPill">{clip.interests[0]}</div>
       <div className="videoMeta advisorVideoMeta"><div className="creatorLine"><strong>{clip.creator}</strong><span>✓</span></div><p className="caption">{clip.caption}</p><div className="advisorTopics">{clip.interests.map((interest) => <span key={interest}>#{topicSlug(interest)}</span>)}</div></div>
-      <div className="musicLine"><Music2 size={15} /><span className="marquee">Bloomie Feed · {clip.interests[0]}</span></div>
+      <div className="musicLine"><Music2 size={15} /><span className="marquee">Bloomie Feed · {clip.platform === "tiktok" ? "TikTok Search" : "YouTube"} · {clip.interests[0]}</span></div>
       <aside className="actionRail" aria-label="Video actions">
         <span className="advisorAvatar">{clip.creator.split(" ").map((part) => part[0]).slice(0,2).join("")}</span>
         <button className={`railButton ${advisorLikes.has(clip.id) ? "isActive" : ""}`} type="button" onClick={() => toggleAdvisor(setAdvisorLikes, clip.id)} aria-label={`Like ${clip.caption}`}><Heart size={39} strokeWidth={2.8} /><span>{clip.viewCount >= 1000 ? `${(clip.viewCount / 1000).toFixed(1)}K` : clip.viewCount}</span></button>
@@ -450,7 +485,6 @@ export default function HomePage() {
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
-        <a className="feedBackButton" href="https://bloomie-watch.vercel.app" aria-label="Back to Bloomie Watch">← <span>Bloomie Watch</span></a>
         <div className="feedScroller" ref={scrollerRef}>
           {advisorFeedItems}
           {feedClips.map((clip, index) => {
@@ -557,20 +591,12 @@ export default function HomePage() {
                 )}
                 <div className="scrimTop" />
                 <div className="scrimBottom" />
-                <header className="tabBar">
-                  <button className="liveTab" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("live"); }} aria-label="Open live shopping">
-                    <FeedLiveIcon />
-                  </button>
-                  <nav className="tabs" aria-label="Feed tabs">
-                    <button type="button" onClick={openTikTokLogin}>Community</button>
-                    <button type="button" onClick={openTikTokLogin}>Local</button>
-                    <button type="button" onClick={openTikTokLogin}>Following</button>
-                    <button type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>Shop</button>
-                    <button className="tabActive" type="button">For You</button>
+                <header className="tabBar simpleTabBar">
+                  <nav className="tabs unifiedTabs" aria-label="Feed tabs">
+                    <a href="https://bloomie-watch.vercel.app">Shows</a>
+                    <button className={feedMode === "following" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("following"); scrollerRef.current?.scrollTo({ top: 0 }); }}>Following</button>
+                    <button className={feedMode === "for-you" ? "tabActive" : ""} type="button" onClick={() => { setFeedMode("for-you"); scrollerRef.current?.scrollTo({ top: 0 }); }}>For You</button>
                   </nav>
-                  <button className="searchButton" type="button" onClick={openTikTokLogin} aria-label="Search TikTok">
-                    <Search size={32} strokeWidth={3} />
-                  </button>
                 </header>
                 <button className="shopPill" type="button" onClick={() => { setActiveClipIndex(logicalIndex); setSheet("shop"); }}>
                   <span className="shopIcon">

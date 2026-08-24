@@ -6,13 +6,24 @@
 }
 
 .advisorFeedItem { background:#000; }
-.advisorMediaStage { position:absolute; inset:0 0 58px; display:grid; place-items:center; background:#000; }
-.advisorMediaStage iframe { display:block; width:100%; aspect-ratio:16/9; border:0; background:#000; }
+.advisorMediaStage { position:absolute; inset:0; display:grid; place-items:center; overflow:hidden; background:#000; }
+.advisorMediaStage iframe { display:block; width:100%; height:100%; border:0; background:#000; }
+.advisorMediaStage.portraitCrop iframe { width:177.78%; max-width:none; }
+.advisorMediaStage.originalFit iframe { width:100%; height:auto; aspect-ratio:16/9; }
+.advisorMediaStage.originalFit:has(iframe[src*="tiktok.com"]) iframe { height:100%; aspect-ratio:auto; }
+.videoFitToggle { position:absolute; z-index:12; right:16px; top:calc(env(safe-area-inset-top) + 112px); min-height:34px; padding:0 12px; border:1px solid rgba(255,255,255,.3); border-radius:999px; background:rgba(0,0,0,.64); color:#fff; font-size:12px; font-weight:900; backdrop-filter:blur(12px); }
+.tiktokPosterArt { display:grid; place-items:center; gap:8px; width:100%; height:100%; background:radial-gradient(circle at 55% 35%,#29204a 0,#111 42%,#000 75%); }
+.tiktokPosterArt b { font-size:74px; line-height:1; text-shadow:-4px 0 #25f4ee,4px 0 #fe2c55; }
+.tiktokPosterArt small { font-weight:900; letter-spacing:.16em; text-transform:uppercase; }
 .advisorPoster { position:relative; display:grid; place-items:center; width:100%; aspect-ratio:16/9; overflow:hidden; background:#000; }
 .advisorPoster img { width:100%; height:100%; object-fit:contain; }
 .advisorPoster span { position:absolute; display:grid; place-items:center; width:62px; height:48px; border-radius:14px; background:rgba(255,70,35,.92); color:#fff; font-size:23px; box-shadow:0 8px 30px rgba(0,0,0,.5); }
-.advisorTabBar { grid-template-columns:54px minmax(0,1fr) 44px; }
+.advisorTabBar,.simpleTabBar { grid-template-columns:1fr; }
 .advisorTabBar .tabs { justify-content:center; }
+.unifiedTabs { justify-content:center; gap:25px; }
+.unifiedTabs a,.unifiedTabs button { position:relative; padding:9px 0; color:rgba(255,255,255,.78); font-size:15px; font-weight:850; }
+.unifiedTabs a { color:#fff; }
+.unifiedTabs .tabActive::after { content:""; position:absolute; left:50%; bottom:2px; width:22px; height:3px; border-radius:999px; background:#fff; transform:translateX(-50%); }
 .watchFeedBack { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(145deg,#ff8d5d,#ff4b1f); color:#fff; font-size:19px; font-weight:1000; box-shadow:0 6px 22px rgba(255,83,37,.32); }
 .advisorInterestPill { position:absolute; z-index:8; left:18px; bottom:204px; max-width:calc(100% - 105px); padding:8px 12px; border:1px solid rgba(255,255,255,.2); border-radius:999px; background:rgba(0,0,0,.58); color:#fff; font-size:12px; font-weight:850; backdrop-filter:blur(12px); }
 .advisorVideoMeta { bottom:113px; }
