@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Petalcore Beauty",
-  description: "Petalcore Beauty mobile video sales page.",
+  title: "The Feed | Bloomie Watch",
+  description: "Discover recent advisor videos in the Bloomie Watch Feed.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Petalcore",
+    title: "Bloomie Feed",
   },
   icons: {
     icon: [
@@ -48,7 +47,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         {children}
-        <Script src="https://js.whop.com/static/checkout/loader.js" strategy="afterInteractive" />
       </body>
     </html>
   );
