@@ -238,7 +238,7 @@ export default function HomePage() {
       const response = await fetch(`https://bloomie-watch.vercel.app/catalog/youtube/${name}.json`);
       if (!response.ok) return [];
       const manifest = await response.json();
-      return (manifest.videos || []).slice(0, 3).map((video: { id: string; creator?: string; title: string; thumbnailUrl: string; viewCount?: number }) => ({
+      return (manifest.videos || []).slice(0, 20).map((video: { id: string; creator?: string; title: string; thumbnailUrl: string; viewCount?: number }) => ({
         id: video.id,
         creator: video.creator || manifest.title,
         caption: video.title,
@@ -317,20 +317,16 @@ export default function HomePage() {
   }, [sheet]);
 
   useEffect(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-
-    function loopFeed() {
-      if (!scroller) return;
-      const loopPoint = scroller.clientHeight * clips.length;
-      if (loopPoint > 0 && scroller.scrollTop >= loopPoint) {
-        scroller.scrollTop -= loopPoint;
-      }
-    }
-
-    scroller.addEventListener("scroll", loopFeed, { passive: true });
-    return () => scroller.removeEventListener("scroll", loopFeed);
-  }, []);
+    const advisorItems = Array.from(document.querySelectorAll<HTMLElement>(".advisorFeedItem"));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const item = entry.target as HTMLElement;
+        if (!entry.isIntersecting && item.dataset.videoId === playingAdvisor) setPlayingAdvisor("");
+      });
+    }, { threshold: .18 });
+    advisorItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [advisorClips, playingAdvisor]);
 
   useEffect(() => {
     if (sheet) {
@@ -427,8 +423,8 @@ export default function HomePage() {
     });
   }
 
-  const advisorFeedItems = orderedAdvisorClips.map((clip) => (
-    <article className="feedItem advisorFeedItem" data-interest={topicSlug(clip.interests[0])} key={`advisor-${clip.id}`}>
+  const advisorFeedItems = orderedAdvisorClips.map((clip, index) => (
+    <article className="feedItem advisorFeedItem" data-interest={topicSlug(clip.interests[0])} data-video-id={clip.id} style={{ order: index + Math.floor(index / 3) }} key={`advisor-${clip.id}`}>
       <div className="advisorMediaStage">
         {playingAdvisor === clip.id ? <iframe title={clip.caption} src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`} allow="autoplay; encrypted-media; picture-in-picture; web-share" allowFullScreen /> : <button className="advisorPoster" type="button" onClick={() => setPlayingAdvisor(clip.id)} aria-label={`Play ${clip.caption}`}><img src={clip.thumbnailUrl.replace("hqdefault", "maxresdefault")} onError={(event) => { event.currentTarget.src = clip.thumbnailUrl; }} alt="" loading="lazy" /><span>▶</span></button>}
       </div>
@@ -454,8 +450,9 @@ export default function HomePage() {
   return (
     <main className="mobileShell">
       <section className="phoneViewport" aria-label="Petalcore video shopping feed">
+        <a className="feedBackButton" href="https://bloomie-watch.vercel.app" aria-label="Back to Bloomie Watch">← <span>Bloomie Watch</span></a>
         <div className="feedScroller" ref={scrollerRef}>
-          {(entrySeed.video || entrySeed.interest) && advisorFeedItems}
+          {advisorFeedItems}
           {feedClips.map((clip, index) => {
             const logicalIndex = index % clips.length;
             const isLivePreview = "livePreview" in clip && clip.livePreview;
@@ -463,7 +460,7 @@ export default function HomePage() {
             const storyVideo = "videos" in clip && clip.videos ? clip.videos[storyPart] : null;
 
             return (
-              <article className={`feedItem ${isLivePreview ? "liveFeedItem" : ""}`} key={`${clip.id}-${index}`}>
+              <article className={`feedItem ${isLivePreview ? "liveFeedItem" : ""}`} style={{ order: index * 4 + 3 }} key={`${clip.id}-${index}`}>
                 <button
                   className={`videoTapLayer ${storyVideo ? "storyTapLayer" : ""}`}
                   type="button"
@@ -631,7 +628,6 @@ export default function HomePage() {
               </article>
             );
           })}
-          {!entrySeed.video && !entrySeed.interest && advisorFeedItems}
         </div>
         <nav className="bottomNav" aria-label="App navigation">
           <a className="navItem navItemActive" href="https://bloomie-watch.vercel.app"><Home size={28} fill="currentColor" />Watch</a>
