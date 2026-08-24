@@ -636,6 +636,8 @@ function TikTokLoginPrompt({ onClose }: { onClose: () => void }) {
 
 function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClose: () => void }) {
   const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
+  const [draft, setDraft] = useState("");
+  const [addedComments, setAddedComments] = useState<Array<{ id: string; text: string }>>([]);
 
   function toggleCommentLike(id: string) {
     setLikedComments((current) => {
@@ -647,6 +649,14 @@ function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClos
       }
       return next;
     });
+  }
+
+  function submitComment(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const text = draft.trim();
+    if (!text) return;
+    setAddedComments((current) => [...current, { id: `viewer-${Date.now()}`, text }]);
+    setDraft("");
   }
 
   return (
@@ -687,8 +697,24 @@ function CommentsSheet({ commentCount, onClose }: { commentCount: string; onClos
               </button>
             </article>
           ))}
+          {addedComments.map((comment) => (
+            <article className="commentRow" key={comment.id}>
+              <span className="avatar commentViewerAvatar">You</span>
+              <div>
+                <p className="commentName">@you</p>
+                <p className="commentText">{comment.text}</p>
+                <div className="commentMeta"><span>Just now</span><span>Reply</span></div>
+              </div>
+              <button className={`commentLike ${likedComments.has(comment.id) ? "commentLikeActive" : ""}`} type="button" aria-label="Like your comment" aria-pressed={likedComments.has(comment.id)} onClick={() => toggleCommentLike(comment.id)}><Heart size={18} /><span>{likedComments.has(comment.id) ? 1 : 0}</span></button>
+            </article>
+          ))}
         </div>
       </div>
+      <form className="commentComposer" onSubmit={submitComment}>
+        <span className="commentComposerAvatar">You</span>
+        <input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="Add comment" placeholder="Add comment..." />
+        <button type="submit" aria-label="Post comment" disabled={!draft.trim()}><Send size={22} /></button>
+      </form>
     </section>
   );
 }

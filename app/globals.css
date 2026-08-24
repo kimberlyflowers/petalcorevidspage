@@ -5,6 +5,15 @@
   --ink: #09090b;
 }
 
+.commentComposer { position: sticky; z-index: 5; left: 0; right: 0; bottom: 0; min-height: 64px; display: grid; grid-template-columns: 38px minmax(0,1fr) 42px; align-items: center; gap: 9px; padding: 9px 13px calc(9px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.1); background: rgba(18,18,18,.96); backdrop-filter: blur(18px); }
+.commentComposerAvatar,.commentViewerAvatar { display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg,#ff7e50,#ff2d67); color: #fff; font-size: 10px; font-weight: 900; }
+.commentComposerAvatar { width: 36px; height: 36px; }
+.commentViewerAvatar { width: 42px; height: 42px; }
+.commentComposer input { width: 100%; min-width: 0; height: 42px; border: 1px solid rgba(255,255,255,.13); border-radius: 999px; padding: 0 15px; outline: 0; background: rgba(255,255,255,.08); color: #fff; }
+.commentComposer input:focus { border-color: rgba(255,255,255,.42); }
+.commentComposer button { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #ff5d82; }
+.commentComposer button:disabled { opacity: .35; }
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
